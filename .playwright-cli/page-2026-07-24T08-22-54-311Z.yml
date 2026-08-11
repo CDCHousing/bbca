@@ -1,0 +1,142 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]: Business Development Centre Unit-16, 7-15 Greatorex Street, London, United Kingdom
+        - generic [ref=e11]: "|"
+        - generic [ref=e12]: info@bbca.co.uk
+      - link [ref=e18] [cursor=pointer]:
+        - /url: https://facebook.com
+    - generic [ref=e22]:
+      - link [ref=e23] [cursor=pointer]:
+        - /url: /
+        - img "BBCA" [ref=e25]
+      - navigation [ref=e26]:
+        - link "Home" [ref=e28] [cursor=pointer]:
+          - /url: /
+        - link "About Us" [ref=e31] [cursor=pointer]:
+          - /url: /about
+        - link "Why Join BBCA" [ref=e34] [cursor=pointer]:
+          - /url: /why-join
+        - link "Membership Form" [ref=e37] [cursor=pointer]:
+          - /url: /membership
+        - link "Executive Committee" [ref=e40] [cursor=pointer]:
+          - /url: /executive-committee
+        - link "Board of Directors" [ref=e43] [cursor=pointer]:
+          - /url: /board-of-directors
+        - link "News & Insights" [ref=e46] [cursor=pointer]:
+          - /url: /news
+        - link "Photo Archive" [ref=e49] [cursor=pointer]:
+          - /url: /gallery
+      - generic [ref=e51]:
+        - button "Search" [ref=e52]
+        - generic [ref=e60]:
+          - generic [ref=e61]: Free Call
+          - generic [ref=e62]: +44 20 7247 5525
+  - main [ref=e63]:
+    - generic [ref=e64]:
+      - img "BBCA members group photo" [ref=e65]
+      - generic [ref=e69]:
+        - generic [ref=e70]: We care your business
+        - heading "British Bangladeshi Construction Association" [level=1] [ref=e71]
+        - link "Directors" [ref=e72] [cursor=pointer]:
+          - /url: /board-of-directors
+      - generic [ref=e77]:
+        - generic [ref=e78]: "1"
+        - generic [ref=e81]: "2"
+        - generic [ref=e84]: "3"
+        - generic [ref=e87]: "4"
+        - generic [ref=e90]: "5"
+        - generic [ref=e93]: "6"
+        - generic [ref=e96]: "7"
+    - generic [ref=e100]:
+      - generic [ref=e101]:
+        - generic [ref=e102]: 164+
+        - generic [ref=e103]: Businesses Connected
+      - generic [ref=e104]:
+        - generic [ref=e105]: 250+
+        - generic [ref=e106]: Construction Professionals
+      - generic [ref=e107]:
+        - generic [ref=e108]: 35+
+        - generic [ref=e109]: Industry Partners
+      - generic [ref=e110]:
+        - generic [ref=e111]: 20+
+        - generic [ref=e112]: Training Workshops
+      - generic [ref=e113]:
+        - generic [ref=e114]: 120+
+        - generic [ref=e115]: Career Opportunities Created
+    - img "BBCA group photo" [ref=e119]
+    - generic [ref=e126]:
+      - heading "British Bangladeshi Construction Association" [level=2] [ref=e127]
+      - paragraph [ref=e128]: The British Bangladeshi Construction Association is a professional network dedicated to supporting, connecting, and promoting British Bangladeshi individuals and businesses within the UK construction industry. The association brings together contractors, developers, engineers, architects, consultants, tradespeople, suppliers, and aspiring professionals to encourage collaboration, knowledge sharing and sustainable growth.
+      - generic [ref=e129]:
+        - link "Learn More about BBCA" [ref=e130] [cursor=pointer]:
+          - /url: /about
+        - link "Become a Member" [ref=e135] [cursor=pointer]:
+          - /url: /membership
+        - link "Key Policies" [ref=e140] [cursor=pointer]:
+          - /url: /about
+    - generic [ref=e146]:
+      - img "BBCA Build Festival" [ref=e148]
+      - generic [ref=e149]:
+        - heading "British Bangladeshi Build Festival" [level=2] [ref=e150]
+        - paragraph [ref=e151]: The British Bangladeshi Construction Association (BBCA) is proud to announce that it will host the British Bangladeshi Build Festival London 2026.
+        - paragraph [ref=e152]: The festival will bring together construction professionals, business owners, developers, contractors, architects, engineers, suppliers, investors, and community leaders for a major celebration of industry, innovation, and opportunity.
+        - paragraph [ref=e153]: The event will feature networking, exhibitions, expert discussions, business showcases, career opportunities, and recognition of British Bangladeshi achievements within the UK construction sector.
+        - generic [ref=e154]:
+          - link "Submit your registration" [ref=e155] [cursor=pointer]:
+            - /url: /membership
+          - link "Contact us" [ref=e160] [cursor=pointer]:
+            - /url: /contact
+    - generic [ref=e166]:
+      - heading "Resource, Knowledge & Career" [level=2] [ref=e167]
+      - generic [ref=e168]:
+        - paragraph [ref=e171]: Gain practical skills through expert-led construction courses and workshops.
+        - paragraph [ref=e174]: Connect with employers, apprenticeships, internships, and job opportunities.
+        - paragraph [ref=e177]: Access professional guidance, industry resources, and networking opportunities.
+      - link "Learn More" [ref=e179] [cursor=pointer]:
+        - /url: /about
+    - generic [ref=e185]:
+      - heading "News & Events" [level=2] [ref=e186]
+      - generic [ref=e187]:
+        - link "BBCA Meetup — May 2026" [ref=e188] [cursor=pointer]:
+          - /url: /news
+        - link "BBCA Business Forum — May 2026" [ref=e191] [cursor=pointer]:
+          - /url: /news
+        - link "BBCA Members Networking Evening" [ref=e194] [cursor=pointer]:
+          - /url: /news
+  - contentinfo [ref=e212]:
+    - generic [ref=e213]:
+      - generic [ref=e214]:
+        - generic [ref=e215]:
+          - heading "Explore BBCA" [level=4] [ref=e216]
+          - generic [ref=e217]:
+            - link "About Us" [ref=e218] [cursor=pointer]:
+              - /url: /about
+            - link "Membership" [ref=e219] [cursor=pointer]:
+              - /url: /membership
+            - link "Why Join BBCA" [ref=e220] [cursor=pointer]:
+              - /url: /why-join
+        - generic [ref=e221]:
+          - heading "Contact Us" [level=4] [ref=e222]
+          - generic [ref=e223]:
+            - link "07913 185 391" [ref=e224] [cursor=pointer]:
+              - /url: /contact
+            - link "contact@bbcauk.org" [ref=e225] [cursor=pointer]:
+              - /url: /contact
+            - link "London, United Kingdom" [ref=e226] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=e227]:
+          - heading "Policy" [level=4] [ref=e228]
+          - generic [ref=e229]:
+            - link "Key Policies" [ref=e230] [cursor=pointer]:
+              - /url: /about
+            - link "Aim & Objectives" [ref=e231] [cursor=pointer]:
+              - /url: /about
+            - link "About Us" [ref=e232] [cursor=pointer]:
+              - /url: /about
+        - generic [ref=e238]:
+          - generic [ref=e239]: BBCA
+          - generic [ref=e240]: British BangladeshiConstruction Association
+      - generic [ref=e241]: © 2026 British Bangladeshi Construction Association — All rights reserved
+  - button "Open Next.js Dev Tools" [ref=e247] [cursor=pointer]

@@ -1,0 +1,13 @@
+import { z } from "zod";
+
+export const stallBookingSchema = z.object({
+  name: z.string().trim().min(2, "Name is required").max(200),
+  phone: z
+    .string()
+    .trim()
+    .regex(/^\+?[0-9]{7,15}$/, "Enter a valid phone number (digits only)"),
+  email: z.string().trim().min(1, "Email is required").email("Enter a valid email address"),
+  organization: z.string().trim().min(2, "Organization is required").max(200),
+});
+
+export type StallBookingValues = z.infer<typeof stallBookingSchema>;

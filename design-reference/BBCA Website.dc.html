@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/cupertino-design-system-682ebbcf-0a6e-4fd4-b0ad-f39bfa17eeb9/colors_and_type.css">
+<script src="_ds/cupertino-design-system-682ebbcf-0a6e-4fd4-b0ad-f39bfa17eeb9/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+:root{
+  --navy:#1B2A52; --navy-deep:#14203D; --red:#D0202F; --green:#0A7D3E;
+  --blue-tint:#E4F0F2; --blue-tint-2:#EDF5F6; --alt:#F5F7FA; --gold:#DA9028;
+  --ink:#1B2A52; --body:#414C60; --muted:#6E7A8C; --line:#E3E7ED;
+}
+body{ background:#fff; color:var(--ink); font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+h1,h2,h3,h4,.disp{ font-family:'Poppins','Inter',sans-serif; }
+a{ color:var(--navy); text-decoration:none; }
+a:hover{ color:var(--red); }
+.i i{ width:15px; height:15px; }
+.i-lg i{ width:18px; height:18px; }
+.i-xs i{ width:13px; height:13px; }
+@keyframes fadeUp{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+@keyframes navDrop{ from{opacity:0; transform:translateY(-14px);} to{opacity:1; transform:translateY(0);} }
+@keyframes heroIn{ from{opacity:0; transform:translateY(26px);} to{opacity:1; transform:translateY(0);} }
+.page-anim{ animation:fadeUp .45s var(--ease-standard,cubic-bezier(.4,0,.2,1)) both; }
+.pill-navy{ display:inline-flex; align-items:center; gap:0; background:var(--navy); color:#fff !important; font-weight:600; font-size:13.5px; padding:11px 13px 11px 20px; border-radius:9999px; line-height:1; transition:background .15s; }
+.pill-navy::after{ content:""; display:inline-block; width:22px; height:22px; margin-left:12px; border-radius:9999px; background:var(--red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3Cpolyline points='12 5 19 12 12 19'/%3E%3C/svg%3E") center/13px no-repeat; }
+.pill-navy:hover{ background:var(--navy-deep); color:#fff !important; }
+.pill-navy:active{ transform:scale(0.96); }
+</style>
+</helmet>
+
+<div style="min-height:100vh; display:flex; flex-direction:column; background:#fff; font-size:16px;">
+
+  <!-- ================= HEADER ================= -->
+  <header style="position:sticky; top:0; z-index:100;">
+    <!-- utility bar -->
+    <div style="background:var(--navy-deep); color:#fff; overflow:hidden; transition:max-height .35s var(--ease-standard,cubic-bezier(.4,0,.2,1)), opacity .3s ease; max-height:{{ utilMax }}; opacity:{{ utilOpacity }};">
+      <div style="max-width:1560px; margin:0 auto; padding:0 40px; height:42px; display:flex; align-items:center; gap:30px; font-size:12.5px;">
+        <div style="display:flex; align-items:center; gap:9px; color:rgba(255,255,255,0.82);" class="i-xs"><i data-lucide="map-pin" style="color:var(--gold);"></i><span>Business Development Centre Unit-16, 7-15 Greatorex Street, London, United Kingdom</span></div>
+        <div style="margin-left:auto; display:flex; align-items:center; gap:22px;">
+          <div style="display:flex; align-items:center; gap:9px; color:rgba(255,255,255,0.82);" class="i-xs"><i data-lucide="mail" style="color:var(--gold);"></i><span>info@bbca.co.uk</span></div>
+          <div style="display:flex; align-items:center; gap:9px; color:rgba(255,255,255,0.82);" class="i-xs"><i data-lucide="phone-call" style="color:var(--gold);"></i><span>Free Call: <strong style="color:#fff; font-weight:600;">+44 20 7247 5525</strong></span></div>
+          <a href="#" style="color:rgba(255,255,255,0.82); display:inline-flex; align-items:center; padding-left:14px; border-left:1px solid rgba(255,255,255,0.18);" style-hover="color:#fff;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.9 3.78-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <!-- floating nav -->
+    <div style="padding:{{ navPad }}; transition:padding .35s var(--ease-standard,cubic-bezier(.4,0,.2,1)); background:{{ navWrapBg }};">
+      <div style="max-width:1560px; margin:0 auto; background:#fff; border-radius:{{ navRadius }}; box-shadow:{{ navShadow }}; transition:border-radius .35s ease, box-shadow .35s ease; animation:navDrop .55s var(--ease-standard,cubic-bezier(.4,0,.2,1)) both;">
+        <div style="padding:0 20px; height:{{ navH }}; display:flex; align-items:center; gap:14px; transition:height .35s var(--ease-standard,cubic-bezier(.4,0,.2,1));">
+          <a onClick="{{ nav.home }}" style="cursor:pointer; display:flex; align-items:center; flex-shrink:0;">
+            <img src="assets/bbca-logo.png" alt="BBCA — British Bangladeshi Construction Association" style="height:36px; width:auto; display:block;">
+          </a>
+          <nav style="display:flex; align-items:center; gap:2px; margin-left:auto;">
+            <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
+              <div style="position:relative;" onMouseEnter="{{ item.onEnter }}" onMouseLeave="{{ item.onLeave }}">
+                <a onClick="{{ item.onClick }}" style="position:relative; cursor:pointer; display:inline-flex; align-items:center; gap:4px; padding:9px 9px; font-size:11.5px; font-weight:700; letter-spacing:0.2px; color:{{ item.color }}; white-space:nowrap; text-transform:uppercase;" class="i-xs" style-hover="color:var(--navy);">
+                  <span style="color:inherit;">{{ item.label }}</span>
+                  <sc-if value="{{ item.hasChildren }}" hint-placeholder-val="{{ true }}"><i data-lucide="chevron-down" style="opacity:0.5;"></i></sc-if>
+                  <span style="position:absolute; left:11px; right:11px; bottom:2px; height:2px; background:var(--gold); border-radius:2px; transform:scaleX({{ item.underline }}); transform-origin:left; transition:transform .25s ease;"></span>
+                </a>
+                <sc-if value="{{ item.open }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute; top:100%; left:0; padding-top:10px; min-width:230px; z-index:20;">
+                    <div style="background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 18px 44px rgba(20,32,61,0.16); padding:8px; overflow:hidden;">
+                      <sc-for list="{{ item.children }}" as="c" hint-placeholder-count="2">
+                        <a onClick="{{ c.onClick }}" style="cursor:pointer; display:block; padding:10px 14px; font-size:13.5px; font-weight:500; color:var(--body); border-radius:8px;" style-hover="background:var(--blue-tint); color:var(--navy);">{{ c.label }}</a>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </nav>
+          <a onClick="{{ nav.membership }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; flex-shrink:0; background:var(--navy); color:#fff !important; font-weight:700; font-size:11.5px; letter-spacing:0.3px; text-transform:uppercase; padding:9px 10px 9px 17px; border-radius:9999px;" style-hover="background:var(--navy-deep);" style-active="transform:scale(0.96);">
+            <span style="color:#fff;">Become a Member</span>
+            <span style="display:inline-flex; width:22px; height:22px; border-radius:50%; background:var(--gold); align-items:center; justify-content:center; color:#fff;" class="i-xs"><i data-lucide="arrow-right"></i></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main style="flex:1;">
+    <div key="{{ page }}" class="page-anim">
+
+    <!-- ============================================================ HOME -->
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+      <section style="position:relative; margin-top:-88px; height:90vh; min-height:640px; background:#233; overflow:hidden;">
+        <image-slot id="home-hero-crowd" shape="rect" fit="cover" src="assets/bbca-crowd.png" placeholder="Leadership / members group photo"></image-slot>
+        <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(15,23,42,0.86) 0%, rgba(15,23,42,0.62) 42%, rgba(15,23,42,0.32) 100%);"></div>
+        <div style="position:absolute; inset:0; display:flex; align-items:center; padding-top:88px;">
+          <div style="max-width:1560px; width:100%; margin:0 auto; padding:60px 60px 0;">
+            <div style="max-width:960px;">
+              <div style="display:inline-block; background:rgba(255,255,255,0.16); backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.25); color:#fff; padding:8px 18px; font-size:14px; font-weight:500; margin-bottom:26px; animation:heroIn .6s .05s var(--ease-standard,cubic-bezier(.4,0,.2,1)) both;">We care your business</div>
+              <h1 style="font-size:clamp(42px,6vw,84px); line-height:1.02; font-weight:800; color:#fff; letter-spacing:-1.5px; text-transform:uppercase; margin-bottom:38px; text-shadow:0 4px 30px rgba(0,0,0,0.35); text-wrap:balance; animation:heroIn .7s .15s var(--ease-standard,cubic-bezier(.4,0,.2,1)) both;" class="disp">British Bangladeshi Construction Association</h1>
+              <a onClick="{{ nav.directors }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:14px; background:var(--gold); color:#fff !important; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; padding:15px 16px 15px 30px; border-radius:9999px; animation:heroIn .7s .28s var(--ease-standard,cubic-bezier(.4,0,.2,1)) both;" style-hover="background:#c47f1f;" style-active="transform:scale(0.96);">
+                <span style="color:#fff;">Directors</span>
+                <span style="display:inline-flex; width:26px; height:26px; border-radius:50%; background:rgba(255,255,255,0.22); align-items:center; justify-content:center; color:#fff;" class="i"><i data-lucide="arrow-right"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- slide indicators -->
+        <div style="position:absolute; right:38px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:14px; align-items:center;">
+          <sc-for list="{{ heroDots }}" as="d" hint-placeholder-count="7">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="width:{{ d.line }}; height:2px; background:var(--gold); transition:width .3s;"></span>
+              <span style="width:26px; height:26px; border-radius:50%; border:1.5px solid {{ d.border }}; color:{{ d.color }}; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center;">{{ d.n }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- stats -->
+      <section style="background:#fff; padding:46px 0 40px;">
+        <div style="max-width:1100px; margin:0 auto; padding:0 26px; display:grid; grid-template-columns:repeat(5,1fr); gap:20px;">
+          <sc-for list="{{ stats }}" as="s" hint-placeholder-count="5">
+            <div style="text-align:center;">
+              <div style="font-size:38px; font-weight:800; letter-spacing:-1px; color:{{ s.color }}; line-height:1;" class="disp">{{ s.num }}</div>
+              <div style="font-size:13.5px; font-weight:600; color:var(--body); margin-top:9px; line-height:1.35;">{{ s.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- group photo -->
+      <section style="background:#fff; padding:6px 0 30px;">
+        <div style="max-width:1000px; margin:0 auto; padding:0 26px;">
+          <div style="position:relative; border-radius:12px; overflow:hidden; aspect-ratio:16/9; background:#c4cbd6;">
+            <image-slot id="home-group" shape="rect" placeholder="Group photo of members at an event"></image-slot>
+          </div>
+          <div style="display:flex; justify-content:center; gap:8px; margin-top:16px;">
+            <span style="width:9px; height:9px; border-radius:50%; background:var(--navy);"></span>
+            <span style="width:9px; height:9px; border-radius:50%; background:var(--line);"></span>
+            <span style="width:9px; height:9px; border-radius:50%; background:var(--line);"></span>
+            <span style="width:9px; height:9px; border-radius:50%; background:var(--line);"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- intro -->
+      <section style="background:#fff; padding:20px 0 56px;">
+        <div style="max-width:900px; margin:0 auto; padding:0 26px; text-align:center;">
+          <h1 style="font-size:30px; font-weight:700; letter-spacing:-0.4px; color:var(--navy); line-height:1.2; margin-bottom:20px; text-transform:uppercase;">British Bangladeshi Construction Association</h1>
+          <p style="font-size:16.5px; line-height:1.7; color:var(--body); max-width:760px; margin:0 auto 34px; text-wrap:pretty;">The British Bangladeshi Construction Association is a professional network dedicated to supporting, connecting, and promoting British Bangladeshi individuals and businesses within the UK construction industry. The association brings together contractors, developers, engineers, architects, consultants, tradespeople, suppliers, and aspiring professionals to encourage collaboration, knowledge sharing and sustainable growth.</p>
+          <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+            <a onClick="{{ nav.about }}" style="cursor:pointer;" class="pill-navy">Learn More about BBCA</a>
+            <a onClick="{{ nav.membership }}" style="cursor:pointer;" class="pill-navy">Become a Member</a>
+            <a onClick="{{ nav.about }}" style="cursor:pointer;" class="pill-navy">Key Policies</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- festival banner -->
+      <section style="background:var(--blue-tint);">
+        <div style="max-width:1120px; margin:0 auto; padding:64px 26px; display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:center;">
+          <div style="display:flex; justify-content:center;">
+            <img src="assets/festival-logo.png" alt="BBCA Build Festival" style="max-width:290px; width:100%; height:auto;">
+          </div>
+          <div>
+            <h2 style="font-size:30px; font-weight:700; color:var(--green); letter-spacing:-0.4px; margin-bottom:22px;">British Bangladeshi Build Festival</h2>
+            <p style="font-size:15.5px; line-height:1.7; color:var(--body); margin-bottom:16px;">The British Bangladeshi Construction Association (BBCA) is proud to announce that it will host the British Bangladeshi Build Festival London 2026.</p>
+            <p style="font-size:15.5px; line-height:1.7; color:var(--body); margin-bottom:16px;">The festival will bring together construction professionals, business owners, developers, contractors, architects, engineers, suppliers, investors, and community leaders for a major celebration of industry, innovation, and opportunity.</p>
+            <p style="font-size:15.5px; line-height:1.7; color:var(--body); margin-bottom:30px;">The event will feature networking, exhibitions, expert discussions, business showcases, career opportunities, and recognition of British Bangladeshi achievements within the UK construction sector.</p>
+            <div style="display:flex; gap:14px; flex-wrap:wrap;">
+              <a onClick="{{ nav.membership }}" style="cursor:pointer;" class="pill-navy">Submit your registration</a>
+              <a onClick="{{ nav.contact }}" style="cursor:pointer;" class="pill-navy">Contact us</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- resource knowledge career -->
+      <section style="background:#fff; padding:76px 0;">
+        <div style="max-width:1080px; margin:0 auto; padding:0 26px;">
+          <h2 style="font-size:34px; font-weight:700; color:var(--navy); letter-spacing:-0.5px; text-align:center; margin-bottom:52px;">Resource, Knowledge &amp; Career</h2>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:36px;">
+            <sc-for list="{{ resources }}" as="r" hint-placeholder-count="3">
+              <div style="text-align:center; padding:0 12px;">
+                <div style="width:78px; height:78px; margin:0 auto 22px; border-radius:50%; background:var(--blue-tint); display:flex; align-items:center; justify-content:center; color:var(--navy);"><i data-lucide="{{ r.icon }}" style="width:34px; height:34px;"></i></div>
+                <p style="font-size:14.5px; line-height:1.6; color:var(--body); max-width:230px; margin:0 auto;">{{ r.text }}</p>
+              </div>
+            </sc-for>
+          </div>
+          <div style="text-align:center; margin-top:46px;">
+            <a onClick="{{ nav.resource }}" style="cursor:pointer;" class="pill-navy">Learn More</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- news & events preview -->
+      <section style="background:var(--blue-tint-2); padding:72px 0;">
+        <div style="max-width:1140px; margin:0 auto; padding:0 26px;">
+          <h2 style="font-size:30px; font-weight:700; color:var(--navy); letter-spacing:-0.4px; text-align:center; margin-bottom:44px;">News &amp; Events</h2>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-bottom:20px;">
+            <sc-for list="{{ newsPreview }}" as="n" hint-placeholder-count="3">
+              <a onClick="{{ nav.news }}" style="cursor:pointer; display:block;">
+                <div style="aspect-ratio:16/10; border-radius:10px; overflow:hidden; background:#c4cbd6; margin-bottom:14px;">
+                  <image-slot id="{{ n.slot }}" shape="rect" placeholder="Event photo"></image-slot>
+                </div>
+                <div style="font-size:15px; font-weight:600; color:var(--navy);" style-hover="color:var(--red);">{{ n.title }}</div>
+              </a>
+            </sc-for>
+          </div>
+          <div style="display:flex; justify-content:center; margin:22px 0 40px;"><span style="width:70px; height:3px; background:var(--red); border-radius:2px;"></span></div>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:26px;">
+            <sc-for list="{{ videos }}" as="v" hint-placeholder-count="3">
+              <div style="position:relative; aspect-ratio:16/9; border-radius:10px; overflow:hidden; background:#1a1a1a;">
+                <image-slot id="{{ v.slot }}" shape="rect" placeholder="Video thumbnail"></image-slot>
+                <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                  <div style="width:54px; height:38px; border-radius:9px; background:rgba(220,32,47,0.92); display:flex; align-items:center; justify-content:center; color:#fff;"><i data-lucide="play" style="width:22px; height:22px; fill:#fff;"></i></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============================================================ PAGE HERO (shared) -->
+    <sc-if value="{{ showPageHero }}" hint-placeholder-val="{{ false }}">
+      <section style="position:relative; height:300px; background:#7d879b; overflow:hidden;">
+        <image-slot id="page-hero-crowd" shape="rect" placeholder="Crowd photo backdrop"></image-slot>
+        <div style="position:absolute; inset:0; background:rgba(30,44,74,0.28);"></div>
+        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
+          <div style="background:rgba(255,255,255,0.28); padding:14px 40px; border-radius:6px;">
+            <h1 style="font-size:46px; font-weight:600; color:#fff; letter-spacing:-0.5px; text-shadow:0 2px 12px rgba(0,0,0,0.2);">{{ pageTitle }}</h1>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============================================================ ABOUT -->
+    <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff; padding:70px 0;">
+        <div style="max-width:900px; margin:0 auto; padding:0 26px;">
+          <div style="color:var(--red); font-weight:700; font-size:12.5px; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px;">Who we are</div>
+          <h2 style="font-size:32px; font-weight:700; color:var(--navy); letter-spacing:-0.5px; line-height:1.2; margin-bottom:26px; text-wrap:balance;">A united voice for British Bangladeshi construction.</h2>
+          <p style="font-size:16.5px; line-height:1.75; color:var(--body); margin-bottom:20px;">The British Bangladeshi Construction Association (BBCA) is a professional network dedicated to supporting, connecting, and promoting British Bangladeshi individuals and businesses within the UK construction industry.</p>
+          <p style="font-size:16.5px; line-height:1.75; color:var(--body); margin-bottom:20px;">We bring together contractors, developers, engineers, architects, consultants, tradespeople, suppliers, and aspiring professionals — encouraging collaboration, knowledge sharing, and sustainable growth across our community.</p>
+          <p style="font-size:16.5px; line-height:1.75; color:var(--body); margin-bottom:44px;">Through events, training, advocacy and recognition, the BBCA champions the achievements of British Bangladeshi enterprise and helps the next generation build lasting careers.</p>
+          <div style="border-radius:14px; overflow:hidden; aspect-ratio:16/8; background:#c4cbd6; margin-bottom:52px;">
+            <image-slot id="about-photo" shape="rect" placeholder="Members / event photo"></image-slot>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+            <sc-for list="{{ aims }}" as="a" hint-placeholder-count="3">
+              <div style="background:var(--alt); border:1px solid var(--line); border-radius:14px; padding:28px 24px;">
+                <div style="width:46px; height:46px; border-radius:11px; background:var(--blue-tint); color:var(--navy); display:flex; align-items:center; justify-content:center; margin-bottom:16px;"><i data-lucide="{{ a.icon }}" style="width:22px; height:22px;"></i></div>
+                <h3 style="font-size:17px; font-weight:700; color:var(--navy); margin-bottom:8px;">{{ a.title }}</h3>
+                <p style="font-size:14px; line-height:1.6; color:var(--body);">{{ a.text }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+      <!-- executive committee directory on About -->
+      <section style="background:var(--alt); padding:70px 0;">
+        <div style="max-width:1120px; margin:0 auto; padding:0 26px;">
+          <h2 style="font-size:28px; font-weight:700; color:var(--navy); text-align:center; letter-spacing:-0.4px; margin-bottom:8px;">Executive Committee</h2>
+          <p style="text-align:center; color:var(--muted); font-size:15px; margin-bottom:44px;">The people leading the association</p>
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:26px;">
+            <sc-for list="{{ execs }}" as="p" hint-placeholder-count="4">
+              <div style="text-align:center;">
+                <div style="aspect-ratio:1/1; border-radius:14px; overflow:hidden; background:#c4cbd6; margin-bottom:16px;">
+                  <image-slot id="{{ p.slot }}" shape="rect" placeholder="Portrait"></image-slot>
+                </div>
+                <div style="font-size:16px; font-weight:700; color:var(--navy);">{{ p.name }}</div>
+                <div style="font-size:13.5px; color:var(--red); font-weight:600; margin-top:3px;">{{ p.title }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============================================================ WHY JOIN -->
+    <sc-if value="{{ isWhy }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff; padding:64px 0;">
+        <div style="max-width:820px; margin:0 auto; padding:0 26px;">
+          <div style="display:flex; flex-direction:column; gap:26px;">
+            <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="6">
+              <div style="display:flex; gap:16px; align-items:flex-start;">
+                <div style="flex-shrink:0; width:30px; height:30px; border-radius:50%; background:var(--blue-tint); color:var(--green); display:flex; align-items:center; justify-content:center; margin-top:2px;" class="i-lg"><i data-lucide="check"></i></div>
+                <p style="font-size:16px; line-height:1.65; color:var(--body);"><strong style="color:var(--navy); font-weight:700;">{{ b.head }}</strong> – {{ b.text }}</p>
+              </div>
+            </sc-for>
+          </div>
+          <div style="text-align:center; margin-top:52px;">
+            <a onClick="{{ nav.membership }}" style="cursor:pointer;" class="pill-navy">Become a Member</a>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============================================================ RESOURCE & KNOWLEDGE -->
+    <sc-if value="{{ isResource }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff; padding:70px 0;">
+        <div style="max-width:1080px; margin:0 auto; padding:0 26px;">
+          <p style="max-width:640px; font-size:16px; line-height:1.7; color:var(--body); margin-bottom:56px;">We will soon share updates about our upcoming workshops, training sessions, internships, and business support facilities.</p>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:30px;">
+            <sc-for list="{{ resources }}" as="r" hint-placeholder-count="3">
+              <div style="background:var(--alt); border:1px solid var(--line); border-radius:16px; padding:34px 28px; text-align:center;">
+                <div style="width:66px; height:66px; margin:0 auto 20px; border-radius:50%; background:var(--blue-tint); display:flex; align-items:center; justify-content:center; color:var(--navy);"><i data-lucide="{{ r.icon }}" style="width:30px; height:30px;"></i></div>
+                <h3 style="font-size:17px; font-weight:700; color:var(--navy); margin-bottom:10px;">{{ r.title }}</h3>
+                <p style="font-size:14px; line-height:1.6; color:var(--body);">{{ r.text }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============================================================ MEMBERSHIP FORM -->
+    <sc-if value="{{ isMembership }}" hint-placeholder-val="{{ false }}">
+      <section style="background:var(--alt); padding:56px 0 80px;">
+        <div style="max-width:760px; margin:0 auto; padding:0 26px;">
+          <div style="text-align:center; margin-bottom:36px;">
+            <img src="assets/bbca-logo.png" alt="BBCA" style="height:56px; margin:0 auto 20px; display:block;">
+            <h1 style="font-size:24px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:-0.2px; margin-bottom:6px;">British Bangladeshi Construction Association</h1>
+            <div style="font-size:17px; font-weight:600; color:var(--green);">Membership Application Form</div>
+          </div>
+          <div style="background:#fff; border:1px solid var(--line); border-radius:18px; padding:40px; box-shadow:0 10px 40px rgba(20,32,61,0.06);">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px;">
+              <sc-for list="{{ formFields }}" as="f" hint-placeholder-count="8">
+                <div style="grid-column:{{ f.span }};">
+                  <label style="display:block; font-size:13px; font-weight:600; color:var(--navy); margin-bottom:7px;">{{ f.label }} <span style="color:var(--red);">{{ f.req }}</span></label>
+                  <sc-if value="{{ f.isTextarea }}" hint-placeholder-val="{{ false }}">
+                    <div style="width:100%; min-height:104px; border:1px solid var(--line); border-radius:10px; padding:12px 14px; font-size:14px; color:var(--muted); background:var(--alt);">{{ f.placeholder }}</div>
+                  </sc-if>
+                  <sc-if value="{{ f.isSelect }}" hint-placeholder-val="{{ false }}">
+                    <div style="width:100%; height:46px; border:1px solid var(--line); border-radius:10px; padding:0 14px; font-size:14px; color:var(--muted); background:var(--alt); display:flex; align-items:center; justify-content:space-between;" class="i">{{ f.placeholder }} <i data-lucide="chevron-down"></i></div>
+                  </sc-if>
+                  <sc-if value="{{ f.isInput }}" hint-placeholder-val="{{ true }}">
+                    <div style="width:100%; height:46px; border:1px solid var(--line); border-radius:10px; padding:0 14px; font-size:14px; color:var(--muted); background:var(--alt); display:flex; align-items:center;">{{ f.placeholder }}</div>
+                  </sc-if>
+                </div>
+              </sc-for>
+              <div style="grid-column:1 / -1;">
+                <label style="display:block; font-size:13px; font-weight:600; color:var(--navy); margin-bottom:7px;">Supporting document (trade licence / ID)</label>
+                <div style="border:1.5px dashed #c3ccd8; border-radius:12px; padding:26px; text-align:center; background:var(--alt); color:var(--muted);">
+                  <div style="display:inline-flex; width:44px; height:44px; border-radius:11px; background:#fff; border:1px solid var(--line); align-items:center; justify-content:center; color:var(--navy); margin-bottom:12px;"><i data-lucide="upload-cloud" style="width:22px; height:22px;"></i></div>
+                  <div style="font-size:14px; color:var(--body);">Drag &amp; drop or <span style="color:var(--navy); font-weight:600;">browse</span> · PDF, JPG, PNG (max 10MB)</div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:30px;">
+              <a onClick="{{ nav.membershipSubmit }}" style="cursor:pointer; width:100%; box-sizing:border-box; display:inline-flex; justify-content:center; align-items:center; gap:9px; background:var(--navy); color:#fff; font-weight:600; font-size:15px; padding:15px; border-radius:9999px;" class="i" style-hover="background:var(--navy-deep);" style-active="transform:scale(0.99);">
+                <span style="color:#fff;">Submit Application</span>
+                <span style="display:inline-flex; width:22px; height:22px; border-radius:9999px; background:var(--red); align-items:center; justify-content:center; color:#fff;"><i data-lucide="arrow-right"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- membership success -->
+    <sc-if value="{{ isMembershipDone }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff; padding:100px 0;">
+        <div style="max-width:600px; margin:0 auto; padding:0 26px; text-align:center;">
+          <img src="assets/bbca-logo.png" alt="BBCA" style="height:60px; margin:0 auto 30px; display:block;">
+          <div style="width:66px; height:66px; margin:0 auto 24px; border-radius:50%; background:var(--blue-tint); color:var(--green); display:flex; align-items:center; justify-content:center;"><i data-lucide="check" style="width:34px; height:34px;"></i></div>
+          <h1 style="font-size:26px; font-weight:700; color:var(--red); margin-bottom:16px;">Thank you for submitting your application to join BBCA.</h1>
+          <p style="font-size:16px; line-height:1.7; color:var(--green); max-width:440px; margin:0 auto 30px;">You will receive written confirmation once your application has been reviewed and approved. We will contact you if we require any further information.</p>
+          <a onClick="{{ nav.home }}" style="cursor:pointer;" class="pill-navy">Back to Home</a>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============================================================ NEWS LISTING -->
+    <sc-if value="{{ isNews }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff; padding:56px 0 80px;">
+        <div style="max-width:1160px; margin:0 auto; padding:0 26px;">
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:28px;">
+            <sc-for list="{{ articles }}" as="a" hint-placeholder-count="6">
+              <a onClick="{{ a.onClick }}" style="cursor:pointer; display:flex; flex-direction:column; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#fff;" style-hover="box-shadow:0 14px 34px rgba(20,32,61,0.10); border-color:transparent;">
+                <div style="aspect-ratio:16/10; background:#c4cbd6;">
+                  <image-slot id="{{ a.slot }}" shape="rect" placeholder="Article image"></image-slot>
+                </div>
+                <div style="padding:20px 20px 24px;">
+                  <div style="font-size:11px; font-weight:700; letter-spacing:0.6px; color:var(--muted); text-transform:uppercase; margin-bottom:10px;">{{ a.cat }}</div>
+                  <h3 style="font-size:16.5px; font-weight:700; color:var(--navy); line-height:1.35; margin-bottom:14px; text-wrap:pretty;">{{ a.title }}</h3>
+                  <div style="display:inline-flex; align-items:center; gap:6px; color:var(--red); font-size:13.5px; font-weight:600;" class="i-xs">Read More <i data-lucide="chevron-right"></i></div>
+                </div>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============================================================ ARTICLE DETAIL -->
+    <sc-if value="{{ isArticle }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff; padding:56px 0 80px;">
+        <div style="max-width:780px; margin:0 auto; padding:0 26px;">
+          <a onClick="{{ nav.news }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:13.5px; font-weight:600; color:var(--muted); margin-bottom:26px;" class="i-xs" style-hover="color:var(--red);"><i data-lucide="chevron-left"></i> Back to News &amp; Events</a>
+          <div style="font-size:11.5px; font-weight:700; letter-spacing:0.6px; color:var(--red); text-transform:uppercase; margin-bottom:14px;">News, BBCA</div>
+          <h1 style="font-size:36px; font-weight:700; color:var(--navy); letter-spacing:-0.6px; line-height:1.15; margin-bottom:18px; text-wrap:balance;">Building What's Next: A BBCA Launch Celebration</h1>
+          <div style="display:flex; align-items:center; gap:14px; color:var(--muted); font-size:14px; margin-bottom:30px;">
+            <span>By BBCA Editorial</span><span style="width:4px; height:4px; border-radius:50%; background:var(--line);"></span><span>12 May 2026</span>
+          </div>
+          <div style="aspect-ratio:16/9; border-radius:14px; overflow:hidden; background:#c4cbd6; margin-bottom:34px;">
+            <image-slot id="article-hero" shape="rect" placeholder="Article hero image"></image-slot>
+          </div>
+          <div style="font-size:16.5px; line-height:1.8; color:var(--body); display:flex; flex-direction:column; gap:20px;">
+            <p>The British Bangladeshi Construction Association marked a major milestone this month, bringing together members, partners and community leaders to celebrate a new chapter for the organisation.</p>
+            <p>Attendees heard from industry figures on the opportunities ahead for British Bangladeshi enterprise across the UK construction sector — from major infrastructure projects to skills, training and the next generation of professionals entering the trade.</p>
+            <h3 style="font-size:21px; font-weight:700; color:var(--navy); margin-top:8px;">A growing network</h3>
+            <p>With over 164 businesses now connected through the association, the evening underscored the value of a united voice and a shared commitment to collaboration, knowledge sharing and sustainable growth.</p>
+            <p>The BBCA will continue to host networking meetings, business forums, conferences and workshops throughout the year, culminating in the British Bangladeshi Build Festival London 2026.</p>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============================================================ GALLERY -->
+    <sc-if value="{{ isGallery }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff; padding:56px 0 80px;">
+        <div style="max-width:1180px; margin:0 auto; padding:0 26px;">
+          <div style="columns:3; column-gap:16px;">
+            <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="9">
+              <div style="break-inside:avoid; margin-bottom:16px; border-radius:12px; overflow:hidden; background:#c4cbd6; aspect-ratio:{{ g.ratio }};">
+                <image-slot id="{{ g.slot }}" shape="rect" placeholder="Gallery photo"></image-slot>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============================================================ CONTACT -->
+    <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff; padding:56px 0 30px;">
+        <div style="max-width:1120px; margin:0 auto; padding:0 26px; display:grid; grid-template-columns:1fr 1fr; gap:40px;">
+          <h2 style="font-size:19px; font-weight:700; color:var(--navy);">BBCA Contact Information</h2>
+          <h2 style="font-size:19px; font-weight:700; color:var(--navy);">Follow us</h2>
+        </div>
+      </section>
+      <section style="background:#fff; padding:0 0 90px;">
+        <div style="max-width:1120px; margin:0 auto; padding:0 26px;">
+          <div style="background:#161616; border-radius:18px; padding:52px 48px; display:grid; grid-template-columns:1fr 1fr; gap:48px; color:#fff;">
+            <div>
+              <h3 style="font-size:24px; font-weight:700; color:#fff; line-height:1.2; margin-bottom:34px;">BBCA Contact Information</h3>
+              <div style="display:flex; flex-direction:column; gap:26px;">
+                <sc-for list="{{ contactRows }}" as="c" hint-placeholder-count="4">
+                  <div style="display:flex; gap:16px; align-items:flex-start;">
+                    <div style="flex-shrink:0; color:var(--red);" class="i-lg"><i data-lucide="{{ c.icon }}"></i></div>
+                    <div>
+                      <div style="font-size:11px; font-weight:700; letter-spacing:1px; color:#8a8a8a; text-transform:uppercase; margin-bottom:5px;">{{ c.label }}</div>
+                      <div style="font-size:15px; color:#eaeaea; line-height:1.5; white-space:pre-line;">{{ c.value }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div>
+              <h3 style="font-size:24px; font-weight:700; color:#fff; margin-bottom:24px;">Follow Us</h3>
+              <div style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:44px;">
+                <sc-for list="{{ socials }}" as="s" hint-placeholder-count="4">
+                  <div style="border:1px solid #3a3a3a; border-radius:9px; padding:11px 18px; font-size:13.5px; color:#dcdcdc; cursor:pointer;" style-hover="border-color:var(--red); color:#fff;">{{ s }}</div>
+                </sc-for>
+              </div>
+              <h3 style="font-size:24px; font-weight:700; color:#fff; margin-bottom:20px;">Connect More</h3>
+              <div style="display:flex; flex-direction:column;">
+                <sc-for list="{{ connectMore }}" as="m" hint-placeholder-count="3">
+                  <div style="display:flex; align-items:center; justify-content:space-between; padding:16px 0; border-bottom:1px solid #2c2c2c; font-size:15px; color:#dcdcdc; cursor:pointer;" class="i" style-hover="color:#fff;"><span>{{ m }}</span><i data-lucide="arrow-right"></i></div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============================================================ DIRECTORY (exec / board) -->
+    <sc-if value="{{ isDirectory }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff; padding:64px 0 80px;">
+        <div style="max-width:1160px; margin:0 auto; padding:0 26px;">
+          <div style="text-align:center; max-width:640px; margin:0 auto 52px;">
+            <div style="color:var(--gold); font-weight:700; font-size:12.5px; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px;">{{ dirKicker }}</div>
+            <p style="font-size:16px; line-height:1.65; color:var(--body);">{{ dirIntro }}</p>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:26px;">
+            <sc-for list="{{ directoryPeople }}" as="p" hint-placeholder-count="8">
+              <div style="text-align:center;">
+                <div style="aspect-ratio:3/4; border-radius:16px; overflow:hidden; background:#c4cbd6; margin-bottom:16px; box-shadow:0 10px 30px rgba(20,32,61,0.08);">
+                  <image-slot id="{{ p.slot }}" shape="rect" placeholder="Portrait"></image-slot>
+                </div>
+                <div style="font-size:16.5px; font-weight:700; color:var(--navy);">{{ p.name }}</div>
+                <div style="font-size:13.5px; color:var(--red); font-weight:600; margin-top:3px;">{{ p.title }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ============================================================ ADMIN -->
+    <sc-if value="{{ isAdminLogin }}" hint-placeholder-val="{{ false }}">
+      <section style="min-height:calc(100vh - 78px); background:var(--navy-deep); display:flex; align-items:center; justify-content:center; padding:40px 26px;">
+        <div style="width:100%; max-width:400px; background:#fff; border-radius:18px; padding:40px; box-shadow:0 30px 80px rgba(0,0,0,0.35);">
+          <img src="assets/bbca-logo.png" alt="BBCA" style="height:42px; margin:0 auto 26px; display:block;">
+          <h1 style="font-size:20px; font-weight:700; color:var(--navy); text-align:center; margin-bottom:4px;">Admin Panel</h1>
+          <p style="font-size:13.5px; color:var(--muted); text-align:center; margin-bottom:30px;">Sign in to manage the association</p>
+          <label style="display:block; font-size:13px; font-weight:600; color:var(--navy); margin-bottom:7px;">Email</label>
+          <div style="height:46px; border:1px solid var(--line); border-radius:10px; padding:0 14px; font-size:14px; color:var(--muted); background:var(--alt); display:flex; align-items:center; margin-bottom:18px;">admin@bbca.org.uk</div>
+          <label style="display:block; font-size:13px; font-weight:600; color:var(--navy); margin-bottom:7px;">Password</label>
+          <div style="height:46px; border:1px solid var(--line); border-radius:10px; padding:0 14px; font-size:14px; color:var(--muted); background:var(--alt); display:flex; align-items:center; margin-bottom:26px; letter-spacing:3px;">••••••••</div>
+          <a onClick="{{ nav.adminApps }}" style="cursor:pointer; display:flex; justify-content:center; align-items:center; background:var(--navy); color:#fff; font-weight:600; font-size:14.5px; padding:14px; border-radius:9999px;" style-hover="background:var(--navy-deep);"><span style="color:#fff;">Sign In</span></a>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isAdminPanel }}" hint-placeholder-val="{{ false }}">
+      <section style="min-height:calc(100vh - 78px); background:var(--alt); display:flex;">
+        <!-- sidebar -->
+        <aside style="width:240px; flex-shrink:0; background:var(--navy-deep); padding:26px 16px; display:flex; flex-direction:column;">
+          <div style="padding:0 10px 22px; margin-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:15px; letter-spacing:0.3px;">BBCA Admin</div>
+          <sc-for list="{{ adminNav }}" as="a" hint-placeholder-count="6">
+            <a onClick="{{ a.onClick }}" style="cursor:pointer; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:9px; font-size:14px; font-weight:{{ a.weight }}; color:{{ a.color }}; background:{{ a.bg }}; margin-bottom:2px;" class="i-lg" style-hover="background:rgba(255,255,255,0.06);"><i data-lucide="{{ a.icon }}"></i><span style="color:inherit;">{{ a.label }}</span></a>
+          </sc-for>
+          <a onClick="{{ nav.home }}" style="cursor:pointer; margin-top:auto; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:9px; font-size:14px; color:rgba(255,255,255,0.55);" class="i-lg" style-hover="color:#fff;"><i data-lucide="log-out"></i><span style="color:inherit;">Exit to site</span></a>
+        </aside>
+        <!-- main -->
+        <div style="flex:1; padding:34px 40px; overflow:auto;">
+          <!-- dashboard cards -->
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:26px;">
+            <div>
+              <h1 style="font-size:24px; font-weight:700; color:var(--navy);">Membership Applications</h1>
+              <p style="font-size:14px; color:var(--muted); margin-top:4px;">Review and manage incoming applications</p>
+            </div>
+            <a style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--line); color:var(--navy); font-weight:600; font-size:13.5px; padding:10px 16px; border-radius:9px;" class="i" style-hover="border-color:var(--navy);"><i data-lucide="download"></i> Export CSV</a>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:28px;">
+            <sc-for list="{{ adminStats }}" as="s" hint-placeholder-count="4">
+              <div style="background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px;">
+                <div style="font-size:13px; color:var(--muted); font-weight:600; margin-bottom:10px;">{{ s.label }}</div>
+                <div style="font-size:30px; font-weight:800; color:{{ s.color }};" class="disp">{{ s.num }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <!-- table -->
+          <div style="background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden;">
+            <div style="display:flex; gap:8px; padding:16px 20px; border-bottom:1px solid var(--line);">
+              <sc-for list="{{ filterTabs }}" as="t" hint-placeholder-count="4">
+                <div style="cursor:pointer; padding:7px 15px; border-radius:9999px; font-size:13px; font-weight:600; color:{{ t.color }}; background:{{ t.bg }};">{{ t.label }}</div>
+              </sc-for>
+            </div>
+            <div style="display:grid; grid-template-columns:1.4fr 1.2fr 1.4fr 0.9fr 1fr; padding:14px 20px; background:var(--alt); font-size:11.5px; font-weight:700; letter-spacing:0.5px; color:var(--muted); text-transform:uppercase;">
+              <div>Business</div><div>Contact</div><div>Email</div><div>Type</div><div>Status</div>
+            </div>
+            <sc-for list="{{ applications }}" as="a" hint-placeholder-count="6">
+              <div style="display:grid; grid-template-columns:1.4fr 1.2fr 1.4fr 0.9fr 1fr; padding:16px 20px; border-top:1px solid var(--line); font-size:13.5px; align-items:center;" style-hover="background:var(--alt);">
+                <div style="font-weight:600; color:var(--navy);">{{ a.biz }}</div>
+                <div style="color:var(--body);">{{ a.contact }}</div>
+                <div style="color:var(--muted);">{{ a.email }}</div>
+                <div style="color:var(--body);">{{ a.type }}</div>
+                <div><span style="display:inline-block; padding:4px 11px; border-radius:9999px; font-size:11.5px; font-weight:700; color:{{ a.stColor }}; background:{{ a.stBg }};">{{ a.status }}</span></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <sc-if value="{{ showChrome }}" hint-placeholder-val="{{ true }}">
+  <footer style="position:relative; background:var(--navy-deep); overflow:hidden;">
+    <div style="position:absolute; inset:0; opacity:0.16;"><image-slot id="footer-bg" shape="rect" placeholder="Group photo backdrop"></image-slot></div>
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,32,61,0.92), rgba(20,32,61,0.97));"></div>
+    <div style="position:relative; max-width:1160px; margin:0 auto; padding:64px 26px 40px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1.1fr; gap:36px; align-items:start;">
+        <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
+          <div>
+            <h4 style="font-size:14px; font-weight:700; color:var(--red); letter-spacing:0.4px; margin-bottom:16px;">{{ col.head }}</h4>
+            <div style="display:flex; flex-direction:column; gap:11px;">
+              <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="3">
+                <a onClick="{{ l.onClick }}" style="cursor:pointer; font-size:13.5px; color:rgba(255,255,255,0.78);" style-hover="color:#fff;">{{ l.label }}</a>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+        <div style="display:flex; flex-direction:column; align-items:flex-end;">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <div style="width:56px; height:56px; border-radius:50%; border:2px solid rgba(255,255,255,0.85); display:flex; align-items:center; justify-content:center; color:#fff;"><i data-lucide="building-2" style="width:26px; height:26px;"></i></div>
+            <div style="line-height:1.1;">
+              <div style="color:#fff; font-weight:800; font-size:30px; letter-spacing:0.5px;" class="disp">BBCA</div>
+              <div style="color:rgba(255,255,255,0.8); font-size:10px; font-weight:600; letter-spacing:0.8px;">BRITISH BANGLADESHI<br>CONSTRUCTION ASSOCIATION</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:56px; padding-top:26px; border-top:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.6); font-size:13px;">© 2026 British Bangladeshi Construction Association — All rights reserved</div>
+    </div>
+  </footer>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1600,&quot;height&quot;:940}}">
+class Component extends DCLogic {
+  state = { page: 'home', scrolled: false, hoveredMenu: null };
+
+  componentDidMount(){
+    this._icons();
+    this._onScroll = ()=>{ const s = window.scrollY > 40; if(s!==this.state.scrolled) this.setState({scrolled:s}); };
+    window.addEventListener('scroll', this._onScroll, {passive:true});
+  }
+  componentDidUpdate(){ this._icons(); }
+  componentWillUnmount(){ window.removeEventListener('scroll', this._onScroll); }
+  _icons(){ if(window.lucide){ clearTimeout(this._t); this._t=setTimeout(()=>window.lucide.createIcons(),30);} }
+
+  go(page){ this.setState({page, hoveredMenu:null}); window.scrollTo(0,0); }
+
+  renderVals(){
+    const page = this.state.page;
+    const go = (p)=>()=>this.go(p);
+    const nav = {
+      home:go('home'), about:go('about'), why:go('why'), membership:go('membership'),
+      membershipSubmit:go('membership-done'), exec:go('exec'), directors:go('directors'),
+      news:go('news'), gallery:go('gallery'), contact:go('contact'), resource:go('resource'),
+      adminApps:go('admin-panel'),
+    };
+
+    // scroll-driven sticky header
+    const scrolled = this.state.scrolled;
+    const utilMax = scrolled ? '0px' : '42px';
+    const utilOpacity = scrolled ? 0 : 1;
+    const navPad = scrolled ? '0px 14px' : '14px 16px';
+    const navRadius = scrolled ? '0px' : '0 0 26px 26px';
+    const navShadow = scrolled ? '0 6px 24px rgba(20,32,61,0.14)' : '0 12px 34px rgba(20,32,61,0.10)';
+    const navH = scrolled ? '66px' : '82px';
+    const navWrapBg = 'transparent';
+
+    const menu = [
+      { id:'home', label:'Home', page:'home', children:[] },
+      { id:'about', label:'About Us', page:'about', children:[
+        {label:'About BBCA', page:'about'}, {label:'Executive Committee', page:'exec'}, {label:'Board of Directors', page:'directors'}, {label:'Why Join BBCA', page:'why'} ]},
+      { id:'membership', label:'Membership', page:'membership', children:[
+        {label:'Membership Form', page:'membership'}, {label:'Why Join BBCA', page:'why'} ]},
+      { id:'news', label:'News', page:'news', children:[
+        {label:'News & Insights', page:'news'}, {label:'Photo Archive', page:'gallery'} ]},
+      { id:'resource', label:'Resources', page:'resource', children:[] },
+      { id:'contact', label:'Contact', page:'contact', children:[] },
+    ];
+    const groupPages = {
+      home:['home'], about:['about','exec','directors','why'], membership:['membership','membership-done'],
+      news:['news','article','gallery'], resource:['resource'], contact:['contact'],
+    };
+    const navItems = menu.map(m=>{
+      const active = (groupPages[m.id]||[]).includes(page);
+      return {
+        label:m.label,
+        color: active ? 'var(--navy)' : 'var(--body)',
+        underline: active ? 1 : 0,
+        hasChildren: m.children.length>0,
+        open: this.state.hoveredMenu===m.id,
+        children: m.children.map(c=>({label:c.label, onClick:go(c.page)})),
+        onClick:go(m.page),
+        onEnter:()=>this.setState({hoveredMenu:m.id}),
+        onLeave:()=>this.setState({hoveredMenu:null}),
+      };
+    });
+
+    const stats = [
+      {num:'164+', label:'Businesses Connected', color:'var(--green)'},
+      {num:'250+', label:'Construction Professionals', color:'var(--navy)'},
+      {num:'35+', label:'Industry Partners', color:'var(--red)'},
+      {num:'20+', label:'Training Workshops', color:'var(--navy)'},
+      {num:'120+', label:'Career Opportunities Created', color:'var(--green)'},
+    ];
+    const resources = [
+      {icon:'graduation-cap', title:'Training & Skills', text:'Gain practical skills through expert-led construction courses and workshops.'},
+      {icon:'users', title:'Networking', text:'Connect with employers, apprenticeships, internships, and job opportunities.'},
+      {icon:'briefcase', title:'Career Support', text:'Access professional guidance, industry resources, and networking opportunities.'},
+    ];
+    const newsPreview = [
+      {slot:'news-p1', title:'BBCA Meetup — May 2026'},
+      {slot:'news-p2', title:'BBCA Business Forum — May 2026'},
+      {slot:'news-p3', title:'BBCA Members Networking Evening'},
+    ];
+    const videos = [ {slot:'vid-1'}, {slot:'vid-2'}, {slot:'vid-3'} ];
+
+    const aims = [
+      {icon:'handshake', title:'Connect', text:'Bring British Bangladeshi construction businesses together in one network.'},
+      {icon:'megaphone', title:'Represent', text:'Champion members\u2019 interests and celebrate their achievements.'},
+      {icon:'trending-up', title:'Grow', text:'Support skills, training and sustainable growth across the community.'},
+    ];
+    const execs = [
+      {slot:'ex1', name:'Full Name', title:'President'},
+      {slot:'ex2', name:'Full Name', title:'Vice President'},
+      {slot:'ex3', name:'Full Name', title:'General Secretary'},
+      {slot:'ex4', name:'Full Name', title:'Treasurer'},
+    ];
+
+    // hero slide indicators (design accent)
+    const activeDot = 2;
+    const heroDots = [1,2,3,4,5,6,7].map(n=>({
+      n, line: n===activeDot ? '26px' : '12px',
+      color: n===activeDot ? 'var(--gold)' : 'rgba(255,255,255,0.7)',
+      border: n===activeDot ? 'var(--gold)' : 'rgba(255,255,255,0.4)',
+    }));
+
+    // directory (executive committee / board of directors)
+    const execRoles = ['President','Vice President','General Secretary','Joint Secretary','Treasurer','Organising Secretary','Press & Media','Membership Secretary'];
+    const dirRoles = ['Chairperson','Vice Chair','Director','Director','Director','Director','Director','Director'];
+    const roles = page==='directors' ? dirRoles : execRoles;
+    const directoryPeople = roles.map((t,i)=>({slot:(page==='directors'?'dir':'exec')+(i+1), name:'Full Name', title:t}));
+    const dirKicker = page==='directors' ? 'Leadership' : 'Our People';
+    const dirIntro = page==='directors'
+      ? 'The Board of Directors provides strategic direction and governance, guiding the association\u2019s long-term vision and accountability.'
+      : 'The Executive Committee leads the day-to-day work of the association \u2014 organising events, supporting members, and championing British Bangladeshi construction.';
+    const benefits = [
+      {head:'Build Valuable Connections', text:'Meet contractors, developers, investors, suppliers, consultants, and decision-makers across the construction industry.'},
+      {head:'Generate New Business Leads', text:'Promote your services and connect with potential clients, partners, and subcontractors.'},
+      {head:'Grow Your Professional Network', text:'Develop long-term relationships with trusted businesses and industry professionals.'},
+      {head:'Create Partnership Opportunities', text:'Find suitable partners for joint ventures, developments, tenders, and construction projects.'},
+      {head:'Showcase Your Business', text:'Increase your company\u2019s visibility through BBCA events, exhibitions, directories, and promotional opportunities.'},
+      {head:'Access Industry Events', text:'Attend networking meetings, business forums, conferences, workshops, and the British Bangladeshi Build Festival.'},
+      {head:'Meet Buyers and Suppliers', text:'Connect directly with businesses looking for construction services, materials, products, and specialist expertise.'},
+      {head:'Discover Tender Opportunities', text:'Learn about upcoming contracts, procurement opportunities, and potential project collaborations.'},
+      {head:'Strengthen Your Business Reputation', text:'Become part of a respected professional association and build trust within the wider construction community.'},
+      {head:'Expand into New Markets', text:'Use BBCA connections to reach new customers, sectors, locations, and commercial opportunities.'},
+    ];
+
+    const formFields = [
+      {label:'Business / Organisation name', req:'*', placeholder:'e.g. Meridian Construction Ltd', span:'1 / -1', isInput:true},
+      {label:'Contact person name', req:'*', placeholder:'Full name', span:'auto', isInput:true},
+      {label:'Email', req:'*', placeholder:'you@company.com', span:'auto', isInput:true},
+      {label:'Phone', req:'*', placeholder:'+44 …', span:'auto', isInput:true},
+      {label:'Business type / industry', req:'*', placeholder:'Select industry', span:'auto', isSelect:true},
+      {label:'Address', req:'', placeholder:'Street, city, postcode', span:'1 / -1', isInput:true},
+      {label:'Message / additional info', req:'', placeholder:'Tell us a little about your business…', span:'1 / -1', isTextarea:true},
+    ];
+
+    const articles = [
+      {slot:'art1', cat:'News, BBCA News', title:'Building What\u2019s Next: A BBCA Launch Celebration in London', onClick:go('article')},
+      {slot:'art2', cat:'News, Interview', title:'President\u2019s update: We\u2019re building momentum across the sector', onClick:go('article')},
+      {slot:'art3', cat:'News, Press Release', title:'Skills & training partnership announced for 2026 cohort', onClick:go('article')},
+      {slot:'art4', cat:'News, Events', title:'BBCA Business Forum brings members together this spring', onClick:go('article')},
+      {slot:'art5', cat:'News, Community', title:'Celebrating British Bangladeshi achievement in construction', onClick:go('article')},
+      {slot:'art6', cat:'News, Press Release', title:'British Bangladeshi Build Festival London 2026 confirmed', onClick:go('article')},
+    ];
+
+    const gallery = [
+      {slot:'g1', ratio:'4/5'}, {slot:'g2', ratio:'4/3'}, {slot:'g3', ratio:'1/1'},
+      {slot:'g4', ratio:'4/3'}, {slot:'g5', ratio:'4/5'}, {slot:'g6', ratio:'1/1'},
+      {slot:'g7', ratio:'1/1'}, {slot:'g8', ratio:'4/5'}, {slot:'g9', ratio:'4/3'},
+    ];
+
+    const contactRows = [
+      {icon:'phone', label:'Phone / Whatsapp', value:'07913 185 391'},
+      {icon:'mail', label:'Email', value:'contact@bbcauk.org'},
+      {icon:'map-pin', label:'Address', value:'London, United Kingdom'},
+      {icon:'clock', label:'Business Hours', value:'Mon – Fri: 10:00 AM – 7:00 PM\nSaturday: 10:00 AM – 5:00 PM\nSunday: Closed'},
+    ];
+    const socials = ['Instagram','Facebook','LinkedIn','YouTube'];
+    const connectMore = ['View Our Projects','Our Services','Membership Benefits'];
+
+    const footerCols = [
+      {head:'Explore BBCA', links:[{label:'About us',onClick:go('about')},{label:'Membership',onClick:go('membership')},{label:'Why join BBCA',onClick:go('why')}]},
+      {head:'Contact us', links:[{label:'07913 185 391',onClick:go('contact')},{label:'contact@bbcauk.org',onClick:go('contact')},{label:'London, United Kingdom',onClick:go('contact')}]},
+      {head:'Policy', links:[{label:'Key Policies',onClick:go('about')},{label:'Aim & Objectives',onClick:go('about')},{label:'About us',onClick:go('about')}]},
+    ];
+
+    // admin
+    const setAdmin=(p)=>go(p);
+    const adminNav = [
+      {label:'Applications', icon:'file-text', page:'admin-panel'},
+      {label:'News', icon:'newspaper', page:'admin-panel'},
+      {label:'Executives', icon:'users', page:'admin-panel'},
+      {label:'Directors', icon:'user-check', page:'admin-panel'},
+      {label:'Gallery', icon:'image', page:'admin-panel'},
+    ].map((a,i)=>({...a, onClick:go(a.page), color:i===0?'#fff':'rgba(255,255,255,0.66)', bg:i===0?'rgba(255,255,255,0.10)':'transparent', weight:i===0?'600':'500'}));
+    const adminStats = [
+      {label:'Total applications', num:'48', color:'var(--navy)'},
+      {label:'Pending', num:'12', color:'#C77700'},
+      {label:'Approved', num:'31', color:'var(--green)'},
+      {label:'Rejected', num:'5', color:'var(--red)'},
+    ];
+    const filterTabs = [
+      {label:'All', active:true}, {label:'Pending'}, {label:'Approved'}, {label:'Rejected'},
+    ].map(t=>({label:t.label, color:t.active?'#fff':'var(--body)', bg:t.active?'var(--navy)':'var(--alt)'}));
+    const st = (s)=> s==='Approved'?{stColor:'#0A7D3E',stBg:'#E1F1E8'} : s==='Pending'?{stColor:'#C77700',stBg:'#FBEFD9'} : {stColor:'#D0202F',stBg:'#FBE2E4'};
+    const applications = [
+      {biz:'Meridian Construction Ltd', contact:'A. Rahman', email:'a.rahman@meridian.co.uk', type:'Contractor', status:'Pending'},
+      {biz:'Eastside Developments', contact:'S. Ahmed', email:'sahmed@eastside.uk', type:'Developer', status:'Approved'},
+      {biz:'BuildRight Engineering', contact:'M. Islam', email:'m.islam@buildright.co', type:'Engineer', status:'Approved'},
+      {biz:'Skyline Architects', contact:'N. Begum', email:'nbegum@skyline.uk', type:'Architect', status:'Pending'},
+      {biz:'Prime Supplies Co', contact:'K. Hussain', email:'k.hussain@prime.uk', type:'Supplier', status:'Rejected'},
+      {biz:'Crown Consultants', contact:'F. Khatun', email:'f.khatun@crown.co.uk', type:'Consultant', status:'Approved'},
+    ].map(a=>({...a, ...st(a.status)}));
+
+    const pageTitles = { why:'Why Join BBCA', contact:'Contact', news:'News & Insights', resource:'Resource & Knowledge', gallery:'Photo Archive', exec:'Executive Committee', directors:'Board of Directors' };
+    const showPageHero = ['why','contact','news','resource','gallery','exec','directors'].includes(page);
+    const isAdmin = page==='admin-login' || page==='admin-panel';
+
+    return {
+      page, nav, navItems, stats, resources, newsPreview, videos,
+      aims, execs, benefits, formFields, articles, gallery,
+      contactRows, socials, connectMore, footerCols,
+      adminNav, adminStats, filterTabs, applications,
+      utilMax, utilOpacity, navPad, navRadius, navShadow, navH, navWrapBg,
+      heroDots, directoryPeople, dirKicker, dirIntro,
+      isHome: page==='home',
+      isAbout: page==='about',
+      isWhy: page==='why',
+      isResource: page==='resource',
+      isMembership: page==='membership',
+      isMembershipDone: page==='membership-done',
+      isNews: page==='news',
+      isArticle: page==='article',
+      isGallery: page==='gallery',
+      isContact: page==='contact',
+      isDirectory: page==='exec' || page==='directors',
+      isAdminLogin: page==='admin-login',
+      isAdminPanel: page==='admin-panel',
+      showPageHero,
+      pageTitle: pageTitles[page] || '',
+      showChrome: !isAdmin,
+    };
+  }
+}
+</script>
+</body>
+</html>

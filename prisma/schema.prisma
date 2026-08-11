@@ -1,0 +1,133 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model News {
+  id            String    @id @default(cuid())
+  title         String
+  slug          String    @unique
+  body          String
+  coverImageUrl String?
+  status        NewsStatus @default(DRAFT)
+  publishedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+enum NewsStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model Executive {
+  id        String          @id @default(cuid())
+  name      String
+  title     String
+  photoUrl  String?
+  order     Int             @default(0)
+  category  ExecutiveCategory
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+}
+
+enum ExecutiveCategory {
+  EXECUTIVE
+  DIRECTOR
+}
+
+model GalleryImage {
+  id        String   @id @default(cuid())
+  imageUrl  String
+  caption   String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model MembershipApplication {
+  id           String            @id @default(cuid())
+  businessName String
+  contactName  String
+  email        String
+  phone        String
+  businessType String
+  address      String
+  message      String?
+  documentUrl  String?
+  status       ApplicationStatus @default(PENDING)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+}
+
+enum ApplicationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Resource {
+  id             String         @id @default(cuid())
+  title          String
+  slug           String         @unique
+  excerpt        String?
+  body           String
+  coverImageUrl  String?
+  eventDate      DateTime?
+  location       String?
+  bookingEnabled Boolean        @default(true)
+  emailSubject   String?
+  emailBody      String?
+  status         ResourceStatus @default(DRAFT)
+  order          Int            @default(0)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  bookings       SeatBooking[]
+}
+
+enum ResourceStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model SeatBooking {
+  id           String   @id @default(cuid())
+  resourceId   String
+  resource     Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  name         String
+  email        String
+  phone        String
+  organization String
+  createdAt    DateTime @default(now())
+
+  @@unique([resourceId, email])
+  @@index([resourceId])
+}
+
+model StallBooking {
+  id           String   @id @default(cuid())
+  name         String
+  phone        String
+  email        String
+  organization String
+  createdAt    DateTime @default(now())
+}
+
+model VisitorRegistration {
+  id         String   @id @default(cuid())
+  name       String
+  phone      String
+  email      String
+  profession String
+  createdAt  DateTime @default(now())
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
