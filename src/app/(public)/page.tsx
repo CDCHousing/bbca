@@ -4,7 +4,13 @@ import { ArrowRight } from "lucide-react";
 import AnimatedButton from "@/components/AnimatedButton";
 import HomeAnimations from "@/components/HomeAnimations";
 import CarouselSection from "@/components/CarouselSection";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { ARTICLES, isSvg } from "@/lib/news";
+
+// https://www.youtube.com/watch?v=AXMkjkDWADg
+const FEATURED_VIDEO_ID = "AXMkjkDWADg";
+const FEATURED_VIDEO_TITLE =
+  "A memorable gathering of the British Bangladeshi Construction Association (BBCA)";
 
 const STATS = [
   { num: "164+", val: 164, suffix: "+", label: "Businesses Connected", color: "#0A7D3E" },
@@ -208,19 +214,14 @@ export default function HomePage() {
           <div className="flex justify-center my-5">
             <span className="w-[70px] h-[3px] bg-[#D0202F] rounded-full" />
           </div>
-          {/* Video placeholders */}
-          <div className="gsap-stagger grid grid-cols-3 gap-6">
+          {/* Videos */}
+          <div className="gsap-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[0, 1, 2].map((i) => (
-              <div
+              <YouTubeEmbed
                 key={i}
-                className="relative aspect-video rounded-xl overflow-hidden bg-[#1a1a1a] flex items-center justify-center"
-              >
-                <div className="w-[54px] h-[38px] rounded-lg bg-[rgba(220,32,47,0.92)] flex items-center justify-center text-white">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>
-                </div>
-              </div>
+                videoId={FEATURED_VIDEO_ID}
+                title={FEATURED_VIDEO_TITLE}
+              />
             ))}
           </div>
         </div>
