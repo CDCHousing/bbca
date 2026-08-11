@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import AnimatedButton from "@/components/AnimatedButton";
 import HomeAnimations from "@/components/HomeAnimations";
 import CarouselSection from "@/components/CarouselSection";
+import { ARTICLES, isSvg } from "@/lib/news";
 
 const STATS = [
   { num: "164+", val: 164, suffix: "+", label: "Businesses Connected", color: "#0A7D3E" },
@@ -28,11 +29,6 @@ const RESOURCES = [
   },
 ];
 
-const NEWS_PREVIEW = [
-  { title: "BBCA Meetup — May 2026" },
-  { title: "BBCA Business Forum — May 2026" },
-  { title: "BBCA Members Networking Evening" },
-];
 
 
 export default function HomePage() {
@@ -182,11 +178,28 @@ export default function HomePage() {
           <h2 className="gsap-fade-up text-[30px] font-bold text-[#1B2A52] tracking-tight text-center mb-11">
             News &amp; Events
           </h2>
-          <div className="gsap-stagger grid grid-cols-3 gap-6 mb-5">
-            {NEWS_PREVIEW.map((n) => (
-              <Link key={n.title} href="/news" className="block group">
-                <div className="aspect-[16/10] rounded-xl overflow-hidden bg-[#c4cbd6] mb-3.5" />
-                <div className="text-[15px] font-semibold text-[#1B2A52] group-hover:text-[#D0202F] transition-colors">
+          <div className="gsap-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-5">
+            {ARTICLES.map((n) => (
+              <Link key={n.slug} href={`/news/${n.slug}`} className="block group">
+                <div
+                  className={`relative aspect-[16/10] rounded-xl overflow-hidden mb-3.5 ${
+                    n.imageFit === "contain" ? "bg-white" : "bg-[#c4cbd6]"
+                  }`}
+                >
+                  <Image
+                    src={n.image}
+                    alt={n.title}
+                    fill
+                    unoptimized={isSvg(n.image)}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+                    className={
+                      n.imageFit === "contain"
+                        ? "object-contain p-4"
+                        : "object-cover transition-transform duration-500 group-hover:scale-105"
+                    }
+                  />
+                </div>
+                <div className="text-[15px] font-semibold text-[#1B2A52] group-hover:text-[#D0202F] transition-colors leading-snug">
                   {n.title}
                 </div>
               </Link>

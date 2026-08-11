@@ -1,45 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import PageHero from "@/components/PageHero";
+import { ARTICLES, isSvg, type Article } from "@/lib/news";
 
-interface Article {
-  slug: string;
-  category: string;
-  title: string;
-}
-
-const ARTICLES: Article[] = [
-  {
-    slug: "bbca-launch",
-    category: "NEWS, BBCA",
-    title: "Building What's Next: A BBCA Launch Celebration in London",
-  },
-  {
-    slug: "presidents-update",
-    category: "NEWS, INTERVIEW",
-    title: "President's update: We're building momentum across the sector",
-  },
-  {
-    slug: "skills-training-partnership",
-    category: "NEWS, PRESS RELEASE",
-    title: "Skills & training partnership announced for 2026 cohort",
-  },
-  {
-    slug: "business-forum-spring",
-    category: "NEWS, EVENTS",
-    title: "BBCA Business Forum brings members together this spring",
-  },
-  {
-    slug: "celebrating-achievement",
-    category: "NEWS, COMMUNITY",
-    title: "Celebrating British Bangladeshi achievement in construction",
-  },
-  {
-    slug: "build-festival-2026",
-    category: "NEWS, PRESS RELEASE",
-    title: "British Bangladeshi Build Festival London 2026 confirmed",
-  },
-];
+export const metadata = {
+  title: "News & Insights | BBCA",
+  description:
+    "News, events and press releases from the British Bangladeshi Construction Association.",
+};
 
 export default function NewsPage() {
   return (
@@ -60,16 +29,32 @@ export default function NewsPage() {
 }
 
 function ArticleCard({ article }: { article: Article }) {
+  const isContain = article.imageFit === "contain";
+
   return (
     <Link
       href={`/news/${article.slug}`}
       className="group flex flex-col rounded-[14px] border border-[#E3E7ED] overflow-hidden transition-all duration-200 hover:shadow-lg hover:border-transparent"
     >
-      {/* Image placeholder — 16:10 aspect */}
       <div
-        className="w-full bg-[#c4cbd6] shrink-0"
+        className={`relative w-full shrink-0 overflow-hidden ${
+          isContain ? "bg-[#F5F7FA]" : "bg-[#c4cbd6]"
+        }`}
         style={{ aspectRatio: "16 / 10" }}
-      />
+      >
+        <Image
+          src={article.image}
+          alt={article.title}
+          fill
+          unoptimized={isSvg(article.image)}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 360px"
+          className={
+            isContain
+              ? "object-contain p-5"
+              : "object-cover transition-transform duration-500 group-hover:scale-105"
+          }
+        />
+      </div>
 
       {/* Body */}
       <div style={{ padding: "20px 20px 24px" }}>
@@ -81,11 +66,18 @@ function ArticleCard({ article }: { article: Article }) {
         </p>
 
         <h2
-          className="font-bold text-[#1B2A52] mb-[14px]"
+          className="font-bold text-[#1B2A52] mb-[10px]"
           style={{ fontSize: "16.5px", lineHeight: "1.35" }}
         >
           {article.title}
         </h2>
+
+        <p
+          className="text-[#6E7A8C] mb-[14px]"
+          style={{ fontSize: "13.5px", lineHeight: "1.6" }}
+        >
+          {article.excerpt}
+        </p>
 
         <span
           className="inline-flex items-center gap-1 font-semibold text-[#D0202F] transition-gap duration-150"

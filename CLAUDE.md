@@ -177,7 +177,10 @@ ADMIN_NOTIFICATION_EMAIL=  # where new membership submissions get sent
 - [ ] Build Membership Application form UI + Zod validation
 - [ ] Build API route for membership submission (DB write + Blob upload)
 - [ ] Integrate Resend for confirmation + admin notification emails
-- [ ] Build News listing + article detail pages
+- [x] Build News listing + article detail pages — content hardcoded in `src/lib/news.ts` (3 launch
+      articles) and shared by `/news`, `/news/[slug]` and the home News & Events grid. The `News`
+      model and `/admin/news` CRUD exist but are unused; swap the reads for `prisma.news` when real
+      articles are entered.
 - [ ] Build Photo Gallery page
 - [x] Build `/admin/gallery` and `/admin/membership-applications` (with status update + CSV export)
 - [x] Build Resource & Knowledge system — `Resource` + `SeatBooking` models, TipTap rich-text admin editor

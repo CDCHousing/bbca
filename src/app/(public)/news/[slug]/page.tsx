@@ -1,11 +1,47 @@
+import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
+import type { Metadata } from "next";
+import { ARTICLES, getArticle, isSvg } from "@/lib/news";
 
 export function generateStaticParams() {
-  return [{ slug: "bbca-launch" }];
+  return ARTICLES.map((article) => ({ slug: article.slug }));
 }
 
-export default function ArticlePage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = getArticle(slug);
+
+  if (!article) return { title: "Not Found | BBCA" };
+
+  return {
+    title: `${article.title} | BBCA`,
+    description: article.excerpt,
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      images: [article.image],
+    },
+  };
+}
+
+export default async function ArticlePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const article = getArticle(slug);
+
+  if (!article) notFound();
+
+  const isContain = article.imageFit === "contain";
+
   return (
     <section className="bg-white py-14" style={{ paddingBottom: "80px" }}>
       <div className="max-w-[780px] mx-auto px-6">
@@ -24,10 +60,9 @@ export default function ArticlePage() {
           className="font-bold uppercase text-[#D0202F] mb-[14px]"
           style={{ fontSize: "11.5px", letterSpacing: "0.6px" }}
         >
-          NEWS, BBCA
+          {article.category}
         </p>
 
-        {/* H1 */}
         <h1
           className="font-bold text-[#1B2A52] mb-[18px]"
           style={{
@@ -36,60 +71,93 @@ export default function ArticlePage() {
             lineHeight: "1.15",
           }}
         >
-          Building What&#39;s Next: A BBCA Launch Celebration
+          {article.title}
         </h1>
 
         {/* Meta */}
-        <p
-          className="text-[#6E7A8C] mb-8"
-          style={{ fontSize: "14px" }}
-        >
+        <p className="text-[#6E7A8C] mb-8" style={{ fontSize: "14px" }}>
           By BBCA Editorial
-          <span className="mx-2 select-none" aria-hidden="true">·</span>
-          12 May 2026
+          <span className="mx-2 select-none" aria-hidden="true">
+            ·
+          </span>
+          {article.date}
         </p>
 
-        {/* Hero image placeholder */}
+        {/* Hero image */}
         <div
-          className="w-full rounded-[14px] bg-[#c4cbd6] mb-[34px]"
+          className={`relative w-full rounded-[14px] overflow-hidden mb-[34px] ${
+            isContain ? "bg-[#F5F7FA]" : "bg-[#c4cbd6]"
+          }`}
           style={{ aspectRatio: "16 / 9" }}
-        />
+        >
+          <Image
+            src={article.image}
+            alt={article.title}
+            fill
+            priority
+            unoptimized={isSvg(article.image)}
+            sizes="(max-width: 820px) 100vw, 780px"
+            className={isContain ? "object-contain p-8" : "object-cover"}
+          />
+        </div>
 
         {/* Article body */}
         <div
           className="flex flex-col text-[#414C60]"
           style={{ fontSize: "16.5px", lineHeight: "1.8", gap: "20px" }}
         >
-          <p>
-            The British Bangladeshi Construction Association marked a major milestone this month,
-            bringing together members, partners and community leaders to celebrate a new chapter
-            for the organisation.
-          </p>
+          {article.body.map((paragraph) => (
+            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+          ))}
+        </div>
 
-          <p>
-            Attendees heard from industry figures on the opportunities ahead for British Bangladeshi
-            enterprise across the UK construction sector — from major infrastructure projects to
-            skills, training and the next generation of professionals entering the trade.
-          </p>
-
-          <h3
-            className="font-bold text-[#1B2A52] mt-2"
-            style={{ fontSize: "21px" }}
+        {/* Next articles */}
+        <div className="mt-14 pt-10 border-t border-[#E3E7ED]">
+          <h2
+            className="font-bold text-[#1B2A52] mb-5"
+            style={{ fontSize: "19px" }}
           >
-            A growing network
-          </h3>
-
-          <p>
-            With over 164 businesses now connected through the association, the evening underscored
-            the value of a united voice and a shared commitment to collaboration, knowledge sharing
-            and sustainable growth.
-          </p>
-
-          <p>
-            The BBCA will continue to host networking meetings, business forums, conferences and
-            workshops throughout the year, culminating in the British Bangladeshi Build Festival
-            London 2026.
-          </p>
+            More from BBCA
+          </h2>
+          <div className="flex flex-col gap-4">
+            {ARTICLES.filter((other) => other.slug !== article.slug).map(
+              (other) => (
+                <Link
+                  key={other.slug}
+                  href={`/news/${other.slug}`}
+                  className="group flex items-center gap-4"
+                >
+                  <div
+                    className={`relative w-[92px] shrink-0 rounded-lg overflow-hidden ${
+                      other.imageFit === "contain"
+                        ? "bg-[#F5F7FA]"
+                        : "bg-[#c4cbd6]"
+                    }`}
+                    style={{ aspectRatio: "16 / 10" }}
+                  >
+                    <Image
+                      src={other.image}
+                      alt={other.title}
+                      fill
+                      unoptimized={isSvg(other.image)}
+                      sizes="92px"
+                      className={
+                        other.imageFit === "contain"
+                          ? "object-contain p-2"
+                          : "object-cover"
+                      }
+                    />
+                  </div>
+                  <span
+                    className="font-semibold text-[#1B2A52] group-hover:text-[#D0202F] transition-colors"
+                    style={{ fontSize: "15px", lineHeight: "1.4" }}
+                  >
+                    {other.title}
+                  </span>
+                </Link>
+              )
+            )}
+          </div>
         </div>
       </div>
     </section>
