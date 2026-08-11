@@ -245,4 +245,13 @@ Navbar (from screenshot — NOT the claude design dropdown nav):
   the `/resources/[slug]` serverless bundle, which 500'd on Vercel while passing both `next dev` and
   `next start` locally. Use `sanitize-html` (pure JS) for HTML sanitisation. To check a route's bundle:
   `.next/server/app/<route>/page.js.nft.json` — a healthy route traces ~120 files, not 1300.
-- Prisma v7 uses prisma.config.ts for datasource URL (not schema.prisma).
+- Prisma v7 uses prisma.config.ts for datasource URL (not schema.prisma). It prefers
+  `DATABASE_URL_UNPOOLED` over `DATABASE_URL` — Neon's pooler can stall on migration advisory locks.
+- **`npm run build` runs `prisma migrate deploy` first.** Public pages query the DB during
+  prerender (e.g. `/gallery`), so a database without tables fails the build with
+  `P2021 TableDoesNotExist`. Migrations must land before `next build`. Note this runs on preview
+  deployments too — they share the DB unless a separate one is attached.
+- Admin users cannot be created in production via `/api/admin/seed` (403 by design). Use
+  `scripts/create-admin.mjs` instead — it upserts by email, so it doubles as a password reset.
+- `ADMIN_NOTIFICATION_EMAIL` from §7 is **not read anywhere in the code** — the §5 step 4 admin
+  notification email was never implemented. Setting it does nothing today.
