@@ -62,7 +62,7 @@ export default function HomePage() {
         <div className="absolute inset-0 flex items-center pt-[154px]">
           <div className="max-w-[1560px] w-full mx-auto px-16 pt-15">
             <div className="gsap-hero-text max-w-[960px]">
-              <h1 className="gsap-hero-title text-[clamp(42px,6vw,84px)] leading-[1.02] font-normal text-white uppercase tracking-[-1.5px] mb-10 text-shadow-lg">
+              <h1 className="gsap-hero-title text-[clamp(42px,6vw,84px)] leading-[1.02] font-semibold text-white uppercase tracking-[-1.5px] mb-10 text-shadow-lg">
                 British Bangladeshi Construction Association
               </h1>
               <Link
