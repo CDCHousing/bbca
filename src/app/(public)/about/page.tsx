@@ -41,7 +41,7 @@ export default function AboutPage() {
           </p>
 
           {/* H2 */}
-          <h2 className="gsap-fade-up text-[32px] font-bold text-[#1B2A52] leading-snug mb-8 max-w-[680px] mx-auto text-center">
+          <h2 className="gsap-fade-up text-f32 font-bold text-[#1B2A52] leading-snug mb-8 max-w-[680px] mx-auto text-center">
             A united voice for British Bangladeshi construction.
           </h2>
 
@@ -89,7 +89,7 @@ export default function AboutPage() {
                 <div className="w-11 h-11 rounded-full bg-[#E4F0F2] flex items-center justify-center mb-5">
                   <Icon size={20} className="text-[#1B2A52]" strokeWidth={1.8} />
                 </div>
-                <h3 className="text-[17px] font-bold text-[#1B2A52] mb-2">{title}</h3>
+                <h3 className="text-f17 font-bold text-[#1B2A52] mb-2">{title}</h3>
                 <p className="text-[14px] leading-relaxed text-[#414C60]">{body}</p>
               </div>
             ))}

@@ -14,6 +14,23 @@
   --color-muted: #6E7A8C;
   --color-line: #E3E7ED;
   --font-sans: var(--font-poppins);
+
+  /* Fluid type scale — interpolates between 375px and 1280px viewport.
+     Token name = the desktop (max) size in px, so desktop rendering is unchanged.
+     Sizes below 16px are already readable on phones and stay literal. */
+  --text-f16: clamp(15px, 14.59px + 0.11vw, 16px);
+  --text-f16-5: clamp(15px, 14.38px + 0.17vw, 16.5px);
+  --text-f17: clamp(15.5px, 14.88px + 0.17vw, 17px);
+  --text-f18: clamp(16px, 15.17px + 0.22vw, 18px);
+  --text-f19: clamp(16px, 14.76px + 0.33vw, 19px);
+  --text-f20: clamp(17px, 15.76px + 0.33vw, 20px);
+  --text-f22: clamp(18px, 16.34px + 0.44vw, 22px);
+  --text-f24: clamp(19px, 16.93px + 0.55vw, 24px);
+  --text-f30: clamp(22px, 18.69px + 0.88vw, 30px);
+  --text-f32: clamp(23px, 19.27px + 0.99vw, 32px);
+  --text-f34: clamp(24px, 19.86px + 1.11vw, 34px);
+  --text-f36: clamp(25px, 20.44px + 1.22vw, 36px);
+  --text-f38: clamp(26px, 21.03px + 1.33vw, 38px);
 }
 
 body {

@@ -117,7 +117,7 @@ export default async function ResourceDetailPage({
               )}
 
               <div
-                className="text-[#414C60] [&_h2]:text-[#1B2A52] [&_h2]:font-bold [&_h2]:text-[24px] [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:text-[#1B2A52] [&_h3]:font-bold [&_h3]:text-[19px] [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-4 [&_p]:text-[16px] [&_p]:leading-[1.75] [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_li]:mb-1.5 [&_li]:text-[16px] [&_li]:leading-[1.7] [&_a]:text-[#D0202F] [&_a]:underline [&_img]:rounded-[12px] [&_img]:my-6 [&_img]:max-w-full [&_img]:h-auto [&_blockquote]:border-l-4 [&_blockquote]:border-[#DA9028] [&_blockquote]:pl-5 [&_blockquote]:italic [&_blockquote]:my-5 [&_hr]:my-8 [&_hr]:border-[#E3E7ED] [&_strong]:text-[#1B2A52]"
+                className="text-[#414C60] [&_h2]:text-[#1B2A52] [&_h2]:font-bold [&_h2]:text-f24 [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:text-[#1B2A52] [&_h3]:font-bold [&_h3]:text-f19 [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-4 [&_p]:text-f16 [&_p]:leading-[1.75] [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_li]:mb-1.5 [&_li]:text-f16 [&_li]:leading-[1.7] [&_a]:text-[#D0202F] [&_a]:underline [&_img]:rounded-[12px] [&_img]:my-6 [&_img]:max-w-full [&_img]:h-auto [&_blockquote]:border-l-4 [&_blockquote]:border-[#DA9028] [&_blockquote]:pl-5 [&_blockquote]:italic [&_blockquote]:my-5 [&_hr]:my-8 [&_hr]:border-[#E3E7ED] [&_strong]:text-[#1B2A52]"
                 dangerouslySetInnerHTML={{ __html: sanitizeHtml(resource.body) }}
               />
 

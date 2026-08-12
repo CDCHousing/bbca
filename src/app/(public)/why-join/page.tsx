@@ -62,7 +62,7 @@ export default function WhyJoinPage() {
             >
               Membership Benefits
             </p>
-            <h2 className="text-[30px] font-bold text-[#1B2A52] leading-snug">
+            <h2 className="text-f30 font-bold text-[#1B2A52] leading-snug">
               Reasons to join the BBCA
             </h2>
           </div>
@@ -72,7 +72,7 @@ export default function WhyJoinPage() {
             {BENEFITS.map(({ title, body }, i) => (
               <div key={title} className="gsap-benefit-item flex gap-5 items-start">
                 <div className="shrink-0 w-[48px] h-[48px] rounded-full border-2 border-[#E3E7ED] flex items-center justify-center mt-0.5">
-                  <span className="text-[16px] font-bold text-[#6E7A8C]">
+                  <span className="text-f16 font-bold text-[#6E7A8C]">
                     {i + 1 < 10 ? `0${i + 1}` : i + 1}
                   </span>
                 </div>

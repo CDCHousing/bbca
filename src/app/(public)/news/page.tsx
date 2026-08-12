@@ -67,7 +67,7 @@ function ArticleCard({ article }: { article: Article }) {
 
         <h2
           className="font-bold text-[#1B2A52] mb-[10px]"
-          style={{ fontSize: "16.5px", lineHeight: "1.35" }}
+          style={{ fontSize: "var(--text-f16-5)", lineHeight: "1.35" }}
         >
           {article.title}
         </h2>

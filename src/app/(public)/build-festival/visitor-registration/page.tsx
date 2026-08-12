@@ -91,7 +91,7 @@ export default function VisitorRegistrationPage() {
               className="mb-7"
               priority
             />
-            <h1 className="font-bold text-[#1B2A52] mb-3" style={{ fontSize: "22px" }}>
+            <h1 className="font-bold text-[#1B2A52] mb-3" style={{ fontSize: "var(--text-f22)" }}>
               Thank you for registering for the Build Festival.
             </h1>
             <p className="text-[#414C60] max-w-[480px]" style={{ fontSize: "15px", lineHeight: "1.7" }}>
@@ -118,10 +118,10 @@ export default function VisitorRegistrationPage() {
               priority
             />
           </div>
-          <h1 className="font-bold text-[#1B2A52] uppercase mb-1.5" style={{ fontSize: "24px" }}>
+          <h1 className="font-bold text-[#1B2A52] uppercase mb-1.5" style={{ fontSize: "var(--text-f24)" }}>
             British Bangladeshi Construction Association
           </h1>
-          <p className="font-semibold text-[#0A7D3E]" style={{ fontSize: "17px" }}>
+          <p className="font-semibold text-[#0A7D3E]" style={{ fontSize: "var(--text-f17)" }}>
             Build Festival Visitor Registration
           </p>
         </div>

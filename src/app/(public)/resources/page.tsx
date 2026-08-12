@@ -40,7 +40,7 @@ export default async function ResourcesPage() {
         <div className="max-w-[1160px] mx-auto px-6">
           {resources.length === 0 ? (
             <div className="max-w-3xl mx-auto text-center py-16">
-              <p className="text-[17px] leading-relaxed text-[#414C60]">
+              <p className="text-f17 leading-relaxed text-[#414C60]">
                 We will soon share updates about our upcoming workshops, training
                 sessions, internships, and business support facilities.
               </p>
@@ -77,7 +77,7 @@ export default async function ResourcesPage() {
 
                       <h2
                         className="font-bold text-[#1B2A52] mb-[10px]"
-                        style={{ fontSize: "16.5px", lineHeight: "1.35" }}
+                        style={{ fontSize: "var(--text-f16-5)", lineHeight: "1.35" }}
                       >
                         {r.title}
                       </h2>

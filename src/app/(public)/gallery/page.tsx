@@ -19,7 +19,7 @@ export default async function GalleryPage() {
             <p className="text-[12.5px] font-bold uppercase tracking-[2px] mb-3 text-[#DA9028]">
               Photo Archive
             </p>
-            <h2 className="text-[32px] font-extrabold text-[#1B2A52] leading-tight tracking-tight">
+            <h2 className="text-f32 font-extrabold text-[#1B2A52] leading-tight tracking-tight">
               Celebrating Our Community
             </h2>
           </div>

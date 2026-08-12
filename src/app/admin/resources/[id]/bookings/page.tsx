@@ -70,7 +70,7 @@ export default function ResourceBookingsPage() {
   }, [debouncedSearch]);
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <div className="flex items-center gap-3 mb-6">
         <Link href="/admin/resources" className="text-sm text-gray-500 hover:text-gray-700">
           ← Resources
@@ -118,8 +118,8 @@ export default function ResourceBookingsPage() {
           </p>
         </div>
       ) : (
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="bg-white rounded-lg shadow overflow-x-auto">
+          <table className="w-full min-w-[720px] text-sm">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-200">
                 <th className="text-left px-6 py-3 font-semibold text-gray-600">Name</th>

@@ -91,7 +91,7 @@ export default function SeatBookingForm({
         <div className="w-[64px] h-[64px] rounded-full bg-[#0A7D3E] flex items-center justify-center mb-5">
           <Check size={32} className="text-white" strokeWidth={2.5} />
         </div>
-        <h2 className="font-bold text-[#1B2A52] mb-3" style={{ fontSize: "20px" }}>
+        <h2 className="font-bold text-[#1B2A52] mb-3" style={{ fontSize: "var(--text-f20)" }}>
           Your seat is booked.
         </h2>
         <p
@@ -111,7 +111,7 @@ export default function SeatBookingForm({
       className="bg-white border border-[#E3E7ED] rounded-[18px] shadow-md p-6 sm:p-8"
       noValidate
     >
-      <h2 className="font-bold text-[#1B2A52] mb-1" style={{ fontSize: "19px" }}>
+      <h2 className="font-bold text-[#1B2A52] mb-1" style={{ fontSize: "var(--text-f19)" }}>
         Book Your Seat
       </h2>
       <p className="text-[#6E7A8C] mb-6" style={{ fontSize: "13.5px" }}>

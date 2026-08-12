@@ -38,6 +38,12 @@ const STYLES = `
 .footer-aurora {
   background: radial-gradient(circle at 50% 50%, rgba(218,144,40,0.20) 0%, rgba(208,32,47,0.14) 45%, transparent 72%);
 }
+/* The curtain-reveal needs a viewport-tall footer. Below md the content is
+   taller than a phone viewport, so the footer falls back to normal flow at
+   auto height and the clip-path/fixed positioning only kick in at md+. */
+@media (min-width: 768px) {
+  .footer-curtain { clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%); }
+}
 .footer-giant-bg-text {
   font-size: 22vw;
   line-height: 0.75;
@@ -72,7 +78,7 @@ const STYLES = `
 }
 `;
 
-const FOOTER_H = "h-screen";
+const FOOTER_H = "h-auto md:h-screen";
 
 type MagneticProps = {
   as?: "a" | "button";
@@ -234,12 +240,11 @@ export default function Footer() {
       */}
       <div
         ref={wrapperRef}
-        className={cn("relative w-full", FOOTER_H)}
-        style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
+        className={cn("footer-curtain relative w-full", FOOTER_H)}
       >
         <footer
           className={cn(
-            "fixed bottom-0 left-0 flex w-full flex-col justify-between overflow-hidden bg-[#14203D] text-white pt-[92px]",
+            "static md:fixed md:bottom-0 md:left-0 flex w-full flex-col justify-between overflow-hidden bg-[#14203D] text-white pt-14 md:pt-[92px]",
             FOOTER_H
           )}
         >
@@ -282,7 +287,7 @@ export default function Footer() {
           {/* Main content */}
           <div
             ref={contentRef}
-            className="relative z-10 flex flex-1 flex-col items-center justify-center gap-12 px-6 py-10 w-full max-w-[1160px] mx-auto"
+            className="relative z-10 flex flex-1 flex-col items-center justify-center gap-10 md:gap-12 px-5 sm:px-6 py-10 w-full max-w-[1160px] mx-auto"
           >
             <div className="flex flex-col items-center text-center gap-6">
               <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">
@@ -335,8 +340,8 @@ export default function Footer() {
           </div>
 
           {/* Bottom bar */}
-          <div className="relative z-10 w-full pb-6 px-6 flex items-center justify-between gap-4 max-w-[1160px] mx-auto">
-            <div className="text-white/70 text-[11px] md:text-xs font-medium tracking-wide">
+          <div className="relative z-10 w-full pb-6 px-5 sm:px-6 flex flex-col-reverse md:flex-row items-center justify-between gap-5 md:gap-4 max-w-[1160px] mx-auto">
+            <div className="text-white/70 text-[11px] md:text-xs font-medium tracking-wide text-center md:text-left">
               © 2026 British Bangladeshi Construction Association — All rights reserved
             </div>
 

@@ -35,7 +35,7 @@ export default async function ApplicationDetailPage({
   ];
 
   return (
-    <div className="p-8 max-w-2xl">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-2xl">
       <div className="flex items-center gap-3 mb-6">
         <Link
           href="/admin/membership-applications"
@@ -88,7 +88,7 @@ export default async function ApplicationDetailPage({
         <h3 className="font-semibold text-gray-800 mb-4">Application Details</h3>
         <dl className="space-y-4">
           {fields.map((field) => (
-            <div key={field.label} className="grid grid-cols-3 gap-4">
+            <div key={field.label} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <dt className="text-sm font-medium text-gray-500">
                 {field.label}
               </dt>

@@ -12,7 +12,15 @@ export default function SmoothFollower() {
   const [isHovering, setIsHovering] = useState(false);
   const DOT_SMOOTHNESS = 0.2;
   const BORDER_DOT_SMOOTHNESS = 0.1;
-  useEffect(() => { setMounted(true); }, []);
+  // Touch devices have no cursor to follow — mounting here would leave a dot
+  // parked at 0,0 and run a 60fps rAF loop for nothing.
+  useEffect(() => {
+    const mq = window.matchMedia('(pointer: fine)');
+    const apply = () => setMounted(mq.matches);
+    apply();
+    mq.addEventListener('change', apply);
+    return () => mq.removeEventListener('change', apply);
+  }, []);
   useEffect(() => {
     if (!mounted) return;
     const handleMouseMove = (e: MouseEvent) => {

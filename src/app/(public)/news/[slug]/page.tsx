@@ -66,7 +66,7 @@ export default async function ArticlePage({
         <h1
           className="font-bold text-[#1B2A52] mb-[18px]"
           style={{
-            fontSize: "36px",
+            fontSize: "var(--text-f36)",
             letterSpacing: "-0.6px",
             lineHeight: "1.15",
           }}
@@ -104,7 +104,7 @@ export default async function ArticlePage({
         {/* Article body */}
         <div
           className="flex flex-col text-[#414C60]"
-          style={{ fontSize: "16.5px", lineHeight: "1.8", gap: "20px" }}
+          style={{ fontSize: "var(--text-f16-5)", lineHeight: "1.8", gap: "20px" }}
         >
           {article.body.map((paragraph) => (
             <p key={paragraph.slice(0, 40)}>{paragraph}</p>
@@ -115,7 +115,7 @@ export default async function ArticlePage({
         <div className="mt-14 pt-10 border-t border-[#E3E7ED]">
           <h2
             className="font-bold text-[#1B2A52] mb-5"
-            style={{ fontSize: "19px" }}
+            style={{ fontSize: "var(--text-f19)" }}
           >
             More from BBCA
           </h2>

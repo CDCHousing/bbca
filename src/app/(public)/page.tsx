@@ -60,11 +60,14 @@ export default function HomePage() {
             className="absolute top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 object-cover"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[rgba(15,23,42,0.86)] via-[rgba(15,23,42,0.62)] to-[rgba(15,23,42,0.32)]" />
+        {/* Portrait viewports crop the video hard, so the left-to-right scrim
+            that works on desktop leaves the text over a bright patch. Below md
+            the scrim runs top-to-bottom instead. */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(15,23,42,0.5)] via-[rgba(15,23,42,0.72)] to-[rgba(15,23,42,0.88)] md:bg-gradient-to-r md:from-[rgba(15,23,42,0.86)] md:via-[rgba(15,23,42,0.62)] md:to-[rgba(15,23,42,0.32)]" />
         <div className="absolute inset-0 flex items-center pt-[154px]">
-          <div className="max-w-[1560px] w-full mx-auto px-16 pt-15">
+          <div className="max-w-[1560px] w-full mx-auto px-5 sm:px-8 lg:px-16 pt-15">
             <div className="gsap-hero-text max-w-[960px]">
-              <h1 className="gsap-hero-title text-[clamp(42px,6vw,84px)] leading-[1.02] font-semibold text-white uppercase tracking-[-1.5px] mb-10 text-shadow-lg">
+              <h1 className="gsap-hero-title text-[clamp(34px,6vw,84px)] leading-[1.06] md:leading-[1.02] font-semibold text-white uppercase tracking-[-0.5px] md:tracking-[-1.5px] mb-8 md:mb-10 text-shadow-lg">
                 British Bangladeshi Construction Association
               </h1>
               <Link
@@ -83,11 +86,11 @@ export default function HomePage() {
 
       {/* Stats */}
       <section className="bg-white py-12">
-        <div className="gsap-stats-section max-w-[1100px] mx-auto px-6 grid grid-cols-5 gap-5">
+        <div className="gsap-stats-section max-w-[1100px] mx-auto px-5 sm:px-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-8">
           {STATS.map((s) => (
             <div key={s.num} className="text-center">
               <div
-                className="gsap-stat-num text-[38px] font-semibold tracking-tight leading-none"
+                className="gsap-stat-num text-f38 font-semibold tracking-tight leading-none"
                 style={{ color: s.color }}
                 data-val={s.val}
                 data-suffix={s.suffix}
@@ -106,11 +109,11 @@ export default function HomePage() {
 
       {/* Intro */}
       <section className="bg-white pt-8 pb-14">
-        <div className="max-w-[900px] mx-auto px-6 text-center">
-          <h2 className="gsap-fade-up text-[30px] font-bold tracking-tight text-[#1B2A52] uppercase mb-5 leading-snug">
+        <div className="max-w-[900px] mx-auto px-5 sm:px-6 text-center">
+          <h2 className="gsap-fade-up text-f30 font-bold tracking-tight text-[#1B2A52] uppercase mb-5 leading-snug">
             British Bangladeshi Construction Association
           </h2>
-          <p className="gsap-fade-up text-[16.5px] leading-relaxed text-[#414C60] max-w-[760px] mx-auto mb-8">
+          <p className="gsap-fade-up text-f16-5 leading-relaxed text-[#414C60] max-w-[760px] mx-auto mb-8">
             The British Bangladeshi Construction Association is a professional network dedicated to supporting, connecting, and promoting British Bangladeshi individuals and businesses within the UK construction industry. The association brings together contractors, developers, engineers, architects, consultants, tradespeople, suppliers, and aspiring professionals to encourage collaboration, knowledge sharing and sustainable growth.
           </p>
           <div className="gsap-fade-up flex gap-3.5 justify-center flex-wrap">
@@ -123,7 +126,7 @@ export default function HomePage() {
 
       {/* Festival banner */}
       <section className="bg-[#E4F0F2]">
-        <div className="max-w-[1120px] mx-auto px-6 py-16 grid grid-cols-[0.85fr_1.15fr] gap-14 items-center">
+        <div className="max-w-[1120px] mx-auto px-5 sm:px-6 py-12 md:py-16 grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-14 items-center">
           <div className="gsap-fade-up flex justify-center">
             <Image
               src="/build-festival-logo.svg"
@@ -134,7 +137,7 @@ export default function HomePage() {
             />
           </div>
           <div>
-            <h2 className="gsap-fade-up text-[30px] font-bold text-[#0A7D3E] tracking-tight mb-5">
+            <h2 className="gsap-fade-up text-f30 font-bold text-[#0A7D3E] tracking-tight mb-5">
               British Bangladeshi Build Festival
             </h2>
             <p className="gsap-fade-up text-[15.5px] leading-relaxed text-[#414C60] mb-4">
@@ -155,12 +158,12 @@ export default function HomePage() {
       </section>
 
       {/* Resource, Knowledge & Career */}
-      <section className="bg-white py-20">
-        <div className="max-w-[1080px] mx-auto px-6">
-          <h2 className="gsap-fade-up text-[34px] font-bold text-[#1B2A52] tracking-tight text-center mb-13">
+      <section className="bg-white py-14 md:py-20">
+        <div className="max-w-[1080px] mx-auto px-5 sm:px-6">
+          <h2 className="gsap-fade-up text-f34 font-bold text-[#1B2A52] tracking-tight text-center mb-9 md:mb-13">
             Resource, Knowledge &amp; Career
           </h2>
-          <div className="gsap-stagger grid grid-cols-3 gap-9">
+          <div className="gsap-stagger grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-9">
             {RESOURCES.map((r, i) => (
               <div key={i} className="text-center px-3">
                 <div className="w-[78px] h-[78px] mx-auto mb-5 flex items-center justify-center">
@@ -179,9 +182,9 @@ export default function HomePage() {
       </section>
 
       {/* News & Events */}
-      <section className="bg-[#EDF5F6] py-18">
-        <div className="max-w-[1140px] mx-auto px-6">
-          <h2 className="gsap-fade-up text-[30px] font-bold text-[#1B2A52] tracking-tight text-center mb-11">
+      <section className="bg-[#EDF5F6] py-12 md:py-18">
+        <div className="max-w-[1140px] mx-auto px-5 sm:px-6">
+          <h2 className="gsap-fade-up text-f30 font-bold text-[#1B2A52] tracking-tight text-center mb-8 md:mb-11">
             News &amp; Events
           </h2>
           <div className="gsap-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-5">

@@ -34,7 +34,7 @@ export default function AssociationLeadershipPage() {
       {/* Coming soon body */}
       <section className="py-20 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-[17px] leading-relaxed text-[#414C60]">
+          <p className="text-f17 leading-relaxed text-[#414C60]">
             We will soon announce the BBCA Leadership and Executive Committee,
             introducing the dedicated professionals who will guide our association,
             support our members, and drive future growth.

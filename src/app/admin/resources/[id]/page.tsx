@@ -50,7 +50,7 @@ export default function EditResourcePage() {
   }, [id]);
 
   return (
-    <div className="p-8 max-w-3xl">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-3xl">
       <div className="flex items-center gap-3 mb-6">
         <Link href="/admin/resources" className="text-sm text-gray-500 hover:text-gray-700">
           ← Resources

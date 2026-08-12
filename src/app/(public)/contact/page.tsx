@@ -56,7 +56,7 @@ export default function ContactPage() {
           >
             {/* Left — contact info */}
             <div>
-              <h3 className="text-[24px] font-bold text-white mb-9">
+              <h3 className="text-f24 font-bold text-white mb-9">
                 BBCA Contact Information
               </h3>
 
@@ -90,7 +90,7 @@ export default function ContactPage() {
             <div className="flex flex-col gap-10">
               {/* Social */}
               <div>
-                <h3 className="text-[20px] font-bold text-white mb-5">Follow Us</h3>
+                <h3 className="text-f20 font-bold text-white mb-5">Follow Us</h3>
                 <div className="flex flex-wrap gap-3">
                   {SOCIAL_LINKS.map(({ label, href }) => (
                     <a
@@ -109,7 +109,7 @@ export default function ContactPage() {
 
               {/* Connect More */}
               <div>
-                <h3 className="text-[16px] font-bold text-white/60 uppercase tracking-wider mb-5">
+                <h3 className="text-f16 font-bold text-white/60 uppercase tracking-wider mb-5">
                   Connect More
                 </h3>
                 <div className="space-y-3">

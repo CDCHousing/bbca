@@ -91,7 +91,7 @@ export default function AdminGalleryPage() {
   }
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Gallery</h1>
         <p className="text-sm text-gray-500 mt-1">
@@ -128,7 +128,7 @@ export default function AdminGalleryPage() {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Caption

@@ -171,7 +171,7 @@ export default function MembershipPage() {
             />
             <h1
               className="font-bold text-[#1B2A52] mb-3"
-              style={{ fontSize: "22px" }}
+              style={{ fontSize: "var(--text-f22)" }}
             >
               Thank you for submitting your application to join BBCA.
             </h1>
@@ -209,13 +209,13 @@ export default function MembershipPage() {
           </div>
           <h1
             className="font-bold text-[#1B2A52] uppercase mb-1.5"
-            style={{ fontSize: "24px" }}
+            style={{ fontSize: "var(--text-f24)" }}
           >
             British Bangladeshi Construction Association
           </h1>
           <p
             className="font-semibold text-[#0A7D3E]"
-            style={{ fontSize: "17px" }}
+            style={{ fontSize: "var(--text-f17)" }}
           >
             Membership Application Form
           </p>
