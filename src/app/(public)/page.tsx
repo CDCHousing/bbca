@@ -46,7 +46,7 @@ export default function HomePage() {
       <section className="gsap-hero-section relative -mt-[154px] h-[90vh] min-h-[640px] bg-[#233] overflow-hidden">
         <div className="gsap-hero-bg absolute inset-0 overflow-hidden pointer-events-none">
           <video
-            src="https://faawc7l5kxsbkrxm.public.blob.vercel-storage.com/hero/BBCA-hero.mp4"
+            src="https://1huk1mplety5hddi.public.blob.vercel-storage.com/hero/BBCA-hero.mp4"
             poster="/bbca-crowd.png"
             autoPlay
             muted
