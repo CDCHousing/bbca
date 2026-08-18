@@ -8,20 +8,42 @@ datasource db {
 }
 
 model News {
-  id            String    @id @default(cuid())
+  id            String     @id @default(cuid())
   title         String
-  slug          String    @unique
+  slug          String     @unique
+  category      String?
+  excerpt       String?
   body          String
   coverImageUrl String?
+  /// Logo-style covers must letterbox instead of crop.
+  imageFit      ImageFit   @default(COVER)
   status        NewsStatus @default(DRAFT)
   publishedAt   DateTime?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  order         Int        @default(0)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 }
 
 enum NewsStatus {
   DRAFT
   PUBLISHED
+}
+
+enum ImageFit {
+  COVER
+  CONTAIN
+}
+
+/// YouTube videos shown in the home page News & Events strip.
+model HomeVideo {
+  id        String   @id @default(cuid())
+  /// 11-character YouTube video id, extracted from whatever URL the admin pastes.
+  videoId   String
+  title     String
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Executive {

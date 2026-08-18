@@ -56,7 +56,9 @@ Path convention: `/admin` (protected — redirect to `/admin/login` if not authe
 
 **Screens needed:**
 - `/admin/login` — simple email/password login
-- `/admin/news` — list, create, edit, delete news articles (title, body, cover image, publish date, published/draft status)
+- `/admin/news` — list, create, edit, delete news articles (title, slug, category, excerpt,
+  rich-text body, cover image + image fit, publish date, sort order, published/draft status)
+- `/admin/home-videos` — add/edit/delete the YouTube videos shown under News & Events on the home page
 - `/admin/leadership` — list, create, edit, delete Association Leadership profiles (name, title, photo, order/priority) — uses `Executive` model with category=EXECUTIVE
 - `/admin/gallery` — upload/delete gallery images (image, caption, order)
 - `/admin/membership-applications` — list all submissions, filter by status, view full submission detail, change status (Pending / Approved / Rejected), export to CSV
@@ -96,10 +98,14 @@ News
 - id
 - title
 - slug
-- body (rich text or markdown)
+- category (nullable — small label above the headline, e.g. "NEWS, PRESS RELEASE")
+- excerpt (nullable — card summary)
+- body (rich-text HTML from the TipTap admin editor)
 - coverImageUrl
+- imageFit (COVER | CONTAIN — CONTAIN letterboxes logo-style covers)
 - status (DRAFT | PUBLISHED)
 - publishedAt
+- order (tie-breaker for articles sharing a date)
 - createdAt / updatedAt
 
 Executive
@@ -109,6 +115,14 @@ Executive
 - photoUrl
 - order
 - category (EXECUTIVE | DIRECTOR)
+- createdAt / updatedAt
+
+HomeVideo
+- id
+- videoId (11-char YouTube id)
+- title
+- order
+- published
 - createdAt / updatedAt
 
 GalleryImage
@@ -177,10 +191,13 @@ ADMIN_NOTIFICATION_EMAIL=  # where new membership submissions get sent
 - [ ] Build Membership Application form UI + Zod validation
 - [ ] Build API route for membership submission (DB write + Blob upload)
 - [ ] Integrate Resend for confirmation + admin notification emails
-- [x] Build News listing + article detail pages — content hardcoded in `src/lib/news.ts` (3 launch
-      articles) and shared by `/news`, `/news/[slug]` and the home News & Events grid. The `News`
-      model and `/admin/news` CRUD exist but are unused; swap the reads for `prisma.news` when real
-      articles are entered.
+- [x] Build News listing + article detail pages — fully DB-driven via `prisma.news`. `/news`,
+      `/news/[slug]` and the home News & Events grid all read `src/lib/news.ts` helpers
+      (`getPublishedNews` / `getNewsBySlug` / `getOtherNews`), which query the `News` table.
+      Managed at `/admin/news` with the same TipTap rich-text editor + Blob cover upload the
+      Resource section uses. `scripts/seed-news.mjs` moved the 3 launch articles into the DB.
+- [x] Build `/admin/home-videos` — `HomeVideo` model drives the YouTube tiles under News & Events
+      on the home page. Admin pastes any YouTube URL; `src/lib/youtube.ts` extracts the 11-char id.
 - [ ] Build Photo Gallery page
 - [x] Build `/admin/gallery` and `/admin/membership-applications` (with status update + CSV export)
 - [x] Build Resource & Knowledge system — `Resource` + `SeatBooking` models, TipTap rich-text admin editor
@@ -256,5 +273,10 @@ Navbar (from screenshot — NOT the claude design dropdown nav):
   deployments too — they share the DB unless a separate one is attached.
 - Admin users cannot be created in production via `/api/admin/seed` (403 by design). Use
   `scripts/create-admin.mjs` instead — it upserts by email, so it doubles as a password reset.
+- News articles store rich-text HTML (TipTap) in `News.body`; always render it through
+  `sanitizeHtml()` from `src/lib/sanitize.ts`, never raw.
+- Public pages use plain `<img>` for admin-managed images (Blob URLs, uploaded SVG logos) rather
+  than `next/image`. The optimizer 400s on SVG unless `dangerouslyAllowSVG` is enabled, which we
+  deliberately leave off because `/api/admin/upload` accepts uploads.
 - `ADMIN_NOTIFICATION_EMAIL` from §7 is **not read anywhere in the code** — the §5 step 4 admin
   notification email was never implemented. Setting it does nothing today.

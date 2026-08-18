@@ -5,12 +5,11 @@ import AnimatedButton from "@/components/AnimatedButton";
 import HomeAnimations from "@/components/HomeAnimations";
 import CarouselSection from "@/components/CarouselSection";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
-import { ARTICLES, isSvg } from "@/lib/news";
+import { getPublishedNews } from "@/lib/news";
+import { prisma } from "@/lib/prisma";
 
-// https://www.youtube.com/watch?v=AXMkjkDWADg
-const FEATURED_VIDEO_ID = "AXMkjkDWADg";
-const FEATURED_VIDEO_TITLE =
-  "A memorable gathering of the British Bangladeshi Construction Association (BBCA)";
+// Admin edits to News & Events should appear without a redeploy.
+export const revalidate = 60;
 
 const STATS = [
   { num: "164+", val: 164, suffix: "+", label: "Businesses Connected", color: "#0A7D3E" },
@@ -37,7 +36,16 @@ const RESOURCES = [
 
 
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [articles, videos] = await Promise.all([
+    getPublishedNews(3),
+    prisma.homeVideo.findMany({
+      where: { published: true },
+      orderBy: [{ order: "asc" }, { createdAt: "asc" }],
+      take: 3,
+    }),
+  ]);
+
   return (
     <>
       <HomeAnimations />
@@ -187,46 +195,49 @@ export default function HomePage() {
           <h2 className="gsap-fade-up text-f30 font-bold text-[#1B2A52] tracking-tight text-center mb-8 md:mb-11">
             News &amp; Events
           </h2>
-          <div className="gsap-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-5">
-            {ARTICLES.map((n) => (
-              <Link key={n.slug} href={`/news/${n.slug}`} className="block group">
-                <div
-                  className={`relative aspect-[16/10] rounded-xl overflow-hidden mb-3.5 ${
-                    n.imageFit === "contain" ? "bg-white" : "bg-[#c4cbd6]"
-                  }`}
-                >
-                  <Image
-                    src={n.image}
-                    alt={n.title}
-                    fill
-                    unoptimized={isSvg(n.image)}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
-                    className={
-                      n.imageFit === "contain"
-                        ? "object-contain p-4"
-                        : "object-cover transition-transform duration-500 group-hover:scale-105"
-                    }
-                  />
-                </div>
-                <div className="text-[15px] font-semibold text-[#1B2A52] group-hover:text-[#D0202F] transition-colors leading-snug">
-                  {n.title}
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="flex justify-center my-5">
-            <span className="w-[70px] h-[3px] bg-[#D0202F] rounded-full" />
-          </div>
-          {/* Videos */}
-          <div className="gsap-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[0, 1, 2].map((i) => (
-              <YouTubeEmbed
-                key={i}
-                videoId={FEATURED_VIDEO_ID}
-                title={FEATURED_VIDEO_TITLE}
-              />
-            ))}
-          </div>
+          {articles.length > 0 && (
+            <div className="gsap-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-5">
+              {articles.map((n) => (
+                <Link key={n.id} href={`/news/${n.slug}`} className="block group">
+                  <div
+                    className={`relative aspect-[16/10] rounded-xl overflow-hidden mb-3.5 ${
+                      n.imageFit === "CONTAIN" ? "bg-white" : "bg-[#c4cbd6]"
+                    }`}
+                  >
+                    {n.coverImageUrl && (
+                      // Blob host is not in next.config images, so use a plain img.
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={n.coverImageUrl}
+                        alt={n.title}
+                        className={`absolute inset-0 w-full h-full ${
+                          n.imageFit === "CONTAIN"
+                            ? "object-contain p-4"
+                            : "object-cover transition-transform duration-500 group-hover:scale-105"
+                        }`}
+                      />
+                    )}
+                  </div>
+                  <div className="text-[15px] font-semibold text-[#1B2A52] group-hover:text-[#D0202F] transition-colors leading-snug">
+                    {n.title}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+          {articles.length > 0 && videos.length > 0 && (
+            <div className="flex justify-center my-5">
+              <span className="w-[70px] h-[3px] bg-[#D0202F] rounded-full" />
+            </div>
+          )}
+          {/* Videos — managed in /admin/home-videos */}
+          {videos.length > 0 && (
+            <div className="gsap-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {videos.map((v) => (
+                <YouTubeEmbed key={v.id} videoId={v.videoId} title={v.title} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>

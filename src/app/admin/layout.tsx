@@ -3,7 +3,8 @@ import SignOutButton from "./components/SignOutButton";
 
 const navLinks = [
   { href: "/admin", label: "Dashboard" },
-  { href: "/admin/news", label: "News" },
+  { href: "/admin/news", label: "News & Events" },
+  { href: "/admin/home-videos", label: "Home Page Videos" },
   { href: "/admin/leadership", label: "Association Leadership" },
   { href: "/admin/gallery", label: "Gallery" },
   { href: "/admin/resources", label: "Resource & Knowledge" },

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "@/lib/auth";
+import { newsSchema, slugify } from "@/lib/validation/news";
 
 export async function GET(
   _request: NextRequest,
@@ -33,25 +34,47 @@ export async function PUT(
   const { id } = await params;
 
   try {
-    const body = await request.json();
-    const { title, slug, body: articleBody, coverImageUrl, status, publishedAt } = body;
+    const parsed = newsSchema.safeParse(await request.json());
+
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Validation failed", fieldErrors: parsed.error.flatten().fieldErrors },
+        { status: 400 }
+      );
+    }
+
+    const data = parsed.data;
+    const finalSlug = data.slug?.trim() ? data.slug.trim() : slugify(data.title);
 
     const updated = await prisma.news.update({
       where: { id },
       data: {
-        ...(title !== undefined && { title }),
-        ...(slug !== undefined && { slug }),
-        ...(articleBody !== undefined && { body: articleBody }),
-        ...(coverImageUrl !== undefined && { coverImageUrl: coverImageUrl || null }),
-        ...(status !== undefined && { status }),
-        ...(publishedAt !== undefined && {
-          publishedAt: publishedAt ? new Date(publishedAt) : null,
-        }),
+        title: data.title,
+        slug: finalSlug,
+        category: data.category ?? null,
+        excerpt: data.excerpt ?? null,
+        body: data.body,
+        coverImageUrl: data.coverImageUrl ?? null,
+        imageFit: data.imageFit,
+        status: data.status,
+        publishedAt: data.publishedAt ? new Date(data.publishedAt) : null,
+        order: data.order,
       },
     });
 
     return NextResponse.json(updated);
-  } catch (error) {
+  } catch (error: unknown) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "code" in error &&
+      (error as { code: string }).code === "P2002"
+    ) {
+      return NextResponse.json(
+        { error: "A news article with this slug already exists." },
+        { status: 409 }
+      );
+    }
     console.error("Error updating news:", error);
     return NextResponse.json(
       { error: "Failed to update news article" },

@@ -1,13 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "@/lib/auth";
-
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
+import { newsSchema, slugify } from "@/lib/validation/news";
 
 export async function GET() {
   const session = await getServerSession();
@@ -16,7 +10,7 @@ export async function GET() {
   }
 
   const news = await prisma.news.findMany({
-    orderBy: { createdAt: "desc" },
+    orderBy: [{ publishedAt: { sort: "desc", nulls: "last" } }, { createdAt: "desc" }],
   });
 
   return NextResponse.json(news);
@@ -29,26 +23,30 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const body = await request.json();
-    const { title, slug, body: articleBody, coverImageUrl, status, publishedAt } = body;
+    const parsed = newsSchema.safeParse(await request.json());
 
-    if (!title || !articleBody) {
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: "Title and body are required" },
+        { error: "Validation failed", fieldErrors: parsed.error.flatten().fieldErrors },
         { status: 400 }
       );
     }
 
-    const finalSlug = slug?.trim() ? slug.trim() : slugify(title);
+    const data = parsed.data;
+    const finalSlug = data.slug?.trim() ? data.slug.trim() : slugify(data.title);
 
     const news = await prisma.news.create({
       data: {
-        title,
+        title: data.title,
         slug: finalSlug,
-        body: articleBody,
-        coverImageUrl: coverImageUrl || null,
-        status: status || "DRAFT",
-        publishedAt: publishedAt ? new Date(publishedAt) : null,
+        category: data.category ?? null,
+        excerpt: data.excerpt ?? null,
+        body: data.body,
+        coverImageUrl: data.coverImageUrl ?? null,
+        imageFit: data.imageFit,
+        status: data.status,
+        publishedAt: data.publishedAt ? new Date(data.publishedAt) : null,
+        order: data.order,
       },
     });
 
