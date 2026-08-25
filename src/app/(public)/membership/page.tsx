@@ -358,7 +358,7 @@ export default function MembershipPage() {
             {/* 7. Message — full width textarea */}
             <div className="md:col-span-2">
               <FieldLabel htmlFor="message">
-                Message / additional info
+                Write about your business
               </FieldLabel>
               <textarea
                 id="message"
@@ -377,7 +377,7 @@ export default function MembershipPage() {
 
             {/* 8. File upload — full width */}
             <div className="md:col-span-2">
-              <FieldLabel htmlFor="fileUpload">Document upload</FieldLabel>
+              <FieldLabel htmlFor="fileUpload">Upload your business brochure</FieldLabel>
               <label
                 htmlFor="fileUpload"
                 onDragOver={(e) => {
