@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import ConfirmDialog from "../components/ConfirmDialog";
+import { ToastStack, useToasts } from "../components/Toast";
 
 interface Application {
   id: string;
@@ -31,6 +33,9 @@ export default function MembershipApplicationsPage() {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [pendingDelete, setPendingDelete] = useState<Application | null>(null);
+  const { toasts, showToast, dismissToast } = useToasts();
 
   // debounce search input so we don't hit the API on every keystroke
   useEffect(() => {
@@ -67,6 +72,35 @@ export default function MembershipApplicationsPage() {
   useEffect(() => {
     setPage(1);
   }, [statusFilter, debouncedSearch]);
+
+  async function handleDelete() {
+    const app = pendingDelete;
+    if (!app) return;
+
+    setDeletingId(app.id);
+    try {
+      const res = await fetch(`/api/admin/membership-applications/${app.id}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        showToast(data.error || "Failed to delete application", "error");
+        return;
+      }
+      setPendingDelete(null);
+      showToast(`Deleted the application from "${app.businessName}".`);
+      // step back a page if we just removed the only row on this one
+      if (applications.length === 1 && page > 1) {
+        setPage((p) => p - 1);
+      } else {
+        await fetchApplications();
+      }
+    } catch {
+      showToast("An unexpected error occurred", "error");
+    } finally {
+      setDeletingId(null);
+    }
+  }
 
   return (
     <div className="p-4 sm:p-6 lg:p-8">
@@ -179,12 +213,21 @@ export default function MembershipApplicationsPage() {
                     {new Date(app.createdAt).toLocaleDateString("en-GB")}
                   </td>
                   <td className="px-6 py-4">
-                    <Link
-                      href={`/admin/membership-applications/${app.id}`}
-                      className="bg-[#1B2A52] text-white rounded px-3 py-1.5 text-xs font-medium hover:bg-[#14203D] transition-colors"
-                    >
-                      View
-                    </Link>
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href={`/admin/membership-applications/${app.id}`}
+                        className="bg-[#1B2A52] text-white rounded px-3 py-1.5 text-xs font-medium hover:bg-[#14203D] transition-colors"
+                      >
+                        View
+                      </Link>
+                      <button
+                        onClick={() => setPendingDelete(app)}
+                        disabled={deletingId === app.id}
+                        className="border border-red-200 text-[#D0202F] rounded px-3 py-1.5 text-xs font-medium hover:bg-red-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {deletingId === app.id ? "Deleting..." : "Delete"}
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -216,6 +259,21 @@ export default function MembershipApplicationsPage() {
           </div>
         </div>
       )}
+
+      <ConfirmDialog
+        open={pendingDelete !== null}
+        title="Delete application"
+        description={
+          pendingDelete
+            ? `Delete the application from "${pendingDelete.businessName}"? This cannot be undone.`
+            : undefined
+        }
+        loading={deletingId !== null}
+        onConfirm={handleDelete}
+        onCancel={() => setPendingDelete(null)}
+      />
+
+      <ToastStack toasts={toasts} onDismiss={dismissToast} />
     </div>
   );
 }
