@@ -2,6 +2,8 @@ import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import StatusUpdateForm from "./StatusUpdateForm";
+import { formatSerial } from "@/lib/membership-serial";
+import { getSerialMap } from "@/lib/membership-serial.server";
 
 const STATUS_STYLES: Record<string, string> = {
   PENDING: "bg-yellow-100 text-yellow-800",
@@ -23,6 +25,9 @@ export default async function ApplicationDetailPage({
   if (!application) {
     notFound();
   }
+
+  const serials = await getSerialMap();
+  const serial = serials.get(application.id);
 
   const fields = [
     { label: "Business Name", value: application.businessName },
@@ -54,6 +59,9 @@ export default async function ApplicationDetailPage({
             <h2 className="text-lg font-bold text-gray-900">
               {application.businessName}
             </h2>
+            <p className="text-xs font-mono text-gray-400 mb-1">
+              S/N {serial ? formatSerial(serial) : "—"}
+            </p>
             <p className="text-sm text-gray-500">
               Submitted{" "}
               {new Date(application.createdAt).toLocaleDateString("en-GB", {

@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "@/lib/auth";
 import { ApplicationStatus, Prisma } from "@/generated/prisma/client";
+import { getSerialMap } from "@/lib/membership-serial.server";
+import { SERIAL_ORDER_BY } from "@/lib/membership-serial";
 
 export async function GET(request: NextRequest) {
   const session = await getServerSession();
@@ -38,18 +40,22 @@ export async function GET(request: NextRequest) {
       ? Math.min(pageSizeParam, 100)
       : 20;
 
-  const [applications, total] = await Promise.all([
+  const [applications, total, serials] = await Promise.all([
     prisma.membershipApplication.findMany({
       where,
-      orderBy: { createdAt: "desc" },
+      orderBy: SERIAL_ORDER_BY,
       skip: (page - 1) * pageSize,
       take: pageSize,
     }),
     prisma.membershipApplication.count({ where }),
+    getSerialMap(),
   ]);
 
   return NextResponse.json({
-    applications,
+    applications: applications.map((app) => ({
+      ...app,
+      serial: serials.get(app.id) ?? 0,
+    })),
     total,
     page,
     pageSize,

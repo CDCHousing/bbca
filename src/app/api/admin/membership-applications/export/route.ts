@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "@/lib/auth";
+import { formatSerial, SERIAL_ORDER_BY } from "@/lib/membership-serial";
 
 function escapeCSV(value: string | null | undefined): string {
   if (value === null || value === undefined) return "";
@@ -18,7 +19,7 @@ export async function GET() {
   }
 
   const applications = await prisma.membershipApplication.findMany({
-    orderBy: { createdAt: "asc" },
+    orderBy: SERIAL_ORDER_BY,
   });
 
   const headers = [
@@ -37,7 +38,7 @@ export async function GET() {
   ];
 
   const rows = applications.map((app, i) => [
-    String(i + 1),
+    formatSerial(i + 1),
     escapeCSV(app.businessName),
     escapeCSV(app.contactName),
     escapeCSV(app.email),

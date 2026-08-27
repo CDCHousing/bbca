@@ -4,9 +4,11 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import ConfirmDialog from "../components/ConfirmDialog";
 import { ToastStack, useToasts } from "../components/Toast";
+import { formatSerial } from "@/lib/membership-serial";
 
 interface Application {
   id: string;
+  serial: number;
   businessName: string;
   contactName: string;
   email: string;
@@ -167,6 +169,9 @@ export default function MembershipApplicationsPage() {
           <table className="w-full min-w-[720px] text-sm">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-200">
+                <th className="text-left px-6 py-3 font-semibold text-gray-600 w-20">
+                  S/N
+                </th>
                 <th className="text-left px-6 py-3 font-semibold text-gray-600">
                   Business Name
                 </th>
@@ -191,6 +196,9 @@ export default function MembershipApplicationsPage() {
             <tbody className="divide-y divide-gray-100">
               {applications.map((app) => (
                 <tr key={app.id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 font-mono text-gray-500 tabular-nums">
+                    {formatSerial(app.serial)}
+                  </td>
                   <td className="px-6 py-4 font-medium text-gray-900 max-w-[180px] truncate">
                     {app.businessName}
                   </td>
