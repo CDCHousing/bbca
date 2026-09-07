@@ -8,6 +8,7 @@ export default function ConfirmDialog({
   description,
   confirmLabel = "Delete",
   cancelLabel = "Cancel",
+  loadingLabel = "Deleting...",
   loading = false,
   onConfirm,
   onCancel,
@@ -17,6 +18,8 @@ export default function ConfirmDialog({
   description?: string;
   confirmLabel?: string;
   cancelLabel?: string;
+  /** Shown in place of confirmLabel while the action runs. */
+  loadingLabel?: string;
   loading?: boolean;
   onConfirm: () => void;
   onCancel: () => void;
@@ -73,7 +76,7 @@ export default function ConfirmDialog({
             autoFocus
             className="px-4 py-2 rounded bg-[#D0202F] text-white text-sm font-medium hover:bg-[#b01a27] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {loading ? "Deleting..." : confirmLabel}
+            {loading ? loadingLabel : confirmLabel}
           </button>
         </div>
       </div>

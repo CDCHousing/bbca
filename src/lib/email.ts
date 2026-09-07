@@ -3,16 +3,17 @@ import { Resend } from "resend";
 // Lazily constructed so a missing key never breaks the build or unrelated routes.
 let client: Resend | null = null;
 
-function getClient(): Resend | null {
+/** Null whenever RESEND_API_KEY is blank — callers must treat that as "skip sending". */
+export function getResendClient(): Resend | null {
   if (!process.env.RESEND_API_KEY) return null;
   if (!client) client = new Resend(process.env.RESEND_API_KEY);
   return client;
 }
 
-const FROM = process.env.RESEND_FROM_EMAIL ?? "BBCA <onboarding@resend.dev>";
+export const FROM = process.env.RESEND_FROM_EMAIL ?? "BBCA <onboarding@resend.dev>";
 
 /** Token values come from the public booking form, so they must not carry HTML. */
-function escapeHtml(value: string): string {
+export function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -40,6 +41,19 @@ export function renderTokens(
   );
 }
 
+/**
+ * Same substitution as renderTokens but without HTML escaping — for plain-text
+ * contexts such as a subject line, where "&amp;" would show up literally.
+ */
+export function renderTokensPlain(
+  template: string,
+  values: Record<string, string>
+): string {
+  return template.replace(/\{\{\s*(\w+)\s*\}\}/g, (match, key: string) =>
+    key in values ? values[key] : match
+  );
+}
+
 interface BookingConfirmationInput {
   to: string;
   resource: {
@@ -61,7 +75,12 @@ function defaultBody(): string {
   `;
 }
 
-function wrap(innerHtml: string, heading: string, meta: string[]): string {
+/** Shared branded HTML shell — booking confirmations and bulk campaigns both use it. */
+export function renderEmailShell(
+  innerHtml: string,
+  heading: string,
+  meta: string[] = []
+): string {
   const metaRows = meta.length
     ? `<table style="margin:0 0 24px;border-collapse:collapse;font-size:14px;color:#414C60">
          ${meta
@@ -103,7 +122,7 @@ export async function sendBookingConfirmation({
   resource,
   booking,
 }: BookingConfirmationInput): Promise<boolean> {
-  const resend = getClient();
+  const resend = getResendClient();
   if (!resend) {
     console.warn("RESEND_API_KEY is not set — skipping booking confirmation email.");
     return false;
@@ -132,7 +151,7 @@ export async function sendBookingConfirmation({
       from: FROM,
       to,
       subject,
-      html: wrap(body, resource.title, meta),
+      html: renderEmailShell(body, resource.title, meta),
     });
     if (error) {
       console.error("Resend rejected the booking confirmation:", error);

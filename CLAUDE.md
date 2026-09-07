@@ -62,6 +62,9 @@ Path convention: `/admin` (protected — redirect to `/admin/login` if not authe
 - `/admin/leadership` — list, create, edit, delete Association Leadership profiles (name, title, photo, order/priority) — uses `Executive` model with category=EXECUTIVE
 - `/admin/gallery` — upload/delete gallery images (image, caption, order)
 - `/admin/membership-applications` — list all submissions, filter by status, view full submission detail, change status (Pending / Approved / Rejected), export to CSV
+- `/admin/email` — bulk email: campaign list, compose screen (`/admin/email/new`) with a
+  recipient picker + TipTap body + live preview, and a per-campaign detail screen showing
+  per-recipient delivery status, "Retry failed" and CSV export
 
 **Auth:** Only one role needed for MVP — "Admin". No multi-role permission system required unless requested later.
 
@@ -150,6 +153,26 @@ AdminUser
 - email
 - passwordHash
 - createdAt
+
+EmailCampaign
+- id
+- subject
+- body (TipTap HTML)
+- audienceLabel (e.g. "Approved members (142 recipients)")
+- status (DRAFT | SENDING | SENT | FAILED)
+- totalCount / sentCount / failedCount
+- sentAt
+- createdAt / updatedAt
+
+EmailRecipient
+- id
+- campaignId (cascade delete)
+- email / name / organization   # snapshotted at create time, not resolved at send time
+- status (PENDING | SENT | FAILED)
+- error (Resend error text)
+- providerId (Resend message id)
+- sentAt
+- @@unique([campaignId, email])
 ```
 
 ---
@@ -205,6 +228,10 @@ ADMIN_NOTIFICATION_EMAIL=  # where new membership submissions get sent
 - [x] Build `src/lib/email.ts` (Resend) + per-resource custom confirmation email with `{{token}}` substitution
       — NOTE: `RESEND_API_KEY` is still blank, so sending is skipped (bookings save regardless)
 - [ ] Wire Resend into the membership application flow (§5 steps 3 & 4 — still not sending)
+- [x] Build the bulk email system — `EmailCampaign` + `EmailRecipient` models, `/admin/email`
+      (list / compose / detail), `src/lib/campaign-recipients.ts` (audience pools) and
+      `src/lib/campaign-email.ts` (chunked `resend.batch.send`, resumable, per-recipient status).
+      See `BULK_EMAIL_PLAN.md`. Sending is still skipped until `RESEND_API_KEY` is set.
 
 ### Week 4 — Testing, Content, Launch
 - [ ] Cross-browser/cross-device testing
@@ -278,5 +305,16 @@ Navbar (from screenshot — NOT the claude design dropdown nav):
 - Public pages use plain `<img>` for admin-managed images (Blob URLs, uploaded SVG logos) rather
   than `next/image`. The optimizer 400s on SVG unless `dangerouslyAllowSVG` is enabled, which we
   deliberately leave off because `/api/admin/upload` accepts uploads.
+- **Approving a membership application is what adds someone to the mailing list.** There is no
+  `Member` model — the "Members" audience in `/admin/email` is `MembershipApplication` rows with
+  `status = APPROVED`. `REJECTED` is not a selectable source and cannot be resolved server-side.
+- Bulk sends go through `resend.batch.send()` — max 100 emails per call, and Resend's default rate
+  limit is 2 requests/second, so `BATCH_DELAY_MS` is 550ms (not 200). The send route sets
+  `maxDuration = 300`; if it runs out of time the campaign stays `SENDING` and calling send again
+  resumes from the remaining `PENDING` recipients. Only `PENDING` rows are ever picked up, so a
+  resume cannot double-send.
+- `RESEND_FROM_EMAIL` must be on a **domain verified in Resend** before bulk mail reaches inboxes.
+  The `onboarding@resend.dev` fallback only delivers to the Resend account owner. See
+  `BULK_EMAIL_PLAN.md` §8 for the DNS records.
 - `ADMIN_NOTIFICATION_EMAIL` from §7 is **not read anywhere in the code** — the §5 step 4 admin
   notification email was never implemented. Setting it does nothing today.

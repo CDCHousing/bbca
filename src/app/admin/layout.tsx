@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/admin/gallery", label: "Gallery" },
   { href: "/admin/resources", label: "Resource & Knowledge" },
   { href: "/admin/membership-applications", label: "Membership Applications" },
+  { href: "/admin/email", label: "Email Members" },
   { href: "/admin/stall-bookings", label: "Stall Bookings" },
   { href: "/admin/visitor-registrations", label: "Visitor Registrations" },
 ];

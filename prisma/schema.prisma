@@ -153,3 +153,55 @@ model AdminUser {
   passwordHash String
   createdAt    DateTime @default(now())
 }
+
+/// One admin-composed bulk email. Recipients are snapshotted at creation time
+/// (see EmailRecipient) so history stays accurate after the source rows change.
+model EmailCampaign {
+  id            String           @id @default(cuid())
+  subject       String
+  body          String
+  /// Human-readable description of who was picked, e.g. "Approved members (142)".
+  audienceLabel String
+  status        CampaignStatus   @default(DRAFT)
+  totalCount    Int              @default(0)
+  sentCount     Int              @default(0)
+  failedCount   Int              @default(0)
+  sentAt        DateTime?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  recipients    EmailRecipient[]
+
+  @@index([createdAt])
+}
+
+enum CampaignStatus {
+  DRAFT
+  SENDING
+  SENT
+  FAILED
+}
+
+model EmailRecipient {
+  id           String          @id @default(cuid())
+  campaignId   String
+  campaign     EmailCampaign   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  email        String
+  name         String
+  /// Feeds the {{businessName}} / {{organization}} tokens.
+  organization String          @default("")
+  status       RecipientStatus @default(PENDING)
+  /// Resend error text when status is FAILED.
+  error        String?
+  /// Resend message id when status is SENT.
+  providerId   String?
+  sentAt       DateTime?
+
+  @@unique([campaignId, email])
+  @@index([campaignId, status])
+}
+
+enum RecipientStatus {
+  PENDING
+  SENT
+  FAILED
+}
