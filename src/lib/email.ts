@@ -75,7 +75,105 @@ function defaultBody(): string {
   `;
 }
 
-/** Shared branded HTML shell — booking confirmations and bulk campaigns both use it. */
+/** Contact block shown in the campaign footer. Mirrors the site footer. */
+export const CONTACT = {
+  org: "British Bangladeshi Construction Association",
+  phone: "020 8004 3327",
+  email: "contact@bbcauk.org",
+  address: "Cranbrook Road, London, IG2 6JZ",
+};
+
+/**
+ * Letter-style shell for bulk campaigns: no coloured masthead, no card chrome,
+ * just text on white with a small contact footer.
+ *
+ * Gmail scores layout when it picks a tab, and a full-width branded header reads
+ * as a newsletter. This is deliberately plain so member mail looks like
+ * correspondence. Booking confirmations keep renderEmailShell below.
+ */
+export function renderPlainEmailShell(innerHtml: string): string {
+  return `<!doctype html>
+<html>
+  <body style="margin:0;padding:24px;background:#ffffff;font-family:Arial,Helvetica,sans-serif">
+    <div style="max-width:600px;margin:0 auto;color:#1f2937;font-size:15px;line-height:1.6">
+      ${innerHtml}
+      <div style="margin-top:32px;padding-top:16px;border-top:1px solid #E3E7ED;color:#6E7A8C;font-size:12px;line-height:1.5">
+        ${escapeHtml(CONTACT.org)}<br />
+        ${escapeHtml(CONTACT.address)}<br />
+        ${escapeHtml(CONTACT.phone)} &middot;
+        <a href="mailto:${CONTACT.email}" style="color:#6E7A8C">${escapeHtml(
+          CONTACT.email
+        )}</a>
+      </div>
+    </div>
+  </body>
+</html>`;
+}
+
+/** Plain-text twin of the footer in renderPlainEmailShell. */
+function plainFooter(): string {
+  return [
+    CONTACT.org,
+    CONTACT.address,
+    `${CONTACT.phone} · ${CONTACT.email}`,
+  ].join("\n");
+}
+
+const ENTITIES: Record<string, string> = {
+  "&amp;": "&",
+  "&lt;": "<",
+  "&gt;": ">",
+  "&quot;": '"',
+  "&#39;": "'",
+  "&apos;": "'",
+  "&nbsp;": " ",
+  "&middot;": "·",
+  "&mdash;": "—",
+  "&ndash;": "–",
+};
+
+/**
+ * Turns the campaign's sanitised HTML into a plain-text alternative.
+ *
+ * Sending multipart instead of HTML-only improves spam scoring and stops
+ * text-only clients showing markup. Input is already through sanitizeHtml(), so
+ * the tag set is the small known list from src/lib/sanitize.ts.
+ */
+export function htmlToPlainText(html: string): string {
+  const text = html
+    // Keep link targets — they are invisible once the tags are stripped.
+    .replace(
+      // [\s\S] rather than the /s flag — the tsconfig target predates es2018.
+      /<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi,
+      (_m, href: string, label: string) => {
+        const clean = label.replace(/<[^>]+>/g, "").trim();
+        // A mailto:/tel: href carries nothing the label doesn't already show,
+        // so print the label alone rather than repeating the address.
+        if (/^(mailto|tel):/i.test(href)) {
+          return clean || href.replace(/^(mailto|tel):/i, "");
+        }
+        return clean && clean !== href ? `${clean} (${href})` : href;
+      }
+    )
+    .replace(/<li\b[^>]*>/gi, "\n- ")
+    // Bullets stay single-spaced: each <li> already opens with its own newline,
+    // so the closing tag must not add a second one. Other blocks get a blank line.
+    .replace(/<\/li>/gi, "")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/(p|div|h[1-4]|blockquote|tr)>/gi, "\n\n")
+    .replace(/<\/(ul|ol)>/gi, "\n\n")
+    .replace(/<hr\s*\/?>/gi, "\n---\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&[a-z#0-9]+;/gi, (entity) => ENTITIES[entity.toLowerCase()] ?? entity)
+    // Collapse the blank lines the block replacements leave behind.
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  return `${text}\n\n--\n${plainFooter()}`;
+}
+
+/** Branded HTML shell with a navy masthead — used by booking confirmations. */
 export function renderEmailShell(
   innerHtml: string,
   heading: string,

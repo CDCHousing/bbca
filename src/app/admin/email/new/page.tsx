@@ -301,22 +301,24 @@ export default function NewEmailCampaignPage() {
               </span>
             </h2>
             <div className="bg-[#F5F7FA] p-6 rounded">
-              <div className="max-w-[600px] mx-auto bg-white rounded-lg overflow-hidden shadow-sm">
-                <div className="bg-[#1B2A52] px-8 py-6">
-                  <p className="text-white text-lg font-bold m-0">
-                    {previewSubject}
-                  </p>
-                </div>
+              <div className="max-w-[600px] mx-auto bg-white rounded-lg shadow-sm p-8">
+                <p className="text-xs text-gray-400 mb-4 pb-3 border-b border-gray-100">
+                  Subject: <span className="text-gray-600">{previewSubject}</span>
+                </p>
                 <div
-                  className="px-8 py-8 text-[#414C60] text-[15px] leading-relaxed [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mb-2 [&_h3]:text-lg [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:mb-3 [&_a]:text-[#1B2A52] [&_a]:underline"
+                  className="text-[#1f2937] text-[15px] leading-relaxed [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mb-2 [&_h3]:text-lg [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:mb-3 [&_a]:text-[#1B2A52] [&_a]:underline"
                   dangerouslySetInnerHTML={{
                     __html:
                       renderPreviewTokens(body) ||
                       "<p class='text-gray-400'>Your message will appear here.</p>",
                   }}
                 />
-                <div className="px-8 py-4 bg-[#F5F7FA] text-[#6E7A8C] text-xs">
+                <div className="mt-8 pt-4 border-t border-[#E3E7ED] text-[#6E7A8C] text-xs leading-relaxed">
                   British Bangladeshi Construction Association
+                  <br />
+                  Cranbrook Road, London, IG2 6JZ
+                  <br />
+                  020 8004 3327 &middot; contact@bbcauk.org
                 </div>
               </div>
             </div>

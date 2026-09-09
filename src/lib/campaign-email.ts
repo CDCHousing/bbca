@@ -2,7 +2,8 @@ import { prisma } from "@/lib/prisma";
 import {
   FROM,
   getResendClient,
-  renderEmailShell,
+  htmlToPlainText,
+  renderPlainEmailShell,
   renderTokens,
   renderTokensPlain,
 } from "@/lib/email";
@@ -55,12 +56,15 @@ export function recipientTokens(r: {
   };
 }
 
-/** Subject and full branded HTML for one recipient, with {{tokens}} resolved. */
+/**
+ * Subject plus both body parts for one recipient, with {{tokens}} resolved.
+ * Every send is multipart — see htmlToPlainText for why.
+ */
 export function renderForRecipient(
   subject: string,
   body: string,
   recipient: { email: string; name: string; organization: string }
-): { subject: string; html: string } {
+): { subject: string; html: string; text: string } {
   const tokens = recipientTokens(recipient);
   const renderedSubject = renderTokensPlain(subject, tokens);
   // Sanitise the admin's TipTap HTML first; token values are escaped as they
@@ -68,7 +72,8 @@ export function renderForRecipient(
   const renderedBody = renderTokens(sanitizeHtml(body), tokens);
   return {
     subject: renderedSubject,
-    html: renderEmailShell(renderedBody, renderedSubject),
+    html: renderPlainEmailShell(renderedBody),
+    text: htmlToPlainText(renderedBody),
   };
 }
 
@@ -172,6 +177,7 @@ export async function sendCampaign(
         to: row.email,
         subject: rendered.subject,
         html: rendered.html,
+        text: rendered.text,
       };
     });
 
@@ -304,6 +310,7 @@ export async function sendTestEmail({
       to,
       subject: `[TEST] ${rendered.subject}`,
       html: rendered.html,
+      text: rendered.text,
     });
     if (error) return { ok: false, skipped: false, error: errorText(error) };
     return { ok: true, skipped: false };
