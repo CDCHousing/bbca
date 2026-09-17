@@ -48,19 +48,22 @@ export default function AboutPage() {
           {/* Body text */}
           <div className="gsap-fade-up max-w-[820px] space-y-5 mb-12">
             <p className="text-[15.5px] leading-relaxed text-[#414C60]">
-              The British Bangladeshi Construction Association (BBCA) is a professional network
-              dedicated to supporting, connecting, and promoting British Bangladeshi individuals
-              and businesses within the UK construction industry.
+              The British Bangladeshi Construction Association (a charity based organization)
+              brings together contractors, developers, engineers, architects, consultants,
+              tradespeople and those beginning their careers to share technical knowledge,
+              mentor new entrants and strengthen safe practice on site.
             </p>
             <p className="text-[15.5px] leading-relaxed text-[#414C60]">
-              We bring together contractors, developers, engineers, architects, consultants,
-              tradespeople, suppliers, and aspiring professionals — encouraging collaboration,
-              knowledge sharing, and sustainable growth across our community.
+              Through structured training, continuing professional development, apprenticeship
+              pathways and guidance on the competence requirements now embedded in the regulatory
+              framework, including safety-critical training delivered in Bengali alongside English,
+              we help practitioners build durable careers and help the industry meet the standards
+              expected of it.
             </p>
             <p className="text-[15.5px] leading-relaxed text-[#414C60]">
-              Through events, training, advocacy and recognition, the BBCA champions the
-              achievements of British Bangladeshi enterprise and helps the next generation
-              build lasting careers.
+              BBCA works to raise competence, safety and technical standards across the UK
+              construction industry, and to widen the talent pipeline into an industry facing
+              a sustained skills shortage.
             </p>
           </div>
 
