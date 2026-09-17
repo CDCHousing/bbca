@@ -19,6 +19,7 @@ const NAV_ITEMS: NavItem[] = [
     label: "About Us",
     children: [
       { label: "About BBCA", href: "/about" },
+      { label: "Key Objectives & Activities", href: "/objectives" },
       { label: "Why Join BBCA", href: "/why-join" },
     ],
   },
