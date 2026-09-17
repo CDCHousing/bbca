@@ -4,44 +4,44 @@ import WhyJoinAnimations from "@/components/WhyJoinAnimations";
 
 const BENEFITS = [
   {
-    title: "Build Valuable Connections",
-    body: "Meet contractors, developers, investors, suppliers, consultants, and decision-makers across the construction industry.",
+    title: "Professional Standing",
+    body: "Membership of a registered charity advancing skills, safety and competence in British construction. Free to join, open to all.",
   },
   {
-    title: "Generate New Business Leads",
-    body: "Promote your services and connect with potential clients, partners, and subcontractors.",
+    title: "Continuing Professional Development",
+    body: "Structured training across health and safety, building regulations, Part L compliance, retrofit standards and modern methods of construction.",
   },
   {
-    title: "Grow Your Professional Network",
-    body: "Develop long-term relationships with trusted businesses and industry professionals.",
+    title: "Industry Access and Progression",
+    body: "Support work removing barriers to entry and advancement for women, young people and those from underrepresented backgrounds across UK construction.",
   },
   {
-    title: "Create Partnership Opportunities",
-    body: "Find suitable partners for joint ventures, developments, tenders, and construction projects.",
+    title: "Knowledge Exchange and Technical Forums",
+    body: "Working groups on sustainability, retrofit, safety and skills. Contribute practitioner experience to guidance the wider industry can use.",
   },
   {
-    title: "Showcase Your Business",
-    body: "Increase your company's visibility through BBCA events, exhibitions, directories, and promotional opportunities.",
+    title: "Technical Briefings and Regulatory Updates",
+    body: "Building Safety Act duties, the Building Safety Regulator regime, gateway requirements and competence frameworks, translated into practical guidance for working professionals.",
   },
   {
-    title: "Access Industry Events",
-    body: "Attend networking meetings, business forums, conferences, workshops, and the British Bangladeshi Build Festival.",
+    title: "Structured Mentoring",
+    body: "A formal programme pairing experienced practitioners with those earlier in their careers. Participate as mentor or mentee.",
   },
   {
-    title: "Meet Buyers and Suppliers",
-    body: "Connect directly with businesses looking for construction services, materials, products, and specialist expertise.",
+    title: "Occupational Health and Safety Programme",
+    body: "Site safety, dust and noise exposure, musculoskeletal risk and mental health in construction, the issues that account for the sector's poorest outcomes.",
   },
   {
-    title: "Discover Tender Opportunities",
-    body: "Learn about upcoming contracts, procurement opportunities, and potential project collaborations.",
+    title: "Apprenticeship and Early Careers Pathway",
+    body: "Work with schools, colleges and training providers to bring qualified entrants into the trades. Host site visits, deliver careers sessions, take on apprentices.",
   },
   {
-    title: "Strengthen Your Business Reputation",
-    body: "Become part of a respected professional association and build trust within the wider construction community.",
+    title: "Competence and Qualification Guidance",
+    body: "Navigate CSCS, NVQ routes, professional body registration and the competence requirements now embedded in the regulatory framework.",
   },
   {
-    title: "Expand into New Markets",
-    body: "Use BBCA connections to reach new customers, sectors, locations, and commercial opportunities.",
+    title: "Multilingual Training Delivery",
+    body: "Safety-critical training and materials delivered in Bengali alongside English, addressing a well-documented gap in site safety communication.",
   },
 ];
 
