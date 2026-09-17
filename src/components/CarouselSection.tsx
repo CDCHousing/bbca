@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 
 const images = [
   { src: "/pic.png", alt: "BBCA group photo" },
-  { src: "/carousel-1.jpeg", alt: "BBCA event photo 1" },
-  { src: "/carousel-2.jpeg", alt: "BBCA event photo 2" },
+  { src: "/cover.png", alt: "BBCA members at an association event" },
+  { src: "/bbca-meeting-2026.jpeg", alt: "BBCA members meeting" },
   { src: "/carousel-3.jpeg", alt: "BBCA event photo 3" },
   { src: "/carousel-4.jpeg", alt: "BBCA event photo 4" },
   { src: "/carousel-5.jpeg", alt: "BBCA event photo 5" },
