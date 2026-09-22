@@ -28,6 +28,7 @@ export default function VisitorRegistrationPage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [registrationId, setRegistrationId] = useState<string | null>(null);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -68,6 +69,8 @@ export default function VisitorRegistrationPage() {
         return;
       }
 
+      const data = await res.json();
+      setRegistrationId(data.id);
       setForm(initialForm);
       setSubmitted(true);
     } catch {
@@ -92,11 +95,20 @@ export default function VisitorRegistrationPage() {
               priority
             />
             <h1 className="font-bold text-[#1B2A52] mb-3" style={{ fontSize: "var(--text-f22)" }}>
-              Thank you for registering for the Build Festival.
+              Your seat is booked.
             </h1>
-            <p className="text-[#414C60] max-w-[480px]" style={{ fontSize: "15px", lineHeight: "1.7" }}>
-              We&apos;ll send your visitor confirmation shortly.
+            <p className="text-[#414C60] max-w-[480px] mb-7" style={{ fontSize: "15px", lineHeight: "1.7" }}>
+              Thank you for registering for the Build Festival. Your visitor card is ready below.
             </p>
+            {registrationId && (
+              <a
+                href={`/api/visitor-registration/${registrationId}/card`}
+                className="inline-flex items-center justify-center bg-[#1B2A52] text-white font-semibold rounded-full transition-all duration-150 hover:bg-[#14203D] hover:shadow-lg hover:-translate-y-0.5"
+                style={{ height: "48px", padding: "0 28px", fontSize: "14px" }}
+              >
+                Download Visitor Card (PDF)
+              </a>
+            )}
           </div>
         </div>
       </section>

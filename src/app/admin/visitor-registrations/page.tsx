@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import ActionsMenu from "./ActionsMenu";
 
 interface Registration {
   id: string;
@@ -104,6 +105,7 @@ export default function VisitorRegistrationsPage() {
                 <th className="text-left px-6 py-3 font-semibold text-gray-600">Email</th>
                 <th className="text-left px-6 py-3 font-semibold text-gray-600">Phone</th>
                 <th className="text-left px-6 py-3 font-semibold text-gray-600">Submitted</th>
+                <th className="text-right px-6 py-3 font-semibold text-gray-600">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -121,6 +123,9 @@ export default function VisitorRegistrationsPage() {
                   <td className="px-6 py-4 text-gray-600">{r.phone}</td>
                   <td className="px-6 py-4 text-gray-500">
                     {new Date(r.createdAt).toLocaleDateString("en-GB")}
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <ActionsMenu id={r.id} name={r.name} onDeleted={fetchRegistrations} />
                   </td>
                 </tr>
               ))}
