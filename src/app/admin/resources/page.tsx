@@ -134,6 +134,12 @@ export default function AdminResourcesPage() {
                   </td>
                   <td className="px-6 py-4 text-right space-x-3">
                     <Link
+                      href={`/admin/resources/${r.id}/bookings`}
+                      className="inline-block px-2.5 py-1 rounded bg-indigo-50 text-indigo-700 font-medium hover:bg-indigo-100 transition-colors"
+                    >
+                      Bookings
+                    </Link>
+                    <Link
                       href={`/admin/resources/${r.id}`}
                       className="text-[#1B2A52] font-medium hover:underline"
                     >

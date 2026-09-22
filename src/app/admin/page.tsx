@@ -113,12 +113,11 @@ export default async function AdminDashboard() {
             className="bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow block"
           >
             <div
-              className={`inline-flex items-center justify-center w-10 h-10 rounded-lg ${stat.color} text-white font-bold text-lg mb-3`}
+              className={`inline-flex items-center justify-center px-3 py-1 rounded-lg ${stat.color} text-white text-2xl font-bold`}
             >
               {stat.value}
             </div>
-            <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-            <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
+            <div className="text-sm text-gray-500 mt-3">{stat.label}</div>
           </a>
         ))}
       </div>

@@ -71,7 +71,7 @@ export default function ResourceBookingsPage() {
 
   return (
     <div className="p-4 sm:p-6 lg:p-8">
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-2">
         <Link href="/admin/resources" className="text-sm text-gray-500 hover:text-gray-700">
           ← Resources
         </Link>
@@ -92,6 +92,10 @@ export default function ResourceBookingsPage() {
           Export CSV
         </a>
       </div>
+
+      <h2 className="text-lg font-semibold text-gray-800 mb-6">
+        {resource?.title ?? "…"}
+      </h2>
 
       <div className="mb-4 flex items-center justify-between gap-4">
         <input
