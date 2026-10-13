@@ -12,15 +12,18 @@ export async function PATCH(
   }
 
   const { id } = await params;
-  const { showInCarousel } = await request.json();
-  if (typeof showInCarousel !== "boolean") {
+  const { showInCarousel, order } = await request.json();
+  if (showInCarousel !== undefined && typeof showInCarousel !== "boolean") {
     return NextResponse.json({ error: "showInCarousel must be a boolean" }, { status: 400 });
+  }
+  if (order !== undefined && (!Number.isInteger(order) || order < 0)) {
+    return NextResponse.json({ error: "order must be a non-negative integer" }, { status: 400 });
   }
 
   try {
     const image = await prisma.galleryImage.update({
       where: { id },
-      data: { showInCarousel },
+      data: { showInCarousel, order },
     });
     return NextResponse.json(image);
   } catch (error) {

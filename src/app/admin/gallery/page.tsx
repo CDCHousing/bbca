@@ -91,20 +91,26 @@ export default function AdminGalleryPage() {
     }
   }
 
-  async function toggleCarousel(image: GalleryImage) {
-    const showInCarousel = !image.showInCarousel;
-    const res = await fetch(`/api/admin/gallery/${image.id}`, {
+  async function updateImage(
+    id: string,
+    data: { showInCarousel?: boolean; order?: number }
+  ) {
+    const res = await fetch(`/api/admin/gallery/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ showInCarousel }),
+      body: JSON.stringify(data),
     });
     if (!res.ok) {
       alert("Failed to update image");
       return;
     }
-    setImages((prev) =>
-      prev.map((img) => (img.id === image.id ? { ...img, showInCarousel } : img))
-    );
+    await fetchImages();
+  }
+
+  function saveOrder(image: GalleryImage, value: string) {
+    const order = parseInt(value, 10);
+    if (Number.isNaN(order) || order < 0 || order === image.order) return;
+    updateImage(image.id, { order });
   }
 
   const carouselCount = images.filter((img) => img.showInCarousel).length;
@@ -222,15 +228,26 @@ export default function AdminGalleryPage() {
                   <input
                     type="checkbox"
                     checked={image.showInCarousel}
-                    onChange={() => toggleCarousel(image)}
+                    onChange={() => updateImage(image.id, { showInCarousel: !image.showInCarousel })}
                     className="accent-[#1B2A52]"
                   />
                   Show in home carousel
                 </label>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-400">
-                    Order: {image.order}
-                  </span>
+                  <label className="flex items-center gap-1 text-xs text-gray-400">
+                    Order:
+                    <input
+                      key={image.order}
+                      type="number"
+                      min="0"
+                      defaultValue={image.order}
+                      onBlur={(e) => saveOrder(image, e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") e.currentTarget.blur();
+                      }}
+                      className="w-14 px-1 py-0.5 border border-gray-300 rounded text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1B2A52]"
+                    />
+                  </label>
                   <button
                     onClick={() => handleDelete(image.id)}
                     className="text-xs bg-red-600 text-white rounded px-2 py-1 hover:bg-red-700 transition-colors"
