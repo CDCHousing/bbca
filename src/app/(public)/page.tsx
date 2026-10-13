@@ -12,10 +12,10 @@ import { prisma } from "@/lib/prisma";
 export const revalidate = 60;
 
 const STATS = [
-  { num: "164+", val: 164, suffix: "+", label: "Businesses Connected", color: "#0A7D3E" },
-  { num: "250+", val: 250, suffix: "+", label: "Construction Professionals", color: "#0A7D3E" },
-  { num: "35+", val: 35, suffix: "+", label: "Industry Partners", color: "#0A7D3E" },
-  { num: "20+", val: 20, suffix: "+", label: "Training Workshops", color: "#0A7D3E" },
+  { num: "567+", val: 567, suffix: "+", label: "Businesses Connected", color: "#0A7D3E" },
+  { num: "1700+", val: 1700, suffix: "+", label: "Construction Professionals", color: "#0A7D3E" },
+  { num: "100+", val: 100, suffix: "+", label: "Industry Partners", color: "#0A7D3E" },
+  { num: "45+", val: 45, suffix: "+", label: "Training Workshops", color: "#0A7D3E" },
   { num: "120+", val: 120, suffix: "+", label: "Career Opportunities Created", color: "#0A7D3E" },
 ];
 
