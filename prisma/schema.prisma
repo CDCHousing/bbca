@@ -63,11 +63,12 @@ enum ExecutiveCategory {
 }
 
 model GalleryImage {
-  id        String   @id @default(cuid())
-  imageUrl  String
-  caption   String?
-  order     Int      @default(0)
-  createdAt DateTime @default(now())
+  id             String   @id @default(cuid())
+  imageUrl       String
+  caption        String?
+  order          Int      @default(0)
+  showInCarousel Boolean  @default(false)
+  createdAt      DateTime @default(now())
 }
 
 model MembershipApplication {

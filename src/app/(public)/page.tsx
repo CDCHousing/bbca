@@ -37,12 +37,16 @@ const RESOURCES = [
 
 
 export default async function HomePage() {
-  const [articles, videos] = await Promise.all([
+  const [articles, videos, carouselImages] = await Promise.all([
     getPublishedNews(3),
     prisma.homeVideo.findMany({
       where: { published: true },
       orderBy: [{ order: "asc" }, { createdAt: "asc" }],
       take: 3,
+    }),
+    prisma.galleryImage.findMany({
+      where: { showInCarousel: true },
+      orderBy: [{ order: "asc" }, { createdAt: "asc" }],
     }),
   ]);
 
@@ -113,7 +117,12 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <CarouselSection />
+      <CarouselSection
+        images={carouselImages.map((img) => ({
+          src: img.imageUrl,
+          alt: img.caption || "BBCA event photo",
+        }))}
+      />
 
       {/* Intro */}
       <section className="bg-white pt-8 pb-14">

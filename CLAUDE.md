@@ -223,6 +223,8 @@ ADMIN_NOTIFICATION_EMAIL=  # where new membership submissions get sent
       on the home page. Admin pastes any YouTube URL; `src/lib/youtube.ts` extracts the 11-char id.
 - [ ] Build Photo Gallery page
 - [x] Build `/admin/gallery` and `/admin/membership-applications` (with status update + CSV export)
+- [x] Home page carousel driven by `GalleryImage.showInCarousel` — ticked in `/admin/gallery`,
+      ordered by `order`. Falls back to the static `/public` photos while none are ticked.
 - [x] Build Resource & Knowledge system — `Resource` + `SeatBooking` models, TipTap rich-text admin editor
       (`/admin/resources`), public card grid + detail page, seat booking form, per-resource CSV export
 - [x] Build `src/lib/email.ts` (Resend) + per-resource custom confirmation email with `{{token}}` substitution

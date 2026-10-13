@@ -8,6 +8,7 @@ interface GalleryImage {
   imageUrl: string;
   caption: string | null;
   order: number;
+  showInCarousel: boolean;
   createdAt: string;
 }
 
@@ -90,12 +91,32 @@ export default function AdminGalleryPage() {
     }
   }
 
+  async function toggleCarousel(image: GalleryImage) {
+    const showInCarousel = !image.showInCarousel;
+    const res = await fetch(`/api/admin/gallery/${image.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ showInCarousel }),
+    });
+    if (!res.ok) {
+      alert("Failed to update image");
+      return;
+    }
+    setImages((prev) =>
+      prev.map((img) => (img.id === image.id ? { ...img, showInCarousel } : img))
+    );
+  }
+
+  const carouselCount = images.filter((img) => img.showInCarousel).length;
+
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Gallery</h1>
         <p className="text-sm text-gray-500 mt-1">
           {images.length} image{images.length !== 1 ? "s" : ""} in gallery
+          {" · "}
+          {carouselCount} shown in home page carousel
         </p>
       </div>
 
@@ -179,7 +200,9 @@ export default function AdminGalleryPage() {
           {images.map((image) => (
             <div
               key={image.id}
-              className="bg-white rounded-lg shadow overflow-hidden group"
+              className={`bg-white rounded-lg shadow overflow-hidden group ${
+                image.showInCarousel ? "ring-2 ring-[#DA9028]" : ""
+              }`}
             >
               <div className="relative aspect-square bg-gray-100">
                 <Image
@@ -195,6 +218,15 @@ export default function AdminGalleryPage() {
                     {image.caption}
                   </p>
                 )}
+                <label className="flex items-center gap-2 text-xs text-gray-700 mb-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={image.showInCarousel}
+                    onChange={() => toggleCarousel(image)}
+                    className="accent-[#1B2A52]"
+                  />
+                  Show in home carousel
+                </label>
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-gray-400">
                     Order: {image.order}

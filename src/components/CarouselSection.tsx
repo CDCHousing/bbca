@@ -1,8 +1,8 @@
 "use client";
-import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 
-const images = [
+// Shown until at least one gallery image is ticked "Show in home carousel" in /admin/gallery.
+const fallbackImages = [
   { src: "/pic.png", alt: "BBCA group photo" },
   { src: "/cover.png", alt: "BBCA members at an association event" },
   { src: "/bbca-meeting-2026.jpeg", alt: "BBCA members meeting" },
@@ -11,11 +11,16 @@ const images = [
   { src: "/carousel-5.jpeg", alt: "BBCA event photo 5" },
 ];
 
-export default function CarouselSection() {
+export default function CarouselSection({
+  images: selected,
+}: {
+  images: { src: string; alt: string }[];
+}) {
+  const images = selected.length > 0 ? selected : fallbackImages;
   const [active, setActive] = useState(0);
 
-  const next = useCallback(() => setActive((p) => (p + 1) % images.length), []);
-  const prev = useCallback(() => setActive((p) => (p - 1 + images.length) % images.length), []);
+  const next = useCallback(() => setActive((p) => (p + 1) % images.length), [images.length]);
+  const prev = useCallback(() => setActive((p) => (p - 1 + images.length) % images.length), [images.length]);
 
   useEffect(() => {
     const id = setInterval(next, 4000);
@@ -31,13 +36,12 @@ export default function CarouselSection() {
               key={img.src}
               className={`absolute inset-0 transition-opacity duration-700 ${i === active ? "opacity-100" : "opacity-0"}`}
             >
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={img.src}
                 alt={img.alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1000px) 100vw, 1000px"
-                priority={i === 0}
+                className="absolute inset-0 w-full h-full object-cover"
+                loading={i === 0 ? "eager" : "lazy"}
               />
             </div>
           ))}
