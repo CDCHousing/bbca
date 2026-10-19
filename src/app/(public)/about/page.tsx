@@ -48,7 +48,7 @@ export default function AboutPage() {
           {/* Body text */}
           <div className="gsap-fade-up max-w-[820px] space-y-5 mb-12">
             <p className="text-[15.5px] leading-relaxed text-[#414C60]">
-              The British Bangladeshi Construction Association (a charity based organization)
+              The British Bangladeshi Construction Association 
               brings together contractors, developers, engineers, architects, consultants,
               tradespeople and those beginning their careers to share technical knowledge,
               mentor new entrants and strengthen safe practice on site.
