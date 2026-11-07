@@ -13,6 +13,7 @@ const STATIC_PATHS = [
   "/resources",
   "/gallery",
   "/contact",
+  "/build-festival",
   "/build-festival/stall-booking",
   "/build-festival/visitor-registration",
 ];

@@ -72,6 +72,9 @@ export default function Header() {
     );
   };
 
+  // The Build Festival landing page has its own festival header.
+  if (pathname === "/build-festival") return null;
+
   return (
     <header className="sticky top-0 z-50">
       {/* Floating pill nav */}
@@ -119,7 +122,7 @@ export default function Header() {
                       initial={{ opacity: 0, y: -8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: i * 0.04 }}
-                      className="relative flex items-center gap-0.5 px-[13px] py-3.5 text-[13px] font-bold uppercase tracking-[0.3px] whitespace-nowrap transition-colors"
+                      className="relative flex items-center gap-0.5 px-[9px] 2xl:px-[13px] py-3.5 text-[13px] font-bold uppercase tracking-[0.3px] whitespace-nowrap transition-colors"
                       style={{ color: active || openDropdown === label ? "#1B2A52" : "#414C60" }}
                     >
                       {label}
@@ -129,7 +132,7 @@ export default function Header() {
                         style={{ transform: openDropdown === label ? "rotate(180deg)" : "rotate(0deg)" }}
                       />
                       <motion.span
-                        className="absolute left-[13px] right-[13px] bottom-[5px] h-[2.5px] rounded-full bg-[#DA9028]"
+                        className="absolute left-[9px] right-[9px] 2xl:left-[13px] 2xl:right-[13px] bottom-[5px] h-[2.5px] rounded-full bg-[#DA9028]"
                         animate={{ scaleX: active || openDropdown === label ? 1 : 0 }}
                         transition={{ duration: 0.25 }}
                         style={{ transformOrigin: "left" }}
@@ -175,13 +178,13 @@ export default function Header() {
                 >
                   <Link
                     href={item.href}
-                    className="relative block px-[13px] py-3.5 text-[13px] font-bold uppercase tracking-[0.3px] whitespace-nowrap transition-colors"
+                    className="relative block px-[9px] 2xl:px-[13px] py-3.5 text-[13px] font-bold uppercase tracking-[0.3px] whitespace-nowrap transition-colors"
                     style={{ color: active ? "#1B2A52" : "#414C60" }}
                     onMouseEnter={() => setOpenDropdown(null)}
                   >
                     {label}
                     <motion.span
-                      className="absolute left-[13px] right-[13px] bottom-[5px] h-[2.5px] rounded-full bg-[#DA9028]"
+                      className="absolute left-[9px] right-[9px] 2xl:left-[13px] 2xl:right-[13px] bottom-[5px] h-[2.5px] rounded-full bg-[#DA9028]"
                       animate={{ scaleX: active ? 1 : 0 }}
                       transition={{ duration: 0.25 }}
                       style={{ transformOrigin: "left" }}
@@ -192,13 +195,20 @@ export default function Header() {
             })}
           </nav>
 
-          {/* Become a Member button */}
+          {/* Build Festival + Become a Member buttons */}
           <motion.div
-            className="hidden lg:block shrink-0 ml-4"
+            className="hidden lg:flex items-center gap-2 shrink-0 ml-4"
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: 0.2 }}
           >
+            <OriginButton
+              onClick={() => { window.location.href = "/build-festival"; }}
+              fillColor="#1B2A52"
+              className="px-5 py-2.5 rounded-full text-[12px] font-bold uppercase tracking-[0.5px] text-white bg-[#0A7D3E] whitespace-nowrap"
+            >
+              Build Festival
+            </OriginButton>
             <OriginButton
               onClick={() => { window.location.href = "/membership"; }}
               fillColor="#1B2A52"
@@ -316,8 +326,15 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ delay: 0.55 }}
-                className="pt-6"
+                className="pt-6 space-y-3"
               >
+                <Link
+                  href="/build-festival"
+                  className="inline-flex items-center justify-center w-full gap-2 px-5 py-3 rounded-full text-sm font-bold uppercase tracking-wide text-white bg-[#0A7D3E] hover:bg-[#1B2A52] transition-colors"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Build Festival
+                </Link>
                 <Link
                   href="/membership"
                   className="inline-flex items-center justify-center w-full gap-2 px-5 py-3 rounded-full text-sm font-bold uppercase tracking-wide text-white bg-[#1B2A52] hover:bg-[#D0202F] transition-colors"

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import AnimatedButton from "@/components/AnimatedButton";
+import BuildFestivalLogo from "@/components/BuildFestivalLogo";
 import HomeAnimations from "@/components/HomeAnimations";
 import CarouselSection from "@/components/CarouselSection";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
@@ -145,13 +146,7 @@ export default async function HomePage() {
       <section className="bg-[#E4F0F2]">
         <div className="max-w-[1120px] mx-auto px-5 sm:px-6 py-12 md:py-16 grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-14 items-center">
           <div className="gsap-fade-up flex justify-center">
-            <Image
-              src="/build-festival-logo.svg"
-              alt="BBCA Build Festival"
-              width={290}
-              height={290}
-              className="w-full max-w-[290px] h-auto"
-            />
+            <BuildFestivalLogo className="w-full max-w-[290px] h-auto" />
           </div>
           <div>
             <h2 className="gsap-fade-up text-f30 font-bold text-[#0A7D3E] tracking-tight mb-5">

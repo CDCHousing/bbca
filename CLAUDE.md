@@ -222,6 +222,11 @@ ADMIN_NOTIFICATION_EMAIL=  # where new membership submissions get sent
 - [x] Build `/admin/home-videos` — `HomeVideo` model drives the YouTube tiles under News & Events
       on the home page. Admin pastes any YouTube URL; `src/lib/youtube.ts` extracts the 11-char id.
 - [ ] Build Photo Gallery page
+- [x] Build `/build-festival` landing page (navbar "Build Festival" button). Site `Header` returns null on
+      this route; the page has its own festival header (logo, welcome, venue, CTAs) + section strip, then
+      hero video + Construction/Jobs/Concert moving bar (footer-style marquee), Join Us → visitor registration, sponsor tiers, exhibitor list, video, map plan,
+      event programme. Sponsors/exhibitors/map/programme/video are **static placeholders** in the page
+      file — swap for real content. QR codes for `/build-festival` + visitor registration in `qr-codes/`.
 - [x] Build `/admin/gallery` and `/admin/membership-applications` (with status update + CSV export)
 - [x] Home page carousel driven by `GalleryImage.showInCarousel` — ticked in `/admin/gallery`,
       ordered by `order`. Falls back to the static `/public` photos while none are ticked.
