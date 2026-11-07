@@ -224,7 +224,7 @@ ADMIN_NOTIFICATION_EMAIL=  # where new membership submissions get sent
 - [ ] Build Photo Gallery page
 - [x] Build `/build-festival` landing page (navbar "Build Festival" button). Site `Header` returns null on
       this route; the page has its own festival header (logo, welcome, venue, CTAs) + section strip, then
-      hero video + Construction/Jobs/Concert moving bar (footer-style marquee), Join Us → visitor registration, sponsor tiers, exhibitor list, video, map plan,
+      hero video + Construction/Jobs/Concert moving bar (footer-style marquee), Join Us → visitor registration, sponsors (one `SponsorCarousel` per tier — Gold/Silver/Media/Association — rows alternate right-to-left / left-to-right; shadcn `@reui/c-carousel-3` + own timer), exhibitor list, video, map plan,
       event programme. Sponsors/exhibitors/map/programme/video are **static placeholders** in the page
       file — swap for real content. QR codes for `/build-festival` + visitor registration in `qr-codes/`.
 - [x] Build `/admin/gallery` and `/admin/membership-applications` (with status update + CSV export)

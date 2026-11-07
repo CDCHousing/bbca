@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Play, MapPin, Clock, ArrowRight } from "lucide-react";
 import AnimatedButton from "@/components/AnimatedButton";
 import BuildFestivalLogo from "@/components/BuildFestivalLogo";
+import SponsorCarousel from "@/components/SponsorCarousel";
 
 export const metadata: Metadata = {
   title: "Build Festival 2026",
@@ -47,11 +48,12 @@ const SECTION_LINKS = [
   { label: "Programme", href: "#programme" },
 ];
 
+// One carousel per tier. Rows alternate direction: right-to-left, then left-to-right.
 const SPONSOR_TIERS = [
-  { tier: "Gold Sponsors", count: 2, color: "#DA9028", size: "h-32" },
-  { tier: "Silver Sponsors", count: 4, color: "#8C96A6", size: "h-24" },
-  { tier: "Media Partners", count: 4, color: "#1B2A52", size: "h-20" },
-  { tier: "In Association With", count: 4, color: "#0A7D3E", size: "h-20" },
+  { tier: "Gold Sponsors", short: "Gold Sponsor", count: 4, color: "#DA9028", size: "lg" as const },
+  { tier: "Silver Sponsors", short: "Silver Sponsor", count: 6, color: "#6E7A8C", size: "md" as const },
+  { tier: "Media Partners", short: "Media Partner", count: 6, color: "#D0202F", size: "md" as const },
+  { tier: "In Association With", short: "Partner", count: 6, color: "#0A7D3E", size: "md" as const },
 ];
 
 const EXHIBITORS = Array.from({ length: 12 }, (_, i) => ({
@@ -205,37 +207,47 @@ export default function BuildFestivalPage() {
       </section>
 
       {/* Sponsors */}
-      <section id="sponsors" className="bg-[#E4F0F2] py-14 md:py-20">
+      <section id="sponsors" className="bg-[#E4F0F2] py-14 md:py-20 overflow-hidden">
         <div className="max-w-[1120px] mx-auto px-5 sm:px-6">
-          <h2 className="text-f34 font-bold text-[#1B2A52] tracking-tight text-center mb-10 md:mb-14">
-            Our Sponsors
-          </h2>
-          <div className="space-y-12">
-            {SPONSOR_TIERS.map(({ tier, count, color, size }) => (
+          <div className="text-center mb-10 md:mb-12">
+            <span className="text-[12px] font-bold uppercase tracking-[2.5px] text-[#D0202F]">Partners</span>
+            <h2 className="text-f34 font-bold text-[#1B2A52] tracking-tight mt-2 mb-3">Our Sponsors</h2>
+            <p className="text-[15px] text-[#414C60] max-w-[560px] mx-auto">
+              The organisations making Build Festival 2026 possible.
+            </p>
+          </div>
+
+          <div className="space-y-12 md:space-y-14">
+            {SPONSOR_TIERS.map(({ tier, short, count, color, size }, i) => (
               <div key={tier}>
-                <h3
-                  className="text-center text-[13px] font-bold uppercase tracking-[2px] mb-5"
-                  style={{ color }}
-                >
-                  {tier}
-                </h3>
-                <div className="flex flex-wrap justify-center gap-4">
-                  {Array.from({ length: count }, (_, i) => (
-                    <div
-                      key={i}
-                      className={`${size} w-full sm:w-56 bg-white rounded-2xl border-2 flex items-center justify-center text-[13px] font-semibold text-[#6E7A8C]`}
-                      style={{ borderColor: `${color}55` }}
-                    >
-                      Sponsor logo
-                    </div>
-                  ))}
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="h-px flex-1 bg-[#1B2A52]/15" />
+                  <h3 className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-[2px]" style={{ color }}>
+                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
+                    {tier}
+                  </h3>
+                  <span className="h-px flex-1 bg-[#1B2A52]/15" />
                 </div>
+                <SponsorCarousel
+                  names={Array.from({ length: count }, (_, n) => `${short} ${n + 1}`)}
+                  color={color}
+                  size={size}
+                  reverse={i % 2 === 1}
+                />
               </div>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <AnimatedButton href="/contact">Become a Sponsor</AnimatedButton>
-          </div>
+
+          <p className="mt-12 text-center text-[14px] text-[#414C60]">
+            Interested in sponsoring?{" "}
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-1 font-semibold text-[#1B2A52] underline underline-offset-4 decoration-[#DA9028] hover:text-[#D0202F] transition-colors"
+            >
+              Become a Sponsor
+              <ArrowRight size={14} strokeWidth={2.5} />
+            </Link>
+          </p>
         </div>
       </section>
 
