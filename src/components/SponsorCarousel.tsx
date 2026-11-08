@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Building2 } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -12,7 +11,7 @@ import {
 } from "@/components/ui/carousel";
 
 type Props = {
-  names: string[];
+  sponsors: { name: string; logo: string }[];
   color: string;
   /** true = slides travel left to right */
   reverse?: boolean;
@@ -23,7 +22,7 @@ type Props = {
 // One moving row of sponsor logos per tier (shadcn carousel from @reui/c-carousel-3).
 // Own timer rather than embla-carousel-autoplay, which can only run forwards.
 // Pauses on hover; stays still for prefers-reduced-motion.
-export default function SponsorCarousel({ names, color, reverse = false, size = "md" }: Props) {
+export default function SponsorCarousel({ sponsors, color, reverse = false, size = "md" }: Props) {
   const [api, setApi] = useState<CarouselApi>();
   const hovered = useRef(false);
 
@@ -46,24 +45,22 @@ export default function SponsorCarousel({ names, color, reverse = false, size = 
     >
       <Carousel opts={{ align: "start", loop: true }} setApi={setApi} className="w-full">
         <CarouselContent>
-          {names.map((name) => (
+          {sponsors.map(({ name, logo }) => (
             <CarouselItem
               key={name}
               className={lg ? "basis-[80%] sm:basis-1/2 lg:basis-1/3" : "basis-1/2 sm:basis-1/3 lg:basis-1/4"}
             >
               <div
-                className={`bg-white rounded-2xl flex flex-col items-center justify-center gap-2 px-3 text-center transition-shadow ${
+                className={`bg-white rounded-2xl flex items-center justify-center transition-shadow ${
                   lg
-                    ? "h-44 md:h-48 border-2 shadow-[0_10px_28px_rgba(218,144,40,0.16)]"
-                    : "h-32 md:h-36 border border-[#E3E7ED] shadow-[0_4px_18px_rgba(20,32,61,0.06)] hover:shadow-[0_10px_28px_rgba(20,32,61,0.14)]"
+                    ? "h-44 md:h-48 p-6 border-2 shadow-[0_10px_28px_rgba(218,144,40,0.16)]"
+                    : "h-32 md:h-36 p-5 border border-[#E3E7ED] shadow-[0_4px_18px_rgba(20,32,61,0.06)] hover:shadow-[0_10px_28px_rgba(20,32,61,0.14)]"
                 }`}
                 style={lg ? { borderColor: color } : undefined}
+                title={name}
               >
-                <Building2 size={lg ? 36 : 28} strokeWidth={1.6} style={{ color }} />
-                <span className={`${lg ? "text-[16px]" : "text-[14px]"} font-semibold text-[#1B2A52] leading-tight`}>
-                  {name}
-                </span>
-                <span className="text-[11px] font-medium text-[#6E7A8C]">Logo placeholder</span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={logo} alt={name} loading="lazy" className="max-h-full max-w-full object-contain" />
               </div>
             </CarouselItem>
           ))}

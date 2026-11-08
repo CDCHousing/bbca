@@ -48,12 +48,72 @@ const SECTION_LINKS = [
   { label: "Programme", href: "#programme" },
 ];
 
+// Logos are public/Asset N.svg, numbered in the order of the sponsor sheet.
+const logo = (n: number) => encodeURI(`/Asset ${n}.svg`);
+
+const TITLE_SPONSOR = { name: "Work Permit Cloud", logo: logo(1) };
+
 // One carousel per tier. Rows alternate direction: right-to-left, then left-to-right.
 const SPONSOR_TIERS = [
-  { tier: "Gold Sponsors", short: "Gold Sponsor", count: 4, color: "#DA9028", size: "lg" as const },
-  { tier: "Silver Sponsors", short: "Silver Sponsor", count: 6, color: "#6E7A8C", size: "md" as const },
-  { tier: "Media Partners", short: "Media Partner", count: 6, color: "#D0202F", size: "md" as const },
-  { tier: "In Association With", short: "Partner", count: 6, color: "#0A7D3E", size: "md" as const },
+  {
+    tier: "Gold Sponsors",
+    color: "#DA9028",
+    size: "lg" as const,
+    sponsors: [
+      "Everard Construction Management",
+      "Creative Design & Construction Limited",
+      "Landview",
+      "Saleh Builders",
+      "East London Metal Engineering",
+      "MB (S) Builders",
+    ].map((name, i) => ({ name, logo: logo(4 + i) })),
+  },
+  {
+    tier: "Silver Sponsors",
+    color: "#6E7A8C",
+    size: "md" as const,
+    sponsors: [
+      "Lomash Wood",
+      "Manor Glazing",
+      "Interior Studio",
+      "Cosmic Facility Services",
+      "CDC Housing",
+      "Pedley Electric",
+      "Sterlix IT",
+      "OpenDoor Mortgages",
+      "Morgan Knights Real Estate",
+      "Acumen Accountants & Tax Advisers",
+      "Beneco Financial Services",
+    ].map((name, i) => ({ name, logo: logo(10 + i) })),
+  },
+  {
+    tier: "In Association With",
+    color: "#0A7D3E",
+    size: "md" as const,
+    sponsors: [
+      "British Bangladeshi Chamber of Commerce & Industry",
+      "Bangladesh High Commission London",
+      "The Royal Regency London",
+      "Bangladesh Caterers Association",
+    ].map((name, i) => ({ name, logo: logo(21 + i) })),
+  },
+  {
+    tier: "Media Partners",
+    color: "#D0202F",
+    size: "md" as const,
+    sponsors: [
+      "iON TV",
+      "ATN Bangla",
+      "Channel S",
+      "2A News",
+      "Top News",
+      "Q News",
+      "Channel TS",
+      "Hawa TV",
+      "Iqra Bangla",
+      "TV3 Bangla",
+    ].map((name, i) => ({ name, logo: logo(25 + i) })),
+  },
 ];
 
 const EXHIBITORS = Array.from({ length: 12 }, (_, i) => ({
@@ -61,16 +121,6 @@ const EXHIBITORS = Array.from({ length: 12 }, (_, i) => ({
   category: ["Contractor", "Supplier", "Architecture", "Engineering"][i % 4],
   stall: `S${String(i + 1).padStart(2, "0")}`,
 }));
-
-const MAP_ZONES = [
-  { label: "Main Stage", className: "col-span-2 row-span-2 bg-[#1B2A52] text-white" },
-  { label: "Exhibition Hall A", className: "col-span-2 bg-[#E4F0F2] text-[#1B2A52]" },
-  { label: "Exhibition Hall B", className: "col-span-2 bg-[#E4F0F2] text-[#1B2A52]" },
-  { label: "Jobs Fair", className: "bg-[#0A7D3E] text-white" },
-  { label: "Food Court", className: "bg-[#DA9028] text-white" },
-  { label: "Registration", className: "bg-[#F5F7FA] text-[#414C60]" },
-  { label: "Entrance", className: "bg-[#D0202F] text-white" },
-];
 
 const PROGRAMME = [
   { time: "10:00", title: "Doors open & visitor registration" },
@@ -218,7 +268,23 @@ export default function BuildFestivalPage() {
           </div>
 
           <div className="space-y-12 md:space-y-14">
-            {SPONSOR_TIERS.map(({ tier, short, count, color, size }, i) => (
+            {/* Title sponsor — one fixed tile */}
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="h-px flex-1 bg-[#1B2A52]/15" />
+                <h3 className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-[2px] text-[#1B2A52]">
+                  <span className="w-2 h-2 rounded-full bg-[#1B2A52]" />
+                  Title Sponsor
+                </h3>
+                <span className="h-px flex-1 bg-[#1B2A52]/15" />
+              </div>
+              <div className="mx-auto max-w-[420px] h-52 md:h-56 bg-white rounded-2xl border-2 border-[#1B2A52] shadow-[0_12px_32px_rgba(27,42,82,0.18)] flex items-center justify-center p-8">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={TITLE_SPONSOR.logo} alt={TITLE_SPONSOR.name} className="max-h-full max-w-full object-contain" />
+              </div>
+            </div>
+
+            {SPONSOR_TIERS.map(({ tier, sponsors, color, size }, i) => (
               <div key={tier}>
                 <div className="flex items-center gap-4 mb-6">
                   <span className="h-px flex-1 bg-[#1B2A52]/15" />
@@ -229,7 +295,7 @@ export default function BuildFestivalPage() {
                   <span className="h-px flex-1 bg-[#1B2A52]/15" />
                 </div>
                 <SponsorCarousel
-                  names={Array.from({ length: count }, (_, n) => `${short} ${n + 1}`)}
+                  sponsors={sponsors}
                   color={color}
                   size={size}
                   reverse={i % 2 === 1}
@@ -297,29 +363,30 @@ export default function BuildFestivalPage() {
         </div>
       </section>
 
-      {/* Map plan — dummy */}
+      {/* Map plan */}
       <section id="map" className="bg-white py-14 md:py-20">
-        <div className="max-w-[960px] mx-auto px-5 sm:px-6">
+        <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
           <h2 className="text-f34 font-bold text-[#1B2A52] tracking-tight text-center mb-3">Map Plan</h2>
           <p className="text-center text-[14.5px] text-[#6E7A8C] mb-10">
             Indicative layout — final venue plan to be confirmed.
           </p>
-          <div className="grid grid-cols-4 auto-rows-[90px] sm:auto-rows-[120px] gap-3 p-3 sm:p-4 rounded-2xl border-2 border-dashed border-[#E3E7ED]">
-            {MAP_ZONES.map((z) => (
-              <div
-                key={z.label}
-                className={`${z.className} rounded-xl flex items-center justify-center text-center p-2 text-[12px] sm:text-sm font-bold uppercase tracking-wide`}
-              >
-                {z.label === "Entrance" ? (
-                  <span className="inline-flex items-center gap-1">
-                    <MapPin size={14} /> {z.label}
-                  </span>
-                ) : (
-                  z.label
-                )}
-              </div>
-            ))}
-          </div>
+          <a
+            href="/build-festival-floor-plan.jpeg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block overflow-hidden rounded-2xl shadow-[0_16px_48px_rgba(20,32,61,0.13)]"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/build-festival-floor-plan.jpeg"
+              alt="BBCA Build Festival event floor plan: registration, waiting lounge, 22 exhibitor stalls, general seating, VIP and members tables, food stalls, bar and stage"
+              width={1536}
+              height={1024}
+              loading="lazy"
+              className="w-full h-auto"
+            />
+          </a>
+          <p className="text-center text-[13px] text-[#6E7A8C] mt-3">Tap the plan to open it full size.</p>
         </div>
       </section>
 
