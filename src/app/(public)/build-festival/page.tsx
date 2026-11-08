@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Play, MapPin, Clock, ArrowRight } from "lucide-react";
+import { Play, MapPin, Clock, ArrowRight, ArrowUpRight, Phone, Mail } from "lucide-react";
 import AnimatedButton from "@/components/AnimatedButton";
 import BuildFestivalLogo from "@/components/BuildFestivalLogo";
 import SponsorCarousel from "@/components/SponsorCarousel";
+import FacebookEmbed from "@/components/FacebookEmbed";
 
 export const metadata: Metadata = {
   title: "Build Festival 2026",
@@ -14,6 +15,9 @@ export const metadata: Metadata = {
 // Placeholder content — swap for real data once confirmed.
 const VENUE = "501 High St N, London E12 6TH";
 const VENUE_MAP_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(VENUE)}`;
+const EVENT_PHONE = "07913 185391";
+const EVENT_PHONE_TEL = "+447913185391";
+const EVENT_EMAIL = "contact@bbcauk.org";
 
 // Moving bar under the hero video, styled after the footer marquee.
 const HIGHLIGHTS = ["Construction", "Jobs", "Concert"];
@@ -116,11 +120,51 @@ const SPONSOR_TIERS = [
   },
 ];
 
-const EXHIBITORS = Array.from({ length: 12 }, (_, i) => ({
-  name: `Exhibitor ${i + 1}`,
-  category: ["Contractor", "Supplier", "Architecture", "Engineering"][i % 4],
-  stall: `S${String(i + 1).padStart(2, "0")}`,
-}));
+// Video posts in the Build Festival Facebook event. The facebook.com/share/p/... links
+// redirect here; Facebook's embed plugin only accepts these canonical permalinks.
+const FESTIVAL_EVENT_URL = "https://www.facebook.com/events/1538306701317288/";
+const FESTIVAL_VIDEOS = [
+  "1557710066043618",
+  "1563221965492428",
+  "1569504128197545",
+  "1592042619277029",
+  "1589827229498568",
+  "1589028219578469",
+].map((id) => `${FESTIVAL_EVENT_URL}permalink/${id}/`);
+
+// From the fascia name plaque sheet (J46307). Index + 1 = stall number.
+// Logos reuse the sponsor assets; exhibitors without one get a monogram.
+const EXHIBITORS: { name: string; size: string; logo?: string }[] = [
+  { name: "Ultimate Accounting & Tax Solutions", size: "2m × 2m" },
+  { name: "Sterlix IT", size: "2m × 2m", logo: logo(16) },
+  { name: "MB(S) Builders Ltd", size: "2m × 2m", logo: logo(9) },
+  { name: "Beneco Financial Services", size: "2m × 2m", logo: logo(20) },
+  { name: "Creative Design & Construction Limited", size: "2m × 3m", logo: logo(5) },
+  { name: "Lomash Wood", size: "2m × 3m", logo: logo(10) },
+  { name: "River Finance", size: "2m × 2m" },
+  { name: "Morgan Knights", size: "2m × 2m", logo: logo(18) },
+  { name: "Pedley Electric", size: "2m × 2m", logo: logo(15) },
+  { name: "Cosmic Facility Services", size: "2m × 2m", logo: logo(13) },
+  { name: "Acumen Accountants & Tax Advisers", size: "2m × 2m", logo: logo(19) },
+  { name: "Open Door Mortgages", size: "2m × 2m", logo: logo(17) },
+  { name: "Interior Studio Ltd", size: "2m × 2m", logo: logo(12) },
+  { name: "Manor Glazing", size: "2m × 2m", logo: logo(11) },
+  { name: "CDC Housing", size: "2m × 2m", logo: logo(14) },
+  { name: "New City Solicitors", size: "2m × 2m" },
+  { name: "East London Metal", size: "2m × 2m", logo: logo(8) },
+  { name: "Landview Construction", size: "2m × 2m", logo: logo(6) },
+  { name: "JA Builders Limited", size: "2m × 2m" },
+  { name: "Simply Flooring and Furniture", size: "2m × 2m" },
+  { name: "Elite Press", size: "2m × 2m" },
+];
+
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .filter((w) => /^[A-Za-z]/.test(w) && !["and", "of"].includes(w.toLowerCase()))
+    .slice(0, 2)
+    .map((w) => w[0].toUpperCase())
+    .join("");
 
 const PROGRAMME = [
   { time: "10:00", title: "Doors open & visitor registration" },
@@ -137,6 +181,24 @@ export default function BuildFestivalPage() {
     <>
       {/* Festival header */}
       <header className="bg-white text-[#1B2A52]">
+        {/* Event contact top bar */}
+        <div className="bg-[#14203D] text-white/85">
+          <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-2 flex flex-wrap items-center justify-center md:justify-between gap-x-6 gap-y-1 text-[12.5px] font-medium">
+            <span className="hidden md:inline text-[11px] font-bold uppercase tracking-[1.5px] text-[#DA9028]">
+              Event Enquiries
+            </span>
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1">
+              <a href={`tel:${EVENT_PHONE_TEL}`} className="inline-flex items-center gap-1.5 hover:text-[#DA9028] transition-colors">
+                <Phone size={13} className="text-[#DA9028]" />
+                {EVENT_PHONE}
+              </a>
+              <a href={`mailto:${EVENT_EMAIL}`} className="inline-flex items-center gap-1.5 hover:text-[#DA9028] transition-colors">
+                <Mail size={13} className="text-[#DA9028]" />
+                {EVENT_EMAIL}
+              </a>
+            </div>
+          </div>
+        </div>
         {/* Festival colour band, taken from the logo */}
         <div className="h-1.5 bg-[linear-gradient(90deg,#0A7D3E_0%,#0A7D3E_25%,#DA9028_25%,#DA9028_50%,#D0202F_50%,#D0202F_75%,#1B2A52_75%)]" />
         <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-4 flex flex-col md:flex-row items-center gap-5 md:gap-10">
@@ -320,46 +382,117 @@ export default function BuildFestivalPage() {
       {/* Exhibitors */}
       <section id="exhibitors" className="bg-white py-14 md:py-20">
         <div className="max-w-[1120px] mx-auto px-5 sm:px-6">
-          <h2 className="text-f34 font-bold text-[#1B2A52] tracking-tight text-center mb-10 md:mb-14">
-            Exhibitor List
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {EXHIBITORS.map((ex) => (
-              <div
-                key={ex.stall}
-                className="flex items-center gap-4 bg-[#F5F7FA] border border-[#E3E7ED] rounded-2xl p-4"
-              >
-                <div className="w-14 h-14 shrink-0 rounded-xl bg-white border border-[#E3E7ED] flex items-center justify-center text-[10px] text-[#6E7A8C]">
-                  Logo
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="font-bold text-[#1B2A52] truncate">{ex.name}</div>
-                  <div className="text-[13px] text-[#6E7A8C]">{ex.category}</div>
-                </div>
-                <span className="text-[12px] font-bold text-[#0A7D3E] bg-[#0A7D3E]/10 rounded-full px-2.5 py-1">
-                  {ex.stall}
-                </span>
-              </div>
-            ))}
+          <div className="text-center mb-10 md:mb-14">
+            <span className="text-[12px] font-bold uppercase tracking-[2.5px] text-[#D0202F]">On the show floor</span>
+            <h2 className="text-f34 font-bold text-[#1B2A52] tracking-tight mt-2 mb-3">Exhibitor List</h2>
+            <p className="text-[15px] text-[#414C60] max-w-[560px] mx-auto">
+              {EXHIBITORS.length} exhibitors across the hall. Find them by stall number on the{" "}
+              <a href="#map" className="font-semibold text-[#1B2A52] underline underline-offset-4 decoration-[#DA9028] hover:text-[#D0202F] transition-colors">
+                map plan
+              </a>
+              .
+            </p>
           </div>
+
+          {/* Each card reads like a stall fascia: number band on top, logo, then the name */}
+          <ol className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+            {EXHIBITORS.map((ex, i) => (
+              <li
+                key={ex.name}
+                className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-[#E3E7ED] shadow-[0_4px_18px_rgba(20,32,61,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_32px_rgba(20,32,61,0.14)] hover:border-[#DA9028]/60"
+              >
+                <div className="flex items-center justify-between bg-[#1B2A52] px-3 sm:px-4 py-2 text-white">
+                  <span className="flex items-baseline gap-1.5">
+                    <span className="text-[10px] font-semibold uppercase tracking-[1.5px] text-white/60">Stall</span>
+                    <span className="text-[18px] font-extrabold leading-none text-[#DA9028]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </span>
+                  <span className="text-[10.5px] font-semibold text-white/75 whitespace-nowrap">{ex.size}</span>
+                </div>
+                <div className="h-24 sm:h-28 flex items-center justify-center p-4 border-b border-[#E3E7ED]">
+                  {ex.logo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={ex.logo}
+                      alt=""
+                      loading="lazy"
+                      className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <span
+                      aria-hidden
+                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#E4F0F2] text-[#1B2A52] flex items-center justify-center text-[18px] sm:text-[20px] font-extrabold tracking-wide ring-2 ring-[#DA9028]/40"
+                    >
+                      {initials(ex.name)}
+                    </span>
+                  )}
+                </div>
+                <div className="flex-1 flex items-center justify-center px-3 py-3 bg-[#F5F7FA] text-center">
+                  <span className="text-[13px] sm:text-[14px] font-bold text-[#1B2A52] leading-snug">{ex.name}</span>
+                </div>
+              </li>
+            ))}
+          </ol>
           <div className="text-center mt-12">
             <AnimatedButton href="/build-festival/stall-booking">Book Your Stall</AnimatedButton>
           </div>
         </div>
       </section>
 
-      {/* Know more — video placeholder */}
+      {/* Know more — videos from the Facebook event */}
       <section className="bg-[#E4F0F2] py-14 md:py-20">
-        <div className="max-w-[960px] mx-auto px-5 sm:px-6">
-          <h2 className="text-f34 font-bold text-[#1B2A52] tracking-tight text-center mb-10">
-            Know More About Build Festival
-          </h2>
-          <div className="relative aspect-video rounded-2xl overflow-hidden bg-[#14203D] flex flex-col items-center justify-center text-white">
-            <span className="inline-flex w-20 h-20 rounded-full bg-[#D0202F] items-center justify-center mb-4">
-              <Play size={32} fill="white" />
-            </span>
-            <p className="text-sm font-semibold uppercase tracking-[1.5px] text-white/70">Video coming soon</p>
+        <div className="max-w-[1120px] mx-auto px-5 sm:px-6">
+          <div className="text-center mb-10 md:mb-12">
+            <span className="text-[12px] font-bold uppercase tracking-[2.5px] text-[#D0202F]">Watch</span>
+            <h2 className="text-f34 font-bold text-[#1B2A52] tracking-tight mt-2 mb-3">
+              Know More About Build Festival
+            </h2>
+            <p className="text-[15px] text-[#414C60] max-w-[560px] mx-auto">
+              Hear from our sponsors, partners and the team behind Build Festival 2026.
+            </p>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6">
+            {FESTIVAL_VIDEOS.map((href, i) => (
+              <div
+                key={href}
+                className="bg-white rounded-2xl overflow-hidden border border-[#E3E7ED] shadow-[0_4px_18px_rgba(20,32,61,0.06)] transition-shadow duration-300 hover:shadow-[0_14px_32px_rgba(20,32,61,0.14)]"
+              >
+                <FacebookEmbed href={href} title={`Build Festival video ${i + 1}`} />
+                <div className="flex items-center justify-between px-4 py-3">
+                  <span className="flex items-center gap-2 text-[13px] font-bold text-[#1B2A52]">
+                    <span className="w-6 h-6 rounded-full bg-[#D0202F] text-white flex items-center justify-center">
+                      <Play size={11} fill="white" />
+                    </span>
+                    Video {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[12.5px] font-semibold text-[#6E7A8C] hover:text-[#D0202F] transition-colors"
+                  >
+                    Watch on Facebook
+                    <ArrowUpRight size={14} strokeWidth={2.25} />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-10 text-center text-[14px] text-[#414C60]">
+            More updates on the{" "}
+            <a
+              href={FESTIVAL_EVENT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-semibold text-[#1B2A52] underline underline-offset-4 decoration-[#DA9028] hover:text-[#D0202F] transition-colors"
+            >
+              Build Festival Facebook event
+              <ArrowUpRight size={14} strokeWidth={2.5} />
+            </a>
+          </p>
         </div>
       </section>
 

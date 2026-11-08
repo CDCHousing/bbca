@@ -228,7 +228,10 @@ ADMIN_NOTIFICATION_EMAIL=  # where new membership submissions get sent
       event programme. Map plan is the real floor-plan image (`public/build-festival-floor-plan.jpeg`).
       Sponsors are real: one fixed Title Sponsor tile, then Gold/Silver/In Association/Media carousels, logos
       `public/Asset N.svg` (1 = title, 4–9 gold, 10–20 silver, 21–24 association, 25–34 media).
-      Exhibitors/programme/video are **static placeholders** in the page file — swap for real content. QR codes for `/build-festival` + visitor registration in `qr-codes/`.
+      Exhibitors are real (21 stalls from the fascia plaque sheet J46307; logos reuse sponsor assets,
+      monogram fallback). "Know More" shows 6 Facebook event video posts via `FacebookEmbed` (post plugin needs
+      the canonical `/events/<id>/permalink/<id>/` URL — `share/p/` links don't embed; resolve them with
+      `curl -L -A facebookexternalhit/1.1`). Programme is still a **static placeholder** in the page file. QR codes for `/build-festival` + visitor registration in `qr-codes/`.
 - [x] Build `/admin/gallery` and `/admin/membership-applications` (with status update + CSV export)
 - [x] Home page carousel driven by `GalleryImage.showInCarousel` — ticked in `/admin/gallery`,
       ordered by `order`. Falls back to the static `/public` photos while none are ticked.
