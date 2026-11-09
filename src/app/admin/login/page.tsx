@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
 function LoginForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/admin";
 
@@ -26,13 +25,14 @@ function LoginForm() {
       redirect: false,
     });
 
-    setLoading(false);
-
     if (result?.error) {
+      setLoading(false);
       setError("Invalid email or password. Please try again.");
     } else {
-      router.push(callbackUrl);
-      router.refresh();
+      // Full navigation, not router.push: a soft navigation can replay the router's cached
+      // pre-login redirect for /admin and bounce back here, so it took two taps to get in.
+      // Loading stays on until the new page replaces this one.
+      window.location.assign(callbackUrl);
     }
   }
 

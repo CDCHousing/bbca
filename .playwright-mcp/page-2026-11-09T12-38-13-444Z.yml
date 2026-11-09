@@ -1,0 +1,45 @@
+- generic [active] [ref=f140e1]:
+  - generic [ref=f140e2]:
+    - complementary [ref=f140e3]:
+      - generic [ref=f140e5]:
+        - generic [ref=f140e6]: BBCA Admin
+        - generic [ref=f140e7]: British BangladeshiConstruction Assoc.
+      - navigation [ref=f140e8]:
+        - link "Dashboard" [ref=f140e9] [cursor=pointer]:
+          - /url: /admin
+        - link "News & Events" [ref=f140e10] [cursor=pointer]:
+          - /url: /admin/news
+        - link "Home Page Videos" [ref=f140e11] [cursor=pointer]:
+          - /url: /admin/home-videos
+        - link "Association Leadership" [ref=f140e12] [cursor=pointer]:
+          - /url: /admin/leadership
+        - link "Gallery" [ref=f140e13] [cursor=pointer]:
+          - /url: /admin/gallery
+        - link "Resource & Knowledge" [ref=f140e14] [cursor=pointer]:
+          - /url: /admin/resources
+        - link "Membership Applications" [ref=f140e15] [cursor=pointer]:
+          - /url: /admin/membership-applications
+        - link "Email Members" [ref=f140e16] [cursor=pointer]:
+          - /url: /admin/email
+        - link "Stall Bookings" [ref=f140e17] [cursor=pointer]:
+          - /url: /admin/stall-bookings
+        - link "Visitor Registrations" [ref=f140e18] [cursor=pointer]:
+          - /url: /admin/visitor-registrations
+      - button "Sign Out" [ref=f140e20]
+    - main [ref=f140e21]:
+      - generic [ref=f140e23]:
+        - generic [ref=f140e24]:
+          - generic [ref=f140e25]: B
+          - heading "BBCA Admin" [level=1] [ref=f140e27]
+          - paragraph [ref=f140e28]: Sign in to your account
+        - generic [ref=f140e30]:
+          - generic [ref=f140e31]:
+            - generic [ref=f140e32]: Email address
+            - textbox "Email address" [ref=f140e33]:
+              - /placeholder: admin@bbca.co.uk
+          - generic [ref=f140e34]:
+            - generic [ref=f140e35]: Password
+            - textbox "Password" [ref=f140e36]:
+              - /placeholder: ••••••••
+          - button "Sign in" [ref=f140e37]
+  - button "Open Next.js Dev Tools" [ref=f140e43] [cursor=pointer]
