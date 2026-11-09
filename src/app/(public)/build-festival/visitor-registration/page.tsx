@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import BuildFestivalLogo from "@/components/BuildFestivalLogo";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 
@@ -85,15 +85,7 @@ export default function VisitorRegistrationPage() {
       <section className="bg-[#F5F7FA] py-14" style={{ paddingBottom: "80px" }}>
         <div className="max-w-[760px] mx-auto px-6">
           <div className="bg-white border border-[#E3E7ED] rounded-[18px] shadow-md flex flex-col items-center text-center" style={{ padding: "56px 40px" }}>
-            <Image
-              src="/bbca-logo.svg"
-              alt="BBCA logo"
-              height={56}
-              width={160}
-              style={{ height: "56px", width: "auto" }}
-              className="mb-7"
-              priority
-            />
+            <BuildFestivalLogo className="h-36 w-auto mb-7" />
             <h1 className="font-bold text-[#1B2A52] mb-3" style={{ fontSize: "var(--text-f22)" }}>
               Your seat is booked.
             </h1>
@@ -120,22 +112,21 @@ export default function VisitorRegistrationPage() {
       <div className="max-w-[760px] mx-auto px-6">
         {/* Centered header */}
         <div className="flex flex-col items-center text-center mb-9">
-          <div className="mb-5">
-            <Image
-              src="/bbca-logo.svg"
-              alt="BBCA logo"
-              height={56}
-              width={160}
-              style={{ height: "56px", width: "auto" }}
-              priority
-            />
-          </div>
-          <h1 className="font-bold text-[#1B2A52] uppercase mb-1.5" style={{ fontSize: "var(--text-f24)" }}>
+          <BuildFestivalLogo className="h-36 sm:h-44 w-auto mb-5" />
+          <p className="text-[11.5px] sm:text-[12px] font-bold uppercase tracking-[1.8px] text-[#6E7A8C] mb-2">
             British Bangladeshi Construction Association
-          </h1>
-          <p className="font-semibold text-[#0A7D3E]" style={{ fontSize: "var(--text-f17)" }}>
-            Build Festival Visitor Registration
           </p>
+          <h1
+            className="font-extrabold text-[#1B2A52] uppercase tracking-tight leading-[1.1]"
+            style={{ fontSize: "clamp(26px, 4.2vw, 40px)" }}
+          >
+            Build Festival <span className="block text-[#D0202F]">Visitor Registration</span>
+          </h1>
+          {/* Festival-colour accent bar */}
+          <span
+            aria-hidden
+            className="mt-4 h-1.5 w-28 rounded-full bg-[linear-gradient(90deg,#0A7D3E_0%,#0A7D3E_33%,#DA9028_33%,#DA9028_66%,#D0202F_66%)]"
+          />
         </div>
 
         {/* Card */}

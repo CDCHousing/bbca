@@ -1,0 +1,124 @@
+- generic [active] [ref=f139e1]:
+  - banner [ref=f139e2]:
+    - generic [ref=f139e4]:
+      - link [ref=f139e5] [cursor=pointer]:
+        - /url: /
+        - img "BBCA" [ref=f139e7]
+      - link "Build Festival" [ref=f139e10] [cursor=pointer]:
+        - /url: /build-festival
+      - navigation [ref=f139e12]:
+        - link "Home" [ref=f139e14] [cursor=pointer]:
+          - /url: /
+        - button "About Us" [ref=f139e17]
+        - button "Membership" [ref=f139e22]
+        - button "News & Events" [ref=f139e27]
+        - link "Resource & Knowledge" [ref=f139e32] [cursor=pointer]:
+          - /url: /resources
+        - link "Contact" [ref=f139e35] [cursor=pointer]:
+          - /url: /contact
+      - button "Become a Member" [ref=f139e38] [cursor=pointer]
+  - main [ref=f139e42]:
+    - generic [ref=f139e44]:
+      - generic [ref=f139e45]:
+        - img "British Bangladeshi Build Festival" [ref=f139e46]
+        - paragraph [ref=f139e172]: British Bangladeshi Construction Association
+        - heading "Build Festival Visitor Registration" [level=1] [ref=f139e173]:
+          - text: Build Festival
+          - generic [ref=f139e174]: Visitor Registration
+      - generic [ref=f139e176]:
+        - textbox [aria-hidden] [ref=f139e177]
+        - generic [ref=f139e178]:
+          - generic [ref=f139e179]:
+            - generic [ref=f139e180]:
+              - text: Name
+              - generic [aria-hidden] [ref=f139e181]: "*"
+            - textbox "Name" [ref=f139e182]
+          - generic [ref=f139e183]:
+            - generic [ref=f139e184]:
+              - text: Phone
+              - generic [aria-hidden] [ref=f139e185]: "*"
+            - textbox "Phone" [ref=f139e186]
+          - generic [ref=f139e187]:
+            - generic [ref=f139e188]:
+              - text: Email
+              - generic [aria-hidden] [ref=f139e189]: "*"
+            - textbox "Email" [ref=f139e190]
+          - generic [ref=f139e191]:
+            - generic [ref=f139e192]:
+              - text: Profession
+              - generic [aria-hidden] [ref=f139e193]: "*"
+            - textbox "Profession" [ref=f139e194]
+        - button "Register as Visitor" [ref=f139e195] [cursor=pointer]
+  - contentinfo [ref=f139e200]:
+    - generic [aria-hidden]: BBCA
+    - generic [ref=f139e202]:
+      - generic [ref=f139e203]:
+        - generic [ref=f139e204]: British Bangladeshi Construction Association
+        - generic [ref=f139e205]: ✦
+        - generic [ref=f139e206]: Building Bridges
+        - generic [ref=f139e207]: ✦
+        - generic [ref=f139e208]: Trade & Industry
+        - generic [ref=f139e209]: ✦
+        - generic [ref=f139e210]: Community & Growth
+        - generic [ref=f139e211]: ✦
+        - generic [ref=f139e212]: Membership Open
+        - generic [ref=f139e213]: ✦
+      - generic [ref=f139e214]:
+        - generic [ref=f139e215]: British Bangladeshi Construction Association
+        - generic [ref=f139e216]: ✦
+        - generic [ref=f139e217]: Building Bridges
+        - generic [ref=f139e218]: ✦
+        - generic [ref=f139e219]: Trade & Industry
+        - generic [ref=f139e220]: ✦
+        - generic [ref=f139e221]: Community & Growth
+        - generic [ref=f139e222]: ✦
+        - generic [ref=f139e223]: Membership Open
+        - generic [ref=f139e224]: ✦
+    - generic [ref=f139e225]:
+      - generic [ref=f139e226]:
+        - heading "Ready to join BBCA?" [level=2] [ref=f139e227]
+        - generic [ref=f139e228]:
+          - link "Become a Member" [ref=f139e229] [cursor=pointer]:
+            - /url: /membership
+          - link "Contact Us" [ref=f139e230] [cursor=pointer]:
+            - /url: /contact
+      - generic [ref=f139e231]:
+        - generic [ref=f139e232]:
+          - heading "Explore BBCA" [level=4] [ref=f139e233]
+          - generic [ref=f139e234]:
+            - link "About Us" [ref=f139e235] [cursor=pointer]:
+              - /url: /about
+            - link "Membership" [ref=f139e236] [cursor=pointer]:
+              - /url: /membership
+            - link "Why Join BBCA" [ref=f139e237] [cursor=pointer]:
+              - /url: /why-join
+        - generic [ref=f139e238]:
+          - heading "Contact Us" [level=4] [ref=f139e239]
+          - generic [ref=f139e240]:
+            - link "020 8004 3327" [ref=f139e241] [cursor=pointer]:
+              - /url: /contact
+            - link "contact@bbcauk.org" [ref=f139e242] [cursor=pointer]:
+              - /url: /contact
+            - link "Cranbrook Road, London, IG2 6JZ" [ref=f139e243] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=f139e244]:
+          - heading "Policy" [level=4] [ref=f139e245]
+          - generic [ref=f139e246]:
+            - link "Key Policies" [ref=f139e247] [cursor=pointer]:
+              - /url: /about
+            - link "Aim & Objectives" [ref=f139e248] [cursor=pointer]:
+              - /url: /about
+            - link "About Us" [ref=f139e249] [cursor=pointer]:
+              - /url: /about
+        - img "BBCA" [ref=f139e251]
+    - generic [ref=f139e252]:
+      - generic [ref=f139e253]: © 2026 British Bangladeshi Construction Association — All rights reserved
+      - generic [ref=f139e254]:
+        - link [ref=f139e255] [cursor=pointer]:
+          - /url: https://www.facebook.com/profile.php?id=61591693263416
+        - link [ref=f139e258] [cursor=pointer]:
+          - /url: https://www.youtube.com/@bbca.association
+        - link [ref=f139e261] [cursor=pointer]:
+          - /url: https://www.instagram.com/bbca.association?igsh=YWwzN2VwYzByMmpj
+        - button [ref=f139e264] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=f139e272] [cursor=pointer]
