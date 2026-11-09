@@ -5,6 +5,7 @@ import BuildFestivalLogo from "@/components/BuildFestivalLogo";
 import SponsorCarousel from "@/components/SponsorCarousel";
 import FacebookEmbed from "@/components/FacebookEmbed";
 import ContactBubble from "@/components/ContactBubble";
+import VenueMap from "@/components/VenueMap";
 
 export const metadata: Metadata = {
   title: "Build Festival 2026",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 const VENUE_NAME = "The Royal Regency";
 const VENUE = "501 High St N, London E12 6TH";
 const VENUE_MAP_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${VENUE_NAME}, ${VENUE}`)}`;
+const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${VENUE_NAME}, ${VENUE}`)}`;
 const EVENT_DATE = "29 November 2026";
 const EVENT_TIME = "1:00 PM – 9:00 PM";
 const EVENT_PHONE = "07913 185391";
@@ -53,6 +55,8 @@ const SECTION_LINKS = [
   { label: "Exhibitors", href: "#exhibitors" },
   { label: "Map Plan", href: "#map" },
   { label: "Programme", href: "#programme" },
+  { label: "Fire Safety", href: "#fire-safety" },
+  { label: "Venue", href: "#venue" },
 ];
 // Festival-logo colours cycled across the section strip's underlines and dots.
 const STRIP_COLORS = ["#0A7D3E", "#DA9028", "#D0202F", "#0044b2"];
@@ -141,33 +145,35 @@ const FESTIVAL_VIDEOS = [
   "1569504128197545",
   "1592042619277029",
   "1589827229498568",
-  "1589028219578469",
+  "1570466948101263",
 ].map((id) => `${FESTIVAL_EVENT_URL}permalink/${id}/`);
 
-// From the fascia name plaque sheet (J46307). Index + 1 = stall number.
+// From the fascia name plaque sheet (J46307), 22 stalls. Index + 1 = stall number.
+// Stall 20 is London Training Centre (per the sheet's stall notes, not the duplicate JA Builders row).
 // Logos reuse the sponsor assets; exhibitors without one get a monogram.
-const EXHIBITORS: { name: string; size: string; logo?: string }[] = [
-  { name: "Ultimate Accounting & Tax Solutions", size: "2m × 2m" },
-  { name: "Sterlix IT", size: "2m × 2m", logo: logo(14) },
-  { name: "MB(S) Builders Ltd", size: "2m × 2m", logo: originalLogo(9) },
-  { name: "Beneco Financial Services", size: "2m × 2m", logo: originalLogo(20) },
-  { name: "Creative Design & Construction Limited", size: "2m × 3m", logo: logo(3) },
-  { name: "Lomash Wood", size: "2m × 3m", logo: logo(8) },
-  { name: "River Finance", size: "2m × 2m" },
-  { name: "Morgan Knights", size: "2m × 2m", logo: logo(18) },
-  { name: "Pedley Electric", size: "2m × 2m", logo: logo(13) },
-  { name: "Cosmic Facility Services", size: "2m × 2m", logo: logo(11) },
-  { name: "Acumen Accountants & Tax Advisers", size: "2m × 2m", logo: logo(17) },
-  { name: "Open Door Mortgages", size: "2m × 2m", logo: logo(15) },
-  { name: "Interior Studio Ltd", size: "2m × 2m", logo: logo(10) },
-  { name: "Manor Glazing", size: "2m × 2m", logo: logo(9) },
-  { name: "CDC Housing", size: "2m × 2m", logo: logo(12) },
-  { name: "New City Solicitors", size: "2m × 2m" },
-  { name: "East London Metal", size: "2m × 2m", logo: logo(6) },
-  { name: "Landview Construction", size: "2m × 2m", logo: logo(4) },
-  { name: "JA Builders Limited", size: "2m × 2m" },
-  { name: "Simply Flooring and Furniture", size: "2m × 2m" },
-  { name: "Elite Press", size: "2m × 2m" },
+const EXHIBITORS: { name: string; logo?: string }[] = [
+  { name: "Ultimate Accounting & Tax Solutions" },
+  { name: "Sterlix IT", logo: logo(14) },
+  { name: "MB(S) Builders Ltd", logo: originalLogo(9) },
+  { name: "Beneco Financial Services", logo: originalLogo(20) },
+  { name: "Creative Design & Construction Limited", logo: logo(3) },
+  { name: "Lomash Wood", logo: logo(8) },
+  { name: "River Finance" },
+  { name: "Morgan Knights", logo: logo(18) },
+  { name: "Pedley Electric", logo: logo(13) },
+  { name: "Cosmic Facility Services", logo: logo(11) },
+  { name: "JA Builders Limited" },
+  { name: "Acumen Accountants & Tax Advisers", logo: logo(17) },
+  { name: "Open Door Mortgages", logo: logo(15) },
+  { name: "Interior Studio Ltd", logo: logo(10) },
+  { name: "Manor Glazing", logo: logo(9) },
+  { name: "CDC Housing", logo: logo(12) },
+  { name: "New City Solicitors" },
+  { name: "East London Metal", logo: logo(6) },
+  { name: "Landview Construction", logo: logo(4) },
+  { name: "London Training Centre" },
+  { name: "Simply Flooring and Furniture" },
+  { name: "Elite Press" },
 ];
 
 const initials = (name: string) =>
@@ -178,14 +184,21 @@ const initials = (name: string) =>
     .map((w) => w[0].toUpperCase())
     .join("");
 
+// Session titles only, from the final itinerary in "Event Itinerary.docx" (the timeline at the
+// end of the document, which supersedes the draft at the top).
 const PROGRAMME = [
-  { time: "10:00", title: "Doors open & visitor registration" },
-  { time: "10:30", title: "Opening ceremony & welcome address" },
-  { time: "11:00", title: "Exhibition halls open" },
-  { time: "12:00", title: "Industry panel discussion" },
-  { time: "13:00", title: "Jobs fair & careers sessions" },
-  { time: "15:00", title: "Business showcases & awards" },
-  { time: "18:00", title: "Evening concert" },
+  { time: "1:00 – 1:30 PM", title: "Guest Arrival & Registration" },
+  { time: "1:30 – 1:45 PM", title: "Zohur Prayer Break" },
+  { time: "1:45 – 2:30 PM", title: "Official Opening" },
+  { time: "2:30 – 3:00 PM", title: "Food & Refreshment Break" },
+  { time: "3:00 – 3:35 PM", title: "Panel Discussion & Student Job Session (CV Drop)" },
+  { time: "3:40 – 4:20 PM", title: "How to Buy a Property in the UK: First-Time Buyers" },
+  { time: "4:30 – 5:00 PM", title: "Building the Future: Construction Management, Building Safety & Sustainability" },
+  { time: "5:00 – 6:15 PM", title: "Exhibition & Networking" },
+  { time: "6:15 – 7:45 PM", title: "Concert" },
+  { time: "7:45 – 8:15 PM", title: "Dinner & Networking" },
+  { time: "8:15 – 8:40 PM", title: "Special Guest Address & Closing Session" },
+  { time: "8:40 – 9:00 PM", title: "Vote of Thanks" },
 ];
 
 export default function BuildFestivalPage() {
@@ -459,7 +472,6 @@ export default function BuildFestivalPage() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </span>
-                  <span className="text-[10.5px] font-semibold text-white/75 whitespace-nowrap">{ex.size}</span>
                 </div>
                 <div className="h-24 sm:h-28 flex items-center justify-center p-4 border-b border-[#E3E7ED]">
                   {ex.logo ? (
@@ -580,8 +592,8 @@ export default function BuildFestivalPage() {
             {PROGRAMME.map((p) => (
               <li key={p.time} className="relative pl-8">
                 <span className="absolute -left-[9px] top-5 w-4 h-4 rounded-full bg-[#DA9028] ring-4 ring-[#E4F0F2]" />
-                <div className="bg-white rounded-2xl border border-[#E3E7ED] px-5 py-4 flex items-center gap-4">
-                  <span className="inline-flex items-center gap-1.5 text-[#D0202F] font-bold text-sm shrink-0 w-16">
+                <div className="bg-white rounded-2xl border border-[#E3E7ED] px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-4">
+                  <span className="inline-flex items-center gap-1.5 text-[#D0202F] font-bold text-sm shrink-0 whitespace-nowrap sm:w-[136px]">
                     <Clock size={14} /> {p.time}
                   </span>
                   <span className="font-semibold text-[#1B2A52]">{p.title}</span>
@@ -589,6 +601,82 @@ export default function BuildFestivalPage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* Fire safety & emergency notice */}
+      <section id="fire-safety" className="bg-white py-14 md:py-20">
+        <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
+          <h2 className="text-f34 font-bold text-[#1B2A52] tracking-tight text-center mb-3">Fire Safety Plan</h2>
+          <p className="text-center text-[14.5px] text-[#6E7A8C] mb-10">
+            Please read before the event. In an emergency, follow event staff and call 999.
+          </p>
+          <a
+            href="/British_Bangladeshi_Festival_Safety_Guide.png"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block overflow-hidden rounded-2xl shadow-[0_16px_48px_rgba(20,32,61,0.13)]"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/British_Bangladeshi_Festival_Safety_Guide.png"
+              alt="Fire safety and emergency notice: stay calm and follow event staff instructions; exit safely using the nearest emergency exit; do not use lifts, always use the stairs; keep exits clear and do not run or push; gather at the designated assembly point; do not re-enter until official clearance; smoking, vaping and e-cigarettes are strictly prohibited inside the venue; in an emergency call 999."
+              width={1672}
+              height={941}
+              loading="lazy"
+              className="w-full h-auto"
+            />
+          </a>
+          <p className="text-center text-[13px] text-[#6E7A8C] mt-3">Tap the notice to open it full size.</p>
+        </div>
+      </section>
+
+      {/* Venue — address + embedded map */}
+      <section id="venue" className="bg-[#E4F0F2] py-14 md:py-20">
+        <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
+          <h2 className="text-f34 font-bold text-[#1B2A52] tracking-tight text-center mb-3">Venue</h2>
+          <p className="text-center text-[14.5px] text-[#6E7A8C] mb-10">How to find Build Festival 2026.</p>
+          <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.6fr] gap-6 lg:gap-8 items-center">
+            <div className="bg-white rounded-2xl border border-[#E3E7ED] p-6 sm:p-7 shadow-[0_4px_18px_rgba(20,32,61,0.06)]">
+              <p className="text-[11px] font-bold uppercase tracking-[1.5px] text-[#DA9028]">Venue</p>
+              <h3 className="mt-1.5 text-[22px] font-bold text-[#1B2A52] leading-tight">{VENUE_NAME}</h3>
+              <ul className="mt-5 space-y-3 text-[15px] text-[#414C60]">
+                <li className="flex items-start gap-2.5">
+                  <MapPin size={18} className="text-[#DA9028] shrink-0 mt-0.5" />
+                  {VENUE}
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <CalendarDays size={18} className="text-[#DA9028] shrink-0 mt-0.5" />
+                  {EVENT_DATE}
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <Clock size={18} className="text-[#DA9028] shrink-0 mt-0.5" />
+                  {EVENT_TIME}
+                </li>
+              </ul>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href={DIRECTIONS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#D0202F] text-white font-bold text-[13px] uppercase tracking-[0.5px] px-5 py-2.5 rounded-full hover:bg-[#1B2A52] transition-colors"
+                >
+                  Get Directions
+                  <ArrowUpRight size={15} strokeWidth={2.5} />
+                </a>
+                <a
+                  href={VENUE_MAP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 border-2 border-[#1B2A52] text-[#1B2A52] font-bold text-[13px] uppercase tracking-[0.5px] px-5 py-2 rounded-full hover:bg-[#1B2A52] hover:text-white transition-colors"
+                >
+                  Google Maps
+                  <ArrowUpRight size={15} strokeWidth={2.5} />
+                </a>
+              </div>
+            </div>
+            <VenueMap query={`${VENUE_NAME}, ${VENUE}`} title={`Map of ${VENUE_NAME}, ${VENUE}`} />
+          </div>
         </div>
       </section>
     </>
