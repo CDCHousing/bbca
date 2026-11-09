@@ -223,7 +223,7 @@ ADMIN_NOTIFICATION_EMAIL=  # where new membership submissions get sent
       on the home page. Admin pastes any YouTube URL; `src/lib/youtube.ts` extracts the 11-char id.
 - [ ] Build Photo Gallery page
 - [x] Build `/build-festival` landing page (navbar "Build Festival" button). Site `Header` returns null on
-      this route; the page has its own festival header (logo, "Build Festival 2026", date + time, The Royal Regency venue, Register as Visitor CTA — stall-booking buttons removed site-wide, the `/build-festival/stall-booking` page itself still exists) + section strip, then
+      this route; the page has its own festival header (logo, "Build Festival 2026", date + time, The Royal Regency venue, Register as Visitor CTA; phone/email/venue live in a floating top-right `ContactBubble` that expands into a card — stall-booking buttons removed site-wide, the `/build-festival/stall-booking` page itself still exists) + section strip, then
       hero video + Construction/Jobs/Concert moving bar (footer-style marquee), Join Us → visitor registration, sponsors (one `SponsorCarousel` per tier — Gold/Silver/Media/Association — rows alternate right-to-left / left-to-right; shadcn `@reui/c-carousel-3` + own timer), exhibitor list, video, map plan,
       event programme. Map plan is the real floor-plan image (`public/British_Bangladeshi_Build_Festival_Floorplan.png`).
       Sponsors are real: one fixed Title Sponsor tile, then Gold/Silver/In Association/Media carousels, logos

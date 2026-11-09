@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Play, MapPin, Clock, CalendarDays, ArrowRight, ArrowUpRight, Phone, Mail } from "lucide-react";
+import { Play, MapPin, Clock, CalendarDays, ArrowRight, ArrowUpRight } from "lucide-react";
 import BuildFestivalLogo from "@/components/BuildFestivalLogo";
 import SponsorCarousel from "@/components/SponsorCarousel";
 import FacebookEmbed from "@/components/FacebookEmbed";
+import ContactBubble from "@/components/ContactBubble";
 
 export const metadata: Metadata = {
   title: "Build Festival 2026",
@@ -53,6 +54,8 @@ const SECTION_LINKS = [
   { label: "Map Plan", href: "#map" },
   { label: "Programme", href: "#programme" },
 ];
+// Festival-logo colours cycled across the section strip's underlines and dots.
+const STRIP_COLORS = ["#0A7D3E", "#DA9028", "#D0202F", "#0044b2"];
 
 // Logos are public/Asset N.svg, numbered in the order of the sponsor sheet.
 const logo = (n: number) => encodeURI(`/Asset ${n}.svg`);
@@ -182,25 +185,16 @@ export default function BuildFestivalPage() {
   return (
     <>
       {/* Festival header */}
+      {/* Event contact details live in a floating bubble, top-right */}
+      <ContactBubble
+        phone={EVENT_PHONE}
+        phoneTel={EVENT_PHONE_TEL}
+        email={EVENT_EMAIL}
+        venueName={VENUE_NAME}
+        venueAddress={VENUE}
+        mapUrl={VENUE_MAP_URL}
+      />
       <header className="bg-white text-[#1B2A52]">
-        {/* Event contact top bar */}
-        <div className="bg-[#14203D] text-white/85">
-          <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-2 flex flex-wrap items-center justify-center md:justify-between gap-x-6 gap-y-1 text-[12.5px] font-medium">
-            <span className="hidden md:inline text-[11px] font-bold uppercase tracking-[1.5px] text-[#DA9028]">
-              Event Enquiries
-            </span>
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1">
-              <a href={`tel:${EVENT_PHONE_TEL}`} className="inline-flex items-center gap-1.5 hover:text-[#DA9028] transition-colors">
-                <Phone size={13} className="text-[#DA9028]" />
-                {EVENT_PHONE}
-              </a>
-              <a href={`mailto:${EVENT_EMAIL}`} className="inline-flex items-center gap-1.5 hover:text-[#DA9028] transition-colors">
-                <Mail size={13} className="text-[#DA9028]" />
-                {EVENT_EMAIL}
-              </a>
-            </div>
-          </div>
-        </div>
         {/* Festival colour band, taken from the logo */}
         <div className="h-1.5 bg-[linear-gradient(90deg,#0A7D3E_0%,#0A7D3E_25%,#DA9028_25%,#DA9028_50%,#D0202F_50%,#D0202F_75%,#1B2A52_75%)]" />
         <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-4 flex flex-col md:flex-row items-center gap-5 md:gap-10">
@@ -245,21 +239,34 @@ export default function BuildFestivalPage() {
         </div>
       </header>
 
-      {/* Section strip */}
-      <nav className="bg-[#1B2A52]">
-        <div className="max-w-[1200px] mx-auto px-5 sm:px-8 flex items-center gap-6 overflow-x-auto">
-          {SECTION_LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="py-3.5 text-[14px] font-bold uppercase tracking-[0.3px] text-white hover:text-[#DA9028] whitespace-nowrap transition-colors"
-            >
-              {l.label}
-            </a>
+      {/* Section strip — transparent; each link carries a festival-colour underline that grows on hover */}
+      <nav className="border-y border-[#E3E7ED]">
+        <div className="max-w-[1200px] mx-auto px-5 sm:px-8 flex items-center gap-4 sm:gap-5 overflow-x-auto">
+          {SECTION_LINKS.map((l, i) => (
+            <span key={l.href} className="flex items-center gap-4 sm:gap-5 shrink-0">
+              {i > 0 && (
+                <span
+                  aria-hidden
+                  className="h-1.5 w-1.5 rounded-full"
+                  style={{ backgroundColor: STRIP_COLORS[(i - 1) % STRIP_COLORS.length] }}
+                />
+              )}
+              <a
+                href={l.href}
+                className="group relative py-4 text-[14px] font-bold uppercase tracking-[0.4px] text-[#1B2A52] whitespace-nowrap transition-colors hover:text-[#0044b2]"
+              >
+                {l.label}
+                <span
+                  aria-hidden
+                  className="absolute left-0 bottom-2.5 h-[3px] w-4 rounded-full transition-all duration-300 group-hover:w-full"
+                  style={{ backgroundColor: STRIP_COLORS[i % STRIP_COLORS.length] }}
+                />
+              </a>
+            </span>
           ))}
           <Link
             href="/"
-            className="ml-auto py-3.5 text-[13px] font-semibold uppercase text-white/70 hover:text-[#DA9028] whitespace-nowrap transition-colors"
+            className="ml-auto shrink-0 my-2 px-4 py-1.5 rounded-full border border-[#1B2A52]/25 text-[12.5px] font-semibold uppercase tracking-[0.3px] text-[#1B2A52] whitespace-nowrap transition-colors hover:border-[#1B2A52] hover:bg-[#1B2A52] hover:text-white"
           >
             ← BBCA Home
           </Link>
