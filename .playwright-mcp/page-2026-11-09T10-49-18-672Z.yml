@@ -1,0 +1,183 @@
+- generic [active] [ref=f19e1]:
+  - banner [ref=f19e2]:
+    - generic [ref=f19e4]:
+      - link [ref=f19e5] [cursor=pointer]:
+        - /url: /
+        - img "BBCA" [ref=f19e7]
+      - link "Build Festival" [ref=f19e10] [cursor=pointer]:
+        - /url: /build-festival
+      - navigation [ref=f19e12]:
+        - link "Home" [ref=f19e14] [cursor=pointer]:
+          - /url: /
+        - button "About Us" [ref=f19e17]
+        - button "Membership" [ref=f19e22]
+        - button "News & Events" [ref=f19e27]
+        - link "Resource & Knowledge" [ref=f19e32] [cursor=pointer]:
+          - /url: /resources
+        - link "Contact" [ref=f19e35] [cursor=pointer]:
+          - /url: /contact
+      - button "Become a Member" [ref=f19e38] [cursor=pointer]
+  - main [ref=f19e42]:
+    - generic [ref=f19e47]:
+      - heading "British Bangladeshi Construction Association" [level=1] [ref=f19e48]
+      - link "Become a Member" [ref=f19e49] [cursor=pointer]:
+        - /url: /membership
+    - generic [ref=f19e55]:
+      - generic [ref=f19e56]:
+        - generic [ref=f19e57]: 567+
+        - generic [ref=f19e58]: Businesses Connected
+      - generic [ref=f19e59]:
+        - generic [ref=f19e60]: 1700+
+        - generic [ref=f19e61]: Construction Professionals
+      - generic [ref=f19e62]:
+        - generic [ref=f19e63]: 100+
+        - generic [ref=f19e64]: Industry Partners
+      - generic [ref=f19e65]:
+        - generic [ref=f19e66]: 45+
+        - generic [ref=f19e67]: Training Workshops
+      - generic [ref=f19e68]:
+        - generic [ref=f19e69]: 120+
+        - generic [ref=f19e70]: Career Opportunities Created
+    - generic [ref=f19e72]:
+      - generic [ref=f19e73]:
+        - img "BBCA event photo" [ref=f19e75]
+        - img "BBCA event photo" [ref=f19e77]
+        - img "BBCA event photo" [ref=f19e79]
+        - img "BBCA event photo" [ref=f19e81]
+        - img "BBCA event photo" [ref=f19e83]
+        - img "BBCA event photo" [ref=f19e85]
+        - img "BBCA event photo" [ref=f19e87]
+        - img "BBCA event photo" [ref=f19e89]
+        - button "Previous" [ref=f19e90]
+        - button "Next" [ref=f19e93]
+      - generic [ref=f19e96]:
+        - button "Go to slide 1" [ref=f19e97]
+        - button "Go to slide 2" [ref=f19e98]
+        - button "Go to slide 3" [ref=f19e99]
+        - button "Go to slide 4" [ref=f19e100]
+        - button "Go to slide 5" [ref=f19e101]
+        - button "Go to slide 6" [ref=f19e102]
+        - button "Go to slide 7" [ref=f19e103]
+        - button "Go to slide 8" [ref=f19e104]
+    - generic [ref=f19e106]:
+      - heading "British Bangladeshi Construction Association" [level=2] [ref=f19e107]
+      - paragraph [ref=f19e108]: The British Bangladeshi Construction Association is a professional network dedicated to supporting, connecting, and promoting British Bangladeshi individuals and businesses within the UK construction industry. The association brings together contractors, developers, engineers, architects, consultants, tradespeople, suppliers, and aspiring professionals to encourage collaboration, knowledge sharing and sustainable growth.
+      - generic [ref=f19e109]:
+        - link "Learn More about BBCA" [ref=f19e110] [cursor=pointer]:
+          - /url: /about
+        - link "Become a Member" [ref=f19e115] [cursor=pointer]:
+          - /url: /membership
+        - link "Why Join" [ref=f19e120] [cursor=pointer]:
+          - /url: /why-join
+    - generic [ref=f19e126]:
+      - img "British Bangladeshi Build Festival" [ref=f19e128]
+      - generic [ref=f19e254]:
+        - heading "British Bangladeshi Build Festival" [level=2] [ref=f19e255]
+        - paragraph [ref=f19e256]: The British Bangladeshi Construction Association (BBCA) is proud to announce that it will host the British Bangladeshi Build Festival London 2026.
+        - paragraph [ref=f19e257]: The festival will bring together construction professionals, business owners, developers, contractors, architects, engineers, suppliers, investors, and community leaders for a major celebration of industry, innovation, and opportunity.
+        - paragraph [ref=f19e258]: The event will feature networking, exhibitions, expert discussions, business showcases, career opportunities, and recognition of British Bangladeshi achievements within the UK construction sector.
+        - generic [ref=f19e259]:
+          - link "Book Your Stall" [ref=f19e260] [cursor=pointer]:
+            - /url: /build-festival/stall-booking
+          - link "Visitor Registration" [ref=f19e265] [cursor=pointer]:
+            - /url: /build-festival/visitor-registration
+    - generic [ref=f19e271]:
+      - heading "Resource, Knowledge & Career" [level=2] [ref=f19e272]
+      - generic [ref=f19e273]:
+        - paragraph [ref=f19e276]: Gain practical skills through expert-led construction courses and workshops.
+        - paragraph [ref=f19e279]: Connect with employers, apprenticeships, internships, and job opportunities.
+        - paragraph [ref=f19e282]: Access professional guidance, industry resources, and networking opportunities.
+      - link "Learn More" [ref=f19e284] [cursor=pointer]:
+        - /url: /resources
+    - generic [ref=f19e290]:
+      - heading "News & Events" [level=2] [ref=f19e291]
+      - generic [ref=f19e292]:
+        - link "BBCA Announces British Bangladeshi Build Festival in London This November BBCA Announces British Bangladeshi Build Festival in London This November" [ref=f19e293] [cursor=pointer]:
+          - /url: /news/build-festival-london-2026
+          - img "BBCA Announces British Bangladeshi Build Festival in London This November" [ref=f19e295]
+          - generic [ref=f19e296]: BBCA Announces British Bangladeshi Build Festival in London This November
+        - link "BBCA Opens Membership to Professionals Across the Construction Sector BBCA Opens Membership to Professionals Across the Construction Sector" [ref=f19e297] [cursor=pointer]:
+          - /url: /news/membership-open-construction-sector
+          - img "BBCA Opens Membership to Professionals Across the Construction Sector" [ref=f19e299]
+          - generic [ref=f19e300]: BBCA Opens Membership to Professionals Across the Construction Sector
+        - link "BBCA Gathering Brings Together Construction Professionals and Community Leaders BBCA Gathering Brings Together Construction Professionals and Community Leaders" [ref=f19e301] [cursor=pointer]:
+          - /url: /news/bbca-gathering-construction-professionals
+          - img "BBCA Gathering Brings Together Construction Professionals and Community Leaders" [ref=f19e303]
+          - generic [ref=f19e304]: BBCA Gathering Brings Together Construction Professionals and Community Leaders
+      - generic [ref=f19e307]:
+        - 'button "Play video: A memorable gathering of the British Bangladeshi Construction Association (BBCA)" [ref=f19e308] [cursor=pointer]'
+        - 'button "Play video: A memorable gathering of the British Bangladeshi Construction Association (BBCA)" [ref=f19e312] [cursor=pointer]'
+        - 'button "Play video: A memorable gathering of the British Bangladeshi Construction Association (BBCA)" [ref=f19e316] [cursor=pointer]'
+  - contentinfo [ref=f19e321]:
+    - generic [aria-hidden]: BBCA
+    - generic [ref=f19e323]:
+      - generic [ref=f19e324]:
+        - generic [ref=f19e325]: British Bangladeshi Construction Association
+        - generic [ref=f19e326]: ✦
+        - generic [ref=f19e327]: Building Bridges
+        - generic [ref=f19e328]: ✦
+        - generic [ref=f19e329]: Trade & Industry
+        - generic [ref=f19e330]: ✦
+        - generic [ref=f19e331]: Community & Growth
+        - generic [ref=f19e332]: ✦
+        - generic [ref=f19e333]: Membership Open
+        - generic [ref=f19e334]: ✦
+      - generic [ref=f19e335]:
+        - generic [ref=f19e336]: British Bangladeshi Construction Association
+        - generic [ref=f19e337]: ✦
+        - generic [ref=f19e338]: Building Bridges
+        - generic [ref=f19e339]: ✦
+        - generic [ref=f19e340]: Trade & Industry
+        - generic [ref=f19e341]: ✦
+        - generic [ref=f19e342]: Community & Growth
+        - generic [ref=f19e343]: ✦
+        - generic [ref=f19e344]: Membership Open
+        - generic [ref=f19e345]: ✦
+    - generic [ref=f19e346]:
+      - generic [ref=f19e347]:
+        - heading "Ready to join BBCA?" [level=2] [ref=f19e348]
+        - generic [ref=f19e349]:
+          - link "Become a Member" [ref=f19e350] [cursor=pointer]:
+            - /url: /membership
+          - link "Contact Us" [ref=f19e351] [cursor=pointer]:
+            - /url: /contact
+      - generic [ref=f19e352]:
+        - generic [ref=f19e353]:
+          - heading "Explore BBCA" [level=4] [ref=f19e354]
+          - generic [ref=f19e355]:
+            - link "About Us" [ref=f19e356] [cursor=pointer]:
+              - /url: /about
+            - link "Membership" [ref=f19e357] [cursor=pointer]:
+              - /url: /membership
+            - link "Why Join BBCA" [ref=f19e358] [cursor=pointer]:
+              - /url: /why-join
+        - generic [ref=f19e359]:
+          - heading "Contact Us" [level=4] [ref=f19e360]
+          - generic [ref=f19e361]:
+            - link "020 8004 3327" [ref=f19e362] [cursor=pointer]:
+              - /url: /contact
+            - link "contact@bbcauk.org" [ref=f19e363] [cursor=pointer]:
+              - /url: /contact
+            - link "Cranbrook Road, London, IG2 6JZ" [ref=f19e364] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=f19e365]:
+          - heading "Policy" [level=4] [ref=f19e366]
+          - generic [ref=f19e367]:
+            - link "Key Policies" [ref=f19e368] [cursor=pointer]:
+              - /url: /about
+            - link "Aim & Objectives" [ref=f19e369] [cursor=pointer]:
+              - /url: /about
+            - link "About Us" [ref=f19e370] [cursor=pointer]:
+              - /url: /about
+        - img "BBCA" [ref=f19e372]
+    - generic [ref=f19e373]:
+      - generic [ref=f19e374]: © 2026 British Bangladeshi Construction Association — All rights reserved
+      - generic [ref=f19e375]:
+        - link [ref=f19e376] [cursor=pointer]:
+          - /url: https://www.facebook.com/profile.php?id=61591693263416
+        - link [ref=f19e379] [cursor=pointer]:
+          - /url: https://www.youtube.com/@bbca.association
+        - link [ref=f19e382] [cursor=pointer]:
+          - /url: https://www.instagram.com/bbca.association?igsh=YWwzN2VwYzByMmpj
+        - button [ref=f19e385] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=f19e393] [cursor=pointer]

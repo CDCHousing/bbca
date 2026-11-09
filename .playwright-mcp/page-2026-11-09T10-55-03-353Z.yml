@@ -1,0 +1,561 @@
+- generic [active] [ref=f20e1]:
+  - main [ref=f20e2]:
+    - generic [ref=f20e3]:
+      - generic [ref=f20e5]:
+        - generic [ref=f20e6]: Event Enquiries
+        - generic [ref=f20e7]:
+          - link "07913 185391" [ref=f20e8] [cursor=pointer]:
+            - /url: tel:+447913185391
+          - link "contact@bbcauk.org" [ref=f20e11] [cursor=pointer]:
+            - /url: mailto:contact@bbcauk.org
+      - generic [ref=f20e16]:
+        - link [ref=f20e17] [cursor=pointer]:
+          - /url: /build-festival
+          - img "British Bangladeshi Build Festival" [ref=f20e18]
+        - generic [ref=f20e144]:
+          - heading "Build Festival 2026" [level=1] [ref=f20e145]
+          - generic [ref=f20e146]:
+            - generic [ref=f20e147]: 29 November 2026
+            - generic [ref=f20e150]: 1:00 PM – 9:00 PM
+          - link "The Royal Regency, 501 High St N, London E12 6TH" [ref=f20e154] [cursor=pointer]:
+            - /url: https://www.google.com/maps/search/?api=1&query=The%20Royal%20Regency%2C%20501%20High%20St%20N%2C%20London%20E12%206TH
+        - link "Register as Visitor" [ref=f20e160] [cursor=pointer]:
+          - /url: /build-festival/visitor-registration
+    - navigation [ref=f20e163]:
+      - generic [ref=f20e164]:
+        - link "Join Us" [ref=f20e165] [cursor=pointer]:
+          - /url: "#join"
+        - link "Sponsors" [ref=f20e166] [cursor=pointer]:
+          - /url: "#sponsors"
+        - link "Exhibitors" [ref=f20e167] [cursor=pointer]:
+          - /url: "#exhibitors"
+        - link "Map Plan" [ref=f20e168] [cursor=pointer]:
+          - /url: "#map"
+        - link "Programme" [ref=f20e169] [cursor=pointer]:
+          - /url: "#programme"
+        - link "← BBCA Home" [ref=f20e170] [cursor=pointer]:
+          - /url: /
+    - generic [ref=f20e172]:
+      - paragraph [ref=f20e173]: Construction, Jobs, Concert
+      - generic [aria-hidden] [ref=f20e174]:
+        - generic [ref=f20e175]:
+          - generic [ref=f20e176]:
+            - generic [ref=f20e177]: Construction
+            - generic [ref=f20e178]: ✦
+          - generic [ref=f20e179]:
+            - generic [ref=f20e180]: Jobs
+            - generic [ref=f20e181]: ✦
+          - generic [ref=f20e182]:
+            - generic [ref=f20e183]: Concert
+            - generic [ref=f20e184]: ✦
+          - generic [ref=f20e185]:
+            - generic [ref=f20e186]: Construction
+            - generic [ref=f20e187]: ✦
+          - generic [ref=f20e188]:
+            - generic [ref=f20e189]: Jobs
+            - generic [ref=f20e190]: ✦
+          - generic [ref=f20e191]:
+            - generic [ref=f20e192]: Concert
+            - generic [ref=f20e193]: ✦
+          - generic [ref=f20e194]:
+            - generic [ref=f20e195]: Construction
+            - generic [ref=f20e196]: ✦
+          - generic [ref=f20e197]:
+            - generic [ref=f20e198]: Jobs
+            - generic [ref=f20e199]: ✦
+          - generic [ref=f20e200]:
+            - generic [ref=f20e201]: Concert
+            - generic [ref=f20e202]: ✦
+          - generic [ref=f20e203]:
+            - generic [ref=f20e204]: Construction
+            - generic [ref=f20e205]: ✦
+          - generic [ref=f20e206]:
+            - generic [ref=f20e207]: Jobs
+            - generic [ref=f20e208]: ✦
+          - generic [ref=f20e209]:
+            - generic [ref=f20e210]: Concert
+            - generic [ref=f20e211]: ✦
+        - generic [ref=f20e212]:
+          - generic [ref=f20e213]:
+            - generic [ref=f20e214]: Construction
+            - generic [ref=f20e215]: ✦
+          - generic [ref=f20e216]:
+            - generic [ref=f20e217]: Jobs
+            - generic [ref=f20e218]: ✦
+          - generic [ref=f20e219]:
+            - generic [ref=f20e220]: Concert
+            - generic [ref=f20e221]: ✦
+          - generic [ref=f20e222]:
+            - generic [ref=f20e223]: Construction
+            - generic [ref=f20e224]: ✦
+          - generic [ref=f20e225]:
+            - generic [ref=f20e226]: Jobs
+            - generic [ref=f20e227]: ✦
+          - generic [ref=f20e228]:
+            - generic [ref=f20e229]: Concert
+            - generic [ref=f20e230]: ✦
+          - generic [ref=f20e231]:
+            - generic [ref=f20e232]: Construction
+            - generic [ref=f20e233]: ✦
+          - generic [ref=f20e234]:
+            - generic [ref=f20e235]: Jobs
+            - generic [ref=f20e236]: ✦
+          - generic [ref=f20e237]:
+            - generic [ref=f20e238]: Concert
+            - generic [ref=f20e239]: ✦
+          - generic [ref=f20e240]:
+            - generic [ref=f20e241]: Construction
+            - generic [ref=f20e242]: ✦
+          - generic [ref=f20e243]:
+            - generic [ref=f20e244]: Jobs
+            - generic [ref=f20e245]: ✦
+          - generic [ref=f20e246]:
+            - generic [ref=f20e247]: Concert
+            - generic [ref=f20e248]: ✦
+    - generic [ref=f20e250]:
+      - img "British Bangladeshi Build Festival" [ref=f20e252]
+      - generic [ref=f20e378]:
+        - heading "Join Us" [level=2] [ref=f20e379]
+        - paragraph [ref=f20e380]: The British Bangladeshi Build Festival London 2026 brings together construction professionals, business owners, developers, contractors, architects, engineers, suppliers, investors and community leaders for a celebration of industry, innovation and opportunity.
+        - paragraph [ref=f20e381]: Entry is by registration. Register as a visitor to receive your visitor card.
+        - link "Register as Visitor" [ref=f20e382] [cursor=pointer]:
+          - /url: /build-festival/visitor-registration
+    - generic [ref=f20e387]:
+      - generic [ref=f20e388]:
+        - text: Partners
+        - heading "Our Sponsors" [level=2] [ref=f20e389]
+        - paragraph [ref=f20e390]: The organisations making Build Festival 2026 possible.
+      - generic [ref=f20e391]:
+        - generic [ref=f20e392]:
+          - heading "Title Sponsor" [level=3] [ref=f20e395]
+          - img "Work Permit Cloud" [ref=f20e399]
+        - generic [ref=f20e400]:
+          - heading "Gold Sponsors" [level=3] [ref=f20e403]
+          - region [ref=f20e407]:
+            - generic [ref=f20e409]:
+              - group [ref=f20e410]:
+                - generic "Everard Construction Management" [ref=f20e411]:
+                  - img "Everard Construction Management"
+              - group [ref=f20e412]:
+                - generic "Creative Design & Construction Limited" [ref=f20e413]:
+                  - img "Creative Design & Construction Limited"
+              - group [ref=f20e414]:
+                - generic "Landview" [ref=f20e415]:
+                  - img "Landview"
+              - group [ref=f20e416]:
+                - generic "Saleh Builders" [ref=f20e417]:
+                  - img "Saleh Builders"
+              - group [ref=f20e418]:
+                - generic "East London Metal Engineering" [ref=f20e419]:
+                  - img "East London Metal Engineering"
+              - group [ref=f20e420]:
+                - generic "MB (S) Builders" [ref=f20e421]:
+                  - img "MB (S) Builders"
+            - button "Previous slide" [disabled]
+            - button "Next slide" [disabled]
+        - generic [ref=f20e422]:
+          - heading "Silver Sponsors" [level=3] [ref=f20e425]
+          - region [ref=f20e429]:
+            - generic [ref=f20e431]:
+              - group [ref=f20e432]:
+                - generic "Lomash Wood" [ref=f20e433]:
+                  - img "Lomash Wood"
+              - group [ref=f20e434]:
+                - generic "Manor Glazing" [ref=f20e435]:
+                  - img "Manor Glazing"
+              - group [ref=f20e436]:
+                - generic "Interior Studio" [ref=f20e437]:
+                  - img "Interior Studio"
+              - group [ref=f20e438]:
+                - generic "Cosmic Facility Services" [ref=f20e439]:
+                  - img "Cosmic Facility Services"
+              - group [ref=f20e440]:
+                - generic "CDC Housing" [ref=f20e441]:
+                  - img "CDC Housing"
+              - group [ref=f20e442]:
+                - generic "Pedley Electric" [ref=f20e443]:
+                  - img "Pedley Electric"
+              - group [ref=f20e444]:
+                - generic "Sterlix IT" [ref=f20e445]:
+                  - img "Sterlix IT"
+              - group [ref=f20e446]:
+                - generic "OpenDoor Mortgages" [ref=f20e447]:
+                  - img "OpenDoor Mortgages"
+              - group [ref=f20e448]:
+                - generic "Morgan Knights Real Estate" [ref=f20e449]:
+                  - img "Morgan Knights Real Estate"
+              - group [ref=f20e450]:
+                - generic "Acumen Accountants & Tax Advisers" [ref=f20e451]:
+                  - img "Acumen Accountants & Tax Advisers"
+              - group [ref=f20e452]:
+                - generic "Beneco Financial Services" [ref=f20e453]:
+                  - img "Beneco Financial Services"
+            - button "Previous slide" [disabled]
+            - button "Next slide" [disabled]
+        - generic [ref=f20e454]:
+          - heading "In Association With" [level=3] [ref=f20e457]
+          - region [ref=f20e461]:
+            - generic [ref=f20e463]:
+              - group [ref=f20e464]:
+                - generic "British Bangladeshi Chamber of Commerce & Industry" [ref=f20e465]:
+                  - img "British Bangladeshi Chamber of Commerce & Industry"
+              - group [ref=f20e466]:
+                - generic "Bangladesh High Commission London" [ref=f20e467]:
+                  - img "Bangladesh High Commission London"
+              - group [ref=f20e468]:
+                - generic "The Royal Regency London" [ref=f20e469]:
+                  - img "The Royal Regency London"
+              - group [ref=f20e470]:
+                - generic "Bangladesh Caterers Association" [ref=f20e471]:
+                  - img "Bangladesh Caterers Association"
+            - button "Previous slide" [disabled]
+            - button "Next slide" [disabled]
+        - generic [ref=f20e472]:
+          - heading "Media Partners" [level=3] [ref=f20e475]
+          - region [ref=f20e479]:
+            - generic [ref=f20e481]:
+              - group [ref=f20e482]:
+                - generic "iON TV" [ref=f20e483]:
+                  - img "iON TV"
+              - group [ref=f20e484]:
+                - generic "ATN Bangla" [ref=f20e485]:
+                  - img "ATN Bangla"
+              - group [ref=f20e486]:
+                - generic "Channel S" [ref=f20e487]:
+                  - img "Channel S"
+              - group [ref=f20e488]:
+                - generic "2A News" [ref=f20e489]:
+                  - img "2A News"
+              - group [ref=f20e490]:
+                - generic "Top News" [ref=f20e491]:
+                  - img "Top News"
+              - group [ref=f20e492]:
+                - generic "Q News" [ref=f20e493]:
+                  - img "Q News"
+              - group [ref=f20e494]:
+                - generic "Channel TS" [ref=f20e495]:
+                  - img "Channel TS"
+              - group [ref=f20e496]:
+                - generic "Hawa TV" [ref=f20e497]:
+                  - img "Hawa TV"
+              - group [ref=f20e498]:
+                - generic "Iqra Bangla" [ref=f20e499]:
+                  - img "Iqra Bangla"
+              - group [ref=f20e500]:
+                - generic "TV3 Bangla" [ref=f20e501]:
+                  - img "TV3 Bangla"
+            - button "Previous slide" [disabled]
+            - button "Next slide" [disabled]
+      - paragraph [ref=f20e502]:
+        - text: Interested in sponsoring?
+        - link "Become a Sponsor" [ref=f20e503] [cursor=pointer]:
+          - /url: /contact
+    - generic [ref=f20e507]:
+      - generic [ref=f20e508]:
+        - text: On the show floor
+        - heading "Exhibitor List" [level=2] [ref=f20e509]
+        - paragraph [ref=f20e510]:
+          - text: 21 exhibitors across the hall. Find them by stall number on the
+          - link "map plan" [ref=f20e511] [cursor=pointer]:
+            - /url: "#map"
+          - text: .
+      - list [ref=f20e512]:
+        - listitem [ref=f20e513]:
+          - generic [ref=f20e514]:
+            - generic [ref=f20e515]:
+              - generic [ref=f20e516]: Stall
+              - generic [ref=f20e517]: "01"
+            - generic [ref=f20e518]: 2m × 2m
+          - generic [aria-hidden] [ref=f20e520]: UA
+          - generic [ref=f20e521]: Ultimate Accounting & Tax Solutions
+        - listitem [ref=f20e523]:
+          - generic [ref=f20e524]:
+            - generic [ref=f20e525]:
+              - generic [ref=f20e526]: Stall
+              - generic [ref=f20e527]: "02"
+            - generic [ref=f20e528]: 2m × 2m
+          - generic [ref=f20e530]: Sterlix IT
+        - listitem [ref=f20e532]:
+          - generic [ref=f20e533]:
+            - generic [ref=f20e534]:
+              - generic [ref=f20e535]: Stall
+              - generic [ref=f20e536]: "03"
+            - generic [ref=f20e537]: 2m × 2m
+          - generic [ref=f20e539]: MB(S) Builders Ltd
+        - listitem [ref=f20e541]:
+          - generic [ref=f20e542]:
+            - generic [ref=f20e543]:
+              - generic [ref=f20e544]: Stall
+              - generic [ref=f20e545]: "04"
+            - generic [ref=f20e546]: 2m × 2m
+          - generic [ref=f20e548]: Beneco Financial Services
+        - listitem [ref=f20e550]:
+          - generic [ref=f20e551]:
+            - generic [ref=f20e552]:
+              - generic [ref=f20e553]: Stall
+              - generic [ref=f20e554]: "05"
+            - generic [ref=f20e555]: 2m × 3m
+          - generic [ref=f20e557]: Creative Design & Construction Limited
+        - listitem [ref=f20e559]:
+          - generic [ref=f20e560]:
+            - generic [ref=f20e561]:
+              - generic [ref=f20e562]: Stall
+              - generic [ref=f20e563]: "06"
+            - generic [ref=f20e564]: 2m × 3m
+          - generic [ref=f20e566]: Lomash Wood
+        - listitem [ref=f20e568]:
+          - generic [ref=f20e569]:
+            - generic [ref=f20e570]:
+              - generic [ref=f20e571]: Stall
+              - generic [ref=f20e572]: "07"
+            - generic [ref=f20e573]: 2m × 2m
+          - generic [aria-hidden] [ref=f20e575]: RF
+          - generic [ref=f20e576]: River Finance
+        - listitem [ref=f20e578]:
+          - generic [ref=f20e579]:
+            - generic [ref=f20e580]:
+              - generic [ref=f20e581]: Stall
+              - generic [ref=f20e582]: "08"
+            - generic [ref=f20e583]: 2m × 2m
+          - generic [ref=f20e585]: Morgan Knights
+        - listitem [ref=f20e587]:
+          - generic [ref=f20e588]:
+            - generic [ref=f20e589]:
+              - generic [ref=f20e590]: Stall
+              - generic [ref=f20e591]: "09"
+            - generic [ref=f20e592]: 2m × 2m
+          - generic [ref=f20e594]: Pedley Electric
+        - listitem [ref=f20e596]:
+          - generic [ref=f20e597]:
+            - generic [ref=f20e598]:
+              - generic [ref=f20e599]: Stall
+              - generic [ref=f20e600]: "10"
+            - generic [ref=f20e601]: 2m × 2m
+          - generic [ref=f20e603]: Cosmic Facility Services
+        - listitem [ref=f20e605]:
+          - generic [ref=f20e606]:
+            - generic [ref=f20e607]:
+              - generic [ref=f20e608]: Stall
+              - generic [ref=f20e609]: "11"
+            - generic [ref=f20e610]: 2m × 2m
+          - generic [ref=f20e612]: Acumen Accountants & Tax Advisers
+        - listitem [ref=f20e614]:
+          - generic [ref=f20e615]:
+            - generic [ref=f20e616]:
+              - generic [ref=f20e617]: Stall
+              - generic [ref=f20e618]: "12"
+            - generic [ref=f20e619]: 2m × 2m
+          - generic [ref=f20e621]: Open Door Mortgages
+        - listitem [ref=f20e623]:
+          - generic [ref=f20e624]:
+            - generic [ref=f20e625]:
+              - generic [ref=f20e626]: Stall
+              - generic [ref=f20e627]: "13"
+            - generic [ref=f20e628]: 2m × 2m
+          - generic [ref=f20e630]: Interior Studio Ltd
+        - listitem [ref=f20e632]:
+          - generic [ref=f20e633]:
+            - generic [ref=f20e634]:
+              - generic [ref=f20e635]: Stall
+              - generic [ref=f20e636]: "14"
+            - generic [ref=f20e637]: 2m × 2m
+          - generic [ref=f20e639]: Manor Glazing
+        - listitem [ref=f20e641]:
+          - generic [ref=f20e642]:
+            - generic [ref=f20e643]:
+              - generic [ref=f20e644]: Stall
+              - generic [ref=f20e645]: "15"
+            - generic [ref=f20e646]: 2m × 2m
+          - generic [ref=f20e648]: CDC Housing
+        - listitem [ref=f20e650]:
+          - generic [ref=f20e651]:
+            - generic [ref=f20e652]:
+              - generic [ref=f20e653]: Stall
+              - generic [ref=f20e654]: "16"
+            - generic [ref=f20e655]: 2m × 2m
+          - generic [aria-hidden] [ref=f20e657]: NC
+          - generic [ref=f20e658]: New City Solicitors
+        - listitem [ref=f20e660]:
+          - generic [ref=f20e661]:
+            - generic [ref=f20e662]:
+              - generic [ref=f20e663]: Stall
+              - generic [ref=f20e664]: "17"
+            - generic [ref=f20e665]: 2m × 2m
+          - generic [ref=f20e667]: East London Metal
+        - listitem [ref=f20e669]:
+          - generic [ref=f20e670]:
+            - generic [ref=f20e671]:
+              - generic [ref=f20e672]: Stall
+              - generic [ref=f20e673]: "18"
+            - generic [ref=f20e674]: 2m × 2m
+          - generic [ref=f20e676]: Landview Construction
+        - listitem [ref=f20e678]:
+          - generic [ref=f20e679]:
+            - generic [ref=f20e680]:
+              - generic [ref=f20e681]: Stall
+              - generic [ref=f20e682]: "19"
+            - generic [ref=f20e683]: 2m × 2m
+          - generic [aria-hidden] [ref=f20e685]: JB
+          - generic [ref=f20e686]: JA Builders Limited
+        - listitem [ref=f20e688]:
+          - generic [ref=f20e689]:
+            - generic [ref=f20e690]:
+              - generic [ref=f20e691]: Stall
+              - generic [ref=f20e692]: "20"
+            - generic [ref=f20e693]: 2m × 2m
+          - generic [aria-hidden] [ref=f20e695]: SF
+          - generic [ref=f20e696]: Simply Flooring and Furniture
+        - listitem [ref=f20e698]:
+          - generic [ref=f20e699]:
+            - generic [ref=f20e700]:
+              - generic [ref=f20e701]: Stall
+              - generic [ref=f20e702]: "21"
+            - generic [ref=f20e703]: 2m × 2m
+          - generic [aria-hidden] [ref=f20e705]: EP
+          - generic [ref=f20e706]: Elite Press
+    - generic [ref=f20e709]:
+      - generic [ref=f20e710]:
+        - text: Watch
+        - heading "Know More About Build Festival" [level=2] [ref=f20e711]
+        - paragraph [ref=f20e712]: Hear from our sponsors, partners and the team behind Build Festival 2026.
+      - generic [ref=f20e713]:
+        - generic [ref=f20e716]:
+          - generic [ref=f20e717]: Video 01
+          - link "Watch on Facebook" [ref=f20e721] [cursor=pointer]:
+            - /url: https://www.facebook.com/events/1538306701317288/permalink/1557710066043618/
+        - generic [ref=f20e727]:
+          - generic [ref=f20e728]: Video 02
+          - link "Watch on Facebook" [ref=f20e732] [cursor=pointer]:
+            - /url: https://www.facebook.com/events/1538306701317288/permalink/1563221965492428/
+        - generic [ref=f20e738]:
+          - generic [ref=f20e739]: Video 03
+          - link "Watch on Facebook" [ref=f20e743] [cursor=pointer]:
+            - /url: https://www.facebook.com/events/1538306701317288/permalink/1569504128197545/
+        - generic [ref=f20e749]:
+          - generic [ref=f20e750]: Video 04
+          - link "Watch on Facebook" [ref=f20e754] [cursor=pointer]:
+            - /url: https://www.facebook.com/events/1538306701317288/permalink/1592042619277029/
+        - generic [ref=f20e760]:
+          - generic [ref=f20e761]: Video 05
+          - link "Watch on Facebook" [ref=f20e765] [cursor=pointer]:
+            - /url: https://www.facebook.com/events/1538306701317288/permalink/1589827229498568/
+        - generic [ref=f20e771]:
+          - generic [ref=f20e772]: Video 06
+          - link "Watch on Facebook" [ref=f20e776] [cursor=pointer]:
+            - /url: https://www.facebook.com/events/1538306701317288/permalink/1589028219578469/
+      - paragraph [ref=f20e780]:
+        - text: More updates on the
+        - link "Build Festival Facebook event" [ref=f20e781] [cursor=pointer]:
+          - /url: https://www.facebook.com/events/1538306701317288/
+    - generic [ref=f20e786]:
+      - heading "Map Plan" [level=2] [ref=f20e787]
+      - paragraph [ref=f20e788]: Indicative layout — final venue plan to be confirmed.
+      - link [ref=f20e789] [cursor=pointer]:
+        - /url: /British_Bangladeshi_Build_Festival_Floorplan.png
+        - 'img "BBCA Build Festival event floor plan: registration, waiting lounge, 22 exhibitor stalls, general seating, VIP and members tables, food stalls, bar and stage" [ref=f20e790]'
+      - paragraph [ref=f20e791]: Tap the plan to open it full size.
+    - generic [ref=f20e793]:
+      - heading "Event Programme" [level=2] [ref=f20e794]
+      - paragraph [ref=f20e795]: Times are provisional and subject to change.
+      - list [ref=f20e796]:
+        - listitem [ref=f20e797]:
+          - generic [ref=f20e799]:
+            - generic [ref=f20e800]: 10:00
+            - generic [ref=f20e804]: Doors open & visitor registration
+        - listitem [ref=f20e805]:
+          - generic [ref=f20e807]:
+            - generic [ref=f20e808]: 10:30
+            - generic [ref=f20e812]: Opening ceremony & welcome address
+        - listitem [ref=f20e813]:
+          - generic [ref=f20e815]:
+            - generic [ref=f20e816]: 11:00
+            - generic [ref=f20e820]: Exhibition halls open
+        - listitem [ref=f20e821]:
+          - generic [ref=f20e823]:
+            - generic [ref=f20e824]: 12:00
+            - generic [ref=f20e828]: Industry panel discussion
+        - listitem [ref=f20e829]:
+          - generic [ref=f20e831]:
+            - generic [ref=f20e832]: 13:00
+            - generic [ref=f20e836]: Jobs fair & careers sessions
+        - listitem [ref=f20e837]:
+          - generic [ref=f20e839]:
+            - generic [ref=f20e840]: 15:00
+            - generic [ref=f20e844]: Business showcases & awards
+        - listitem [ref=f20e845]:
+          - generic [ref=f20e847]:
+            - generic [ref=f20e848]: 18:00
+            - generic [ref=f20e852]: Evening concert
+  - contentinfo [ref=f20e854]:
+    - generic [aria-hidden]: BBCA
+    - generic [ref=f20e856]:
+      - generic [ref=f20e857]:
+        - generic [ref=f20e858]: British Bangladeshi Construction Association
+        - generic [ref=f20e859]: ✦
+        - generic [ref=f20e860]: Building Bridges
+        - generic [ref=f20e861]: ✦
+        - generic [ref=f20e862]: Trade & Industry
+        - generic [ref=f20e863]: ✦
+        - generic [ref=f20e864]: Community & Growth
+        - generic [ref=f20e865]: ✦
+        - generic [ref=f20e866]: Membership Open
+        - generic [ref=f20e867]: ✦
+      - generic [ref=f20e868]:
+        - generic [ref=f20e869]: British Bangladeshi Construction Association
+        - generic [ref=f20e870]: ✦
+        - generic [ref=f20e871]: Building Bridges
+        - generic [ref=f20e872]: ✦
+        - generic [ref=f20e873]: Trade & Industry
+        - generic [ref=f20e874]: ✦
+        - generic [ref=f20e875]: Community & Growth
+        - generic [ref=f20e876]: ✦
+        - generic [ref=f20e877]: Membership Open
+        - generic [ref=f20e878]: ✦
+    - generic [ref=f20e879]:
+      - generic [ref=f20e880]:
+        - heading "Ready to join BBCA?" [level=2] [ref=f20e881]
+        - generic [ref=f20e882]:
+          - link "Become a Member" [ref=f20e883] [cursor=pointer]:
+            - /url: /membership
+          - link "Contact Us" [ref=f20e884] [cursor=pointer]:
+            - /url: /contact
+      - generic [ref=f20e885]:
+        - generic [ref=f20e886]:
+          - heading "Explore BBCA" [level=4] [ref=f20e887]
+          - generic [ref=f20e888]:
+            - link "About Us" [ref=f20e889] [cursor=pointer]:
+              - /url: /about
+            - link "Membership" [ref=f20e890] [cursor=pointer]:
+              - /url: /membership
+            - link "Why Join BBCA" [ref=f20e891] [cursor=pointer]:
+              - /url: /why-join
+        - generic [ref=f20e892]:
+          - heading "Contact Us" [level=4] [ref=f20e893]
+          - generic [ref=f20e894]:
+            - link "020 8004 3327" [ref=f20e895] [cursor=pointer]:
+              - /url: /contact
+            - link "contact@bbcauk.org" [ref=f20e896] [cursor=pointer]:
+              - /url: /contact
+            - link "Cranbrook Road, London, IG2 6JZ" [ref=f20e897] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=f20e898]:
+          - heading "Policy" [level=4] [ref=f20e899]
+          - generic [ref=f20e900]:
+            - link "Key Policies" [ref=f20e901] [cursor=pointer]:
+              - /url: /about
+            - link "Aim & Objectives" [ref=f20e902] [cursor=pointer]:
+              - /url: /about
+            - link "About Us" [ref=f20e903] [cursor=pointer]:
+              - /url: /about
+        - img "BBCA" [ref=f20e905]
+    - generic [ref=f20e906]:
+      - generic [ref=f20e907]: © 2026 British Bangladeshi Construction Association — All rights reserved
+      - generic [ref=f20e908]:
+        - link [ref=f20e909] [cursor=pointer]:
+          - /url: https://www.facebook.com/profile.php?id=61591693263416
+        - link [ref=f20e912] [cursor=pointer]:
+          - /url: https://www.youtube.com/@bbca.association
+        - link [ref=f20e915] [cursor=pointer]:
+          - /url: https://www.instagram.com/bbca.association?igsh=YWwzN2VwYzByMmpj
+        - button [ref=f20e918] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=f20e926] [cursor=pointer]

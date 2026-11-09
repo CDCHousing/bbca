@@ -162,7 +162,6 @@ export default async function HomePage() {
               The event will feature networking, exhibitions, expert discussions, business showcases, career opportunities, and recognition of British Bangladeshi achievements within the UK construction sector.
             </p>
             <div className="gsap-fade-up flex gap-3.5 flex-wrap">
-              <AnimatedButton href="/build-festival/stall-booking">Book Your Stall</AnimatedButton>
               <AnimatedButton href="/build-festival/visitor-registration">Visitor Registration</AnimatedButton>
             </div>
           </div>

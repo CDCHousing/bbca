@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Play, MapPin, Clock, ArrowRight, ArrowUpRight, Phone, Mail } from "lucide-react";
-import AnimatedButton from "@/components/AnimatedButton";
+import { Play, MapPin, Clock, CalendarDays, ArrowRight, ArrowUpRight, Phone, Mail } from "lucide-react";
 import BuildFestivalLogo from "@/components/BuildFestivalLogo";
 import SponsorCarousel from "@/components/SponsorCarousel";
 import FacebookEmbed from "@/components/FacebookEmbed";
@@ -13,8 +12,11 @@ export const metadata: Metadata = {
 };
 
 // Placeholder content — swap for real data once confirmed.
+const VENUE_NAME = "The Royal Regency";
 const VENUE = "501 High St N, London E12 6TH";
-const VENUE_MAP_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(VENUE)}`;
+const VENUE_MAP_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${VENUE_NAME}, ${VENUE}`)}`;
+const EVENT_DATE = "29 November 2026";
+const EVENT_TIME = "1:00 PM – 9:00 PM";
 const EVENT_PHONE = "07913 185391";
 const EVENT_PHONE_TEL = "+447913185391";
 const EVENT_EMAIL = "contact@bbcauk.org";
@@ -207,16 +209,28 @@ export default function BuildFestivalPage() {
           </Link>
           <div className="flex-1 text-center md:text-left">
             <h1 className="text-[clamp(24px,3vw,36px)] font-bold uppercase leading-tight tracking-tight">
-              Welcome to Build Festival 2026
+              Build Festival 2026
             </h1>
+            <div className="mt-3 flex flex-wrap items-center justify-center md:justify-start gap-x-5 gap-y-1.5 text-[15px] md:text-[17px] font-semibold text-[#414C60]">
+              <span className="inline-flex items-center gap-1.5">
+                <CalendarDays size={17} className="text-[#DA9028] shrink-0" />
+                {EVENT_DATE}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Clock size={17} className="text-[#DA9028] shrink-0" />
+                {EVENT_TIME}
+              </span>
+            </div>
             <a
               href={VENUE_MAP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center gap-1.5 text-[15px] md:text-[17px] font-semibold text-[#414C60] hover:text-[#D0202F] transition-colors"
+              className="mt-1.5 inline-flex items-start gap-1.5 text-[15px] md:text-[17px] font-semibold text-[#414C60] hover:text-[#D0202F] transition-colors"
             >
-              <MapPin size={17} className="text-[#DA9028] shrink-0" />
-              {VENUE}
+              <MapPin size={17} className="text-[#DA9028] shrink-0 mt-[3px] md:mt-[4px]" />
+              <span>
+                <span className="text-[#1B2A52]">{VENUE_NAME}</span>, {VENUE}
+              </span>
             </a>
           </div>
           <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
@@ -225,13 +239,6 @@ export default function BuildFestivalPage() {
               className="inline-flex items-center justify-center gap-2 bg-[#D0202F] text-white font-bold text-[13px] uppercase tracking-[0.5px] px-6 py-3 rounded-full border-2 border-[#D0202F] hover:bg-[#1B2A52] hover:border-[#1B2A52] transition-colors"
             >
               Register as Visitor
-              <ArrowRight size={15} strokeWidth={2.5} />
-            </Link>
-            <Link
-              href="/build-festival/stall-booking"
-              className="inline-flex items-center justify-center gap-2 bg-white text-[#1B2A52] font-bold text-[13px] uppercase tracking-[0.5px] px-6 py-3 rounded-full border-2 border-[#1B2A52] hover:bg-[#1B2A52] hover:text-white transition-colors"
-            >
-              Book a Stall
               <ArrowRight size={15} strokeWidth={2.5} />
             </Link>
           </div>
@@ -434,9 +441,6 @@ export default function BuildFestivalPage() {
               </li>
             ))}
           </ol>
-          <div className="text-center mt-12">
-            <AnimatedButton href="/build-festival/stall-booking">Book Your Stall</AnimatedButton>
-          </div>
         </div>
       </section>
 
