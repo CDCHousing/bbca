@@ -225,13 +225,13 @@ ADMIN_NOTIFICATION_EMAIL=  # where new membership submissions get sent
 - [x] Build `/build-festival` landing page (navbar "Build Festival" button). Site `Header` returns null on
       this route; the page has its own festival header (logo, welcome, venue, CTAs) + section strip, then
       hero video + Construction/Jobs/Concert moving bar (footer-style marquee), Join Us → visitor registration, sponsors (one `SponsorCarousel` per tier — Gold/Silver/Media/Association — rows alternate right-to-left / left-to-right; shadcn `@reui/c-carousel-3` + own timer), exhibitor list, video, map plan,
-      event programme. Map plan is the real floor-plan image (`public/build-festival-floor-plan.jpeg`).
+      event programme. Map plan is the real floor-plan image (`public/British_Bangladeshi_Build_Festival_Floorplan.png`).
       Sponsors are real: one fixed Title Sponsor tile, then Gold/Silver/In Association/Media carousels, logos
       `public/Asset N.svg` (1 = title, 4–9 gold, 10–20 silver, 21–24 association, 25–34 media).
       Exhibitors are real (21 stalls from the fascia plaque sheet J46307; logos reuse sponsor assets,
       monogram fallback). "Know More" shows 6 Facebook event video posts via `FacebookEmbed` (post plugin needs
       the canonical `/events/<id>/permalink/<id>/` URL — `share/p/` links don't embed; resolve them with
-      `curl -L -A facebookexternalhit/1.1`). Programme is still a **static placeholder** in the page file. QR codes for `/build-festival` + visitor registration in `qr-codes/`.
+      `curl -L -A facebookexternalhit/1.1`). Programme is still a **static placeholder** in the page file. QR codes for `/build-festival` + visitor registration in `qr-codes/` (SVG + 1024px PNG).
 - [x] Build `/admin/gallery` and `/admin/membership-applications` (with status update + CSV export)
 - [x] Home page carousel driven by `GalleryImage.showInCarousel` — ticked in `/admin/gallery`,
       ordered by `order`. Falls back to the static `/public` photos while none are ticked.

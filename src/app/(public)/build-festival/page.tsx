@@ -504,17 +504,17 @@ export default function BuildFestivalPage() {
             Indicative layout — final venue plan to be confirmed.
           </p>
           <a
-            href="/build-festival-floor-plan.jpeg"
+            href="/British_Bangladeshi_Build_Festival_Floorplan.png"
             target="_blank"
             rel="noopener noreferrer"
             className="block overflow-hidden rounded-2xl shadow-[0_16px_48px_rgba(20,32,61,0.13)]"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/build-festival-floor-plan.jpeg"
+              src="/British_Bangladeshi_Build_Festival_Floorplan.png"
               alt="BBCA Build Festival event floor plan: registration, waiting lounge, 22 exhibitor stalls, general seating, VIP and members tables, food stalls, bar and stage"
-              width={1536}
-              height={1024}
+              width={1672}
+              height={941}
               loading="lazy"
               className="w-full h-auto"
             />
