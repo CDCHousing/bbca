@@ -4,9 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { OriginButton } from "@/components/ui/origin-button";
+import FestivalButton from "@/components/FestivalButton";
 
 type NavChild = { label: string; href: string };
 type NavItem =
@@ -47,7 +48,6 @@ export default function Header() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpenSection, setMobileOpenSection] = useState<string | null>(null);
   const pathname = usePathname();
-  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const COLLAPSE_AT = 80;
@@ -91,56 +91,25 @@ export default function Header() {
           transition={{ duration: 0.35, ease: "easeInOut" }}
           className="flex items-center justify-between px-8 bg-white rounded-xl w-full max-w-[1700px] relative z-10"
         >
-          {/* Logo + Build Festival */}
-          <div className="flex items-center shrink-0 mr-4 gap-10">
-            <Link href="/" className="flex items-center shrink-0">
-              <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.2 }}>
-                <Image
-                  src="/bbca-logo.svg"
-                  alt="BBCA"
-                  width={180}
-                  height={56}
-                  className="h-14 w-auto object-contain"
-                  priority
-                />
-              </motion.div>
-            </Link>
-
-            {/* Pops out every few seconds, with a ring pulsing behind it */}
-            <motion.div
-              className="relative hidden lg:block"
-              animate={reduceMotion ? undefined : { scale: [1, 1.14, 0.96, 1.06, 1] }}
-              transition={{
-                duration: 0.9,
-                times: [0, 0.3, 0.55, 0.78, 1],
-                ease: "easeOut",
-                repeat: Infinity,
-                repeatDelay: 2.4,
-                delay: 0.6,
-              }}
-            >
-              {!reduceMotion && (
-                <motion.span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 rounded-full bg-[#0A7D3E]"
-                  animate={{ scale: [1, 1.35], opacity: [0.45, 0] }}
-                  transition={{
-                    duration: 1.2,
-                    ease: "easeOut",
-                    repeat: Infinity,
-                    repeatDelay: 2.1,
-                    delay: 0.6,
-                  }}
-                />
-              )}
-              <OriginButton
-                onClick={() => { window.location.href = "/build-festival"; }}
-                fillColor="#1B2A52"
-                className="px-7 py-3.5 rounded-full text-[14px] font-extrabold uppercase tracking-[0.5px] text-white bg-[#0A7D3E] whitespace-nowrap shadow-[0_6px_20px_rgba(10,125,62,0.35)]"
-              >
-                Build Festival
-              </OriginButton>
+          {/* Logo */}
+          <Link href="/" className="flex items-center shrink-0">
+            <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.2 }}>
+              <Image
+                src="/bbca-logo.svg"
+                alt="BBCA"
+                width={180}
+                height={56}
+                className="h-14 w-auto object-contain"
+                priority
+              />
             </motion.div>
+          </Link>
+
+          {/* Build Festival — own flex item so justify-between centres it between logo and nav.
+              24px minimum gap each side; right margin is 24px minus the Home link's padding
+              (9px / 13px at 2xl) so the visible gaps match. */}
+          <div className="hidden lg:flex shrink-0 lg:ml-6 lg:mr-[15px] 2xl:mr-[11px]">
+            <FestivalButton />
           </div>
 
           {/* Desktop nav links */}
@@ -360,13 +329,7 @@ export default function Header() {
                 transition={{ delay: 0.55 }}
                 className="pt-6 space-y-3"
               >
-                <Link
-                  href="/build-festival"
-                  className="inline-flex items-center justify-center w-full gap-2 px-5 py-3 rounded-full text-sm font-bold uppercase tracking-wide text-white bg-[#0A7D3E] hover:bg-[#1B2A52] transition-colors"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Build Festival
-                </Link>
+                <FestivalButton fullWidth onClick={() => setMobileOpen(false)} />
                 <Link
                   href="/membership"
                   className="inline-flex items-center justify-center w-full gap-2 px-5 py-3 rounded-full text-sm font-bold uppercase tracking-wide text-white bg-[#1B2A52] hover:bg-[#D0202F] transition-colors"
