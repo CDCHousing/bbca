@@ -57,8 +57,15 @@ const SECTION_LINKS = [
 // Festival-logo colours cycled across the section strip's underlines and dots.
 const STRIP_COLORS = ["#0A7D3E", "#DA9028", "#D0202F", "#0044b2"];
 
-// Logos are public/Asset N.svg, numbered in the order of the sponsor sheet.
+// Logos are the upscaled public/Asset N.svg exports. Their numbers don't follow the sponsor
+// sheet order, so each logo is mapped by hand. Four companies came through blank in the
+// upscaled export (MB(S) Builders, Beneco, Bangladesh Caterers, 2A News); those use the
+// previous export, kept in public/sponsor-logos-original/. BBCCI and The Royal Regency are
+// cropped in every Illustrator export, so they are the full images pulled straight out of
+// design-reference/SPONSORS  logo Fixed (mostly).ai (colour-matched to the export), in
+// public/sponsor-logos-ai/.
 const logo = (n: number) => encodeURI(`/Asset ${n}.svg`);
+const originalLogo = (n: number) => encodeURI(`/sponsor-logos-original/Asset ${n}.svg`);
 
 const TITLE_SPONSOR = { name: "Work Permit Cloud", logo: logo(1) };
 
@@ -69,59 +76,59 @@ const SPONSOR_TIERS = [
     color: "#DA9028",
     size: "lg" as const,
     sponsors: [
-      "Everard Construction Management",
-      "Creative Design & Construction Limited",
-      "Landview",
-      "Saleh Builders",
-      "East London Metal Engineering",
-      "MB (S) Builders",
-    ].map((name, i) => ({ name, logo: logo(4 + i) })),
+      { name: "Everard Construction Management", logo: logo(2) },
+      { name: "Creative Design & Construction Limited", logo: logo(3) },
+      { name: "Landview", logo: logo(4) },
+      { name: "Saleh Builders", logo: logo(5) },
+      { name: "East London Metal Engineering", logo: logo(6) },
+      { name: "MB (S) Builders", logo: originalLogo(9) },
+    ],
   },
   {
     tier: "Silver Sponsors",
     color: "#6E7A8C",
     size: "md" as const,
     sponsors: [
-      "Lomash Wood",
-      "Manor Glazing",
-      "Interior Studio",
-      "Cosmic Facility Services",
-      "CDC Housing",
-      "Pedley Electric",
-      "Sterlix IT",
-      "OpenDoor Mortgages",
-      "Morgan Knights Real Estate",
-      "Acumen Accountants & Tax Advisers",
-      "Beneco Financial Services",
-    ].map((name, i) => ({ name, logo: logo(10 + i) })),
+      { name: "Lomash Wood", logo: logo(8) },
+      { name: "Manor Glazing", logo: logo(9) },
+      { name: "Interior Studio", logo: logo(10) },
+      { name: "Cosmic Facility Services", logo: logo(11) },
+      { name: "CDC Housing", logo: logo(12) },
+      { name: "Pedley Electric", logo: logo(13) },
+      { name: "Sterlix IT", logo: logo(14) },
+      { name: "OpenDoor Mortgages", logo: logo(15) },
+      { name: "Morgan Knights Real Estate", logo: logo(18) },
+      { name: "Acumen Accountants & Tax Advisers", logo: logo(17) },
+      { name: "Beneco Financial Services", logo: originalLogo(20) },
+    ],
   },
   {
     tier: "In Association With",
     color: "#0A7D3E",
     size: "md" as const,
     sponsors: [
-      "British Bangladeshi Chamber of Commerce & Industry",
-      "Bangladesh High Commission London",
-      "The Royal Regency London",
-      "Bangladesh Caterers Association",
-    ].map((name, i) => ({ name, logo: logo(21 + i) })),
+      { name: "British Bangladeshi Chamber of Commerce & Industry", logo: "/sponsor-logos-ai/bbcci.png" },
+      { name: "Bangladesh High Commission London", logo: logo(21) },
+      { name: "The Royal Regency London", logo: "/sponsor-logos-ai/royal-regency.png" },
+      { name: "Bangladesh Caterers Association", logo: originalLogo(24) },
+    ],
   },
   {
     tier: "Media Partners",
     color: "#D0202F",
     size: "md" as const,
     sponsors: [
-      "iON TV",
-      "ATN Bangla",
-      "Channel S",
-      "2A News",
-      "Top News",
-      "Q News",
-      "Channel TS",
-      "Hawa TV",
-      "Iqra Bangla",
-      "TV3 Bangla",
-    ].map((name, i) => ({ name, logo: logo(25 + i) })),
+      { name: "iON TV", logo: logo(28) },
+      { name: "ATN Bangla", logo: logo(27) },
+      { name: "Channel S", logo: logo(26) },
+      { name: "2A News", logo: originalLogo(28) },
+      { name: "Top News", logo: logo(23) },
+      { name: "Q News", logo: logo(34) },
+      { name: "Channel TS", logo: logo(33) },
+      { name: "Hawa TV", logo: logo(31) },
+      { name: "Iqra Bangla", logo: logo(30) },
+      { name: "TV3 Bangla", logo: logo(29) },
+    ],
   },
 ];
 
@@ -141,23 +148,23 @@ const FESTIVAL_VIDEOS = [
 // Logos reuse the sponsor assets; exhibitors without one get a monogram.
 const EXHIBITORS: { name: string; size: string; logo?: string }[] = [
   { name: "Ultimate Accounting & Tax Solutions", size: "2m × 2m" },
-  { name: "Sterlix IT", size: "2m × 2m", logo: logo(16) },
-  { name: "MB(S) Builders Ltd", size: "2m × 2m", logo: logo(9) },
-  { name: "Beneco Financial Services", size: "2m × 2m", logo: logo(20) },
-  { name: "Creative Design & Construction Limited", size: "2m × 3m", logo: logo(5) },
-  { name: "Lomash Wood", size: "2m × 3m", logo: logo(10) },
+  { name: "Sterlix IT", size: "2m × 2m", logo: logo(14) },
+  { name: "MB(S) Builders Ltd", size: "2m × 2m", logo: originalLogo(9) },
+  { name: "Beneco Financial Services", size: "2m × 2m", logo: originalLogo(20) },
+  { name: "Creative Design & Construction Limited", size: "2m × 3m", logo: logo(3) },
+  { name: "Lomash Wood", size: "2m × 3m", logo: logo(8) },
   { name: "River Finance", size: "2m × 2m" },
   { name: "Morgan Knights", size: "2m × 2m", logo: logo(18) },
-  { name: "Pedley Electric", size: "2m × 2m", logo: logo(15) },
-  { name: "Cosmic Facility Services", size: "2m × 2m", logo: logo(13) },
-  { name: "Acumen Accountants & Tax Advisers", size: "2m × 2m", logo: logo(19) },
-  { name: "Open Door Mortgages", size: "2m × 2m", logo: logo(17) },
-  { name: "Interior Studio Ltd", size: "2m × 2m", logo: logo(12) },
-  { name: "Manor Glazing", size: "2m × 2m", logo: logo(11) },
-  { name: "CDC Housing", size: "2m × 2m", logo: logo(14) },
+  { name: "Pedley Electric", size: "2m × 2m", logo: logo(13) },
+  { name: "Cosmic Facility Services", size: "2m × 2m", logo: logo(11) },
+  { name: "Acumen Accountants & Tax Advisers", size: "2m × 2m", logo: logo(17) },
+  { name: "Open Door Mortgages", size: "2m × 2m", logo: logo(15) },
+  { name: "Interior Studio Ltd", size: "2m × 2m", logo: logo(10) },
+  { name: "Manor Glazing", size: "2m × 2m", logo: logo(9) },
+  { name: "CDC Housing", size: "2m × 2m", logo: logo(12) },
   { name: "New City Solicitors", size: "2m × 2m" },
-  { name: "East London Metal", size: "2m × 2m", logo: logo(8) },
-  { name: "Landview Construction", size: "2m × 2m", logo: logo(6) },
+  { name: "East London Metal", size: "2m × 2m", logo: logo(6) },
+  { name: "Landview Construction", size: "2m × 2m", logo: logo(4) },
   { name: "JA Builders Limited", size: "2m × 2m" },
   { name: "Simply Flooring and Furniture", size: "2m × 2m" },
   { name: "Elite Press", size: "2m × 2m" },
@@ -227,7 +234,21 @@ export default function BuildFestivalPage() {
               </span>
             </a>
           </div>
-          <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
+          {/* QR (with caption centred under it) beside the button; stacks on mobile */}
+          <div className="flex flex-col-reverse sm:flex-row items-center gap-4 sm:gap-5 shrink-0">
+            <div className="flex flex-col items-center gap-1.5">
+              <div className="rounded-lg border border-[#E3E7ED] bg-white p-1 shadow-[0_4px_14px_rgba(20,32,61,0.08)]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/visitor-registration-qr.svg"
+                  alt="QR code linking to Build Festival visitor registration"
+                  width={80}
+                  height={80}
+                  className="block h-20 w-20"
+                />
+              </div>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.6px] text-[#6E7A8C]">Scan to register</span>
+            </div>
             <Link
               href="/build-festival/visitor-registration"
               className="inline-flex items-center justify-center gap-2 bg-[#D0202F] text-white font-bold text-[13px] uppercase tracking-[0.5px] px-6 py-3 rounded-full border-2 border-[#D0202F] hover:bg-[#1B2A52] hover:border-[#1B2A52] transition-colors"
@@ -319,15 +340,31 @@ export default function BuildFestivalPage() {
             <p className="text-[15.5px] leading-relaxed text-[#414C60] mb-8">
               Entry is by registration. Register as a visitor to receive your visitor card.
             </p>
-            <Link
-              href="/build-festival/visitor-registration"
-              className="group inline-flex items-center gap-3 bg-[#D0202F] text-white font-bold text-[15px] md:text-[16px] uppercase tracking-[0.5px] pl-8 pr-3 py-3 rounded-full shadow-[0_10px_28px_rgba(208,32,47,0.35)] hover:bg-[#1B2A52] hover:shadow-[0_10px_28px_rgba(27,42,82,0.35)] transition-colors"
-            >
-              Register as Visitor
-              <span className="inline-flex w-9 h-9 rounded-full bg-white/20 items-center justify-center transition-transform group-hover:translate-x-1">
-                <ArrowRight size={18} strokeWidth={2.5} />
-              </span>
-            </Link>
+            <div className="flex flex-wrap items-center gap-5 sm:gap-6">
+              <Link
+                href="/build-festival/visitor-registration"
+                className="group inline-flex items-center gap-3 bg-[#D0202F] text-white font-bold text-[15px] md:text-[16px] uppercase tracking-[0.5px] pl-8 pr-3 py-3 rounded-full shadow-[0_10px_28px_rgba(208,32,47,0.35)] hover:bg-[#1B2A52] hover:shadow-[0_10px_28px_rgba(27,42,82,0.35)] transition-colors"
+              >
+                Register as Visitor
+                <span className="inline-flex w-9 h-9 rounded-full bg-white/20 items-center justify-center transition-transform group-hover:translate-x-1">
+                  <ArrowRight size={18} strokeWidth={2.5} />
+                </span>
+              </Link>
+              {/* Same link as a QR code, for scanning from a screen or print */}
+              <div className="flex items-center gap-3">
+                <span className="text-[13px] font-semibold text-[#6E7A8C]">or scan</span>
+                <div className="rounded-xl border border-[#E3E7ED] bg-white p-1.5 shadow-[0_6px_18px_rgba(20,32,61,0.08)]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/visitor-registration-qr.svg"
+                    alt="QR code linking to Build Festival visitor registration"
+                    width={96}
+                    height={96}
+                    className="block h-24 w-24"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

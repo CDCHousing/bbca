@@ -227,7 +227,7 @@ ADMIN_NOTIFICATION_EMAIL=  # where new membership submissions get sent
       hero video + Construction/Jobs/Concert moving bar (footer-style marquee), Join Us → visitor registration, sponsors (one `SponsorCarousel` per tier — Gold/Silver/Media/Association — rows alternate right-to-left / left-to-right; shadcn `@reui/c-carousel-3` + own timer), exhibitor list, video, map plan,
       event programme. Map plan is the real floor-plan image (`public/British_Bangladeshi_Build_Festival_Floorplan.png`).
       Sponsors are real: one fixed Title Sponsor tile, then Gold/Silver/In Association/Media carousels, logos
-      `public/Asset N.svg` (1 = title, 4–9 gold, 10–20 silver, 21–24 association, 25–34 media).
+      `public/Asset N.svg` (upscaled export — numbers do NOT follow tier order, each logo is mapped by hand in the page; 7, 16, 19, 24 are blank exports and unused; MB(S), Beneco, Bangladesh Caterers and 2A News use the previous export in `public/sponsor-logos-original/`; BBCCI and The Royal Regency are cropped by every Illustrator export, so they are full-size PNGs pulled straight out of the `.ai` in `design-reference/` (it is PDF-compatible — read image XObjects with `pdf-lib`, then colour-match to the export because the images are CMYK) in `public/sponsor-logos-ai/`).
       Exhibitors are real (21 stalls from the fascia plaque sheet J46307; logos reuse sponsor assets,
       monogram fallback). "Know More" shows 6 Facebook event video posts via `FacebookEmbed` (post plugin needs
       the canonical `/events/<id>/permalink/<id>/` URL — `share/p/` links don't embed; resolve them with
