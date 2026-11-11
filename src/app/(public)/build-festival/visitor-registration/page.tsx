@@ -90,7 +90,7 @@ export default function VisitorRegistrationPage() {
               Your seat is booked.
             </h1>
             <p className="text-[#414C60] max-w-[480px] mb-7" style={{ fontSize: "15px", lineHeight: "1.7" }}>
-              Thank you for registering for the Build Festival. Your visitor card is ready below.
+              Thank you for registering for the British Bangladeshi Build Festival. Your visitor card is ready below.
             </p>
             {registrationId && (
               <a
@@ -117,10 +117,10 @@ export default function VisitorRegistrationPage() {
             British Bangladeshi Construction Association
           </p>
           <h1
-            className="font-extrabold text-[#1B2A52] uppercase tracking-tight leading-[1.1]"
+            className="font-extrabold text-[#1B2A52] uppercase tracking-normal [word-spacing:0.15em] leading-[1.15]"
             style={{ fontSize: "clamp(26px, 4.2vw, 40px)" }}
           >
-            Build Festival <span className="block text-[#D0202F]">Visitor Registration</span>
+            British Bangladeshi Build Festival <span className="block text-[#D0202F]">Visitor Registration</span>
           </h1>
           {/* Festival-colour accent bar */}
           <span

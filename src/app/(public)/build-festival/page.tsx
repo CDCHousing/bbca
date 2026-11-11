@@ -17,7 +17,6 @@ export const metadata: Metadata = {
 const VENUE_NAME = "The Royal Regency";
 const VENUE = "501 High St N, London E12 6TH";
 const VENUE_MAP_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${VENUE_NAME}, ${VENUE}`)}`;
-const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${VENUE_NAME}, ${VENUE}`)}`;
 const EVENT_DATE = "29 November 2026";
 const EVENT_TIME = "1:00 PM – 9:00 PM";
 const EVENT_PHONE = "07913 185391";
@@ -58,8 +57,6 @@ const SECTION_LINKS = [
   { label: "Fire Safety", href: "#fire-safety" },
   { label: "Venue", href: "#venue" },
 ];
-// Festival-logo colours cycled across the section strip's underlines and dots.
-const STRIP_COLORS = ["#0A7D3E", "#DA9028", "#D0202F", "#0044b2"];
 
 // Logos are the upscaled public/Asset N.svg exports. Their numbers don't follow the sponsor
 // sheet order, so each logo is mapped by hand. Four companies came through blank in the
@@ -67,9 +64,12 @@ const STRIP_COLORS = ["#0A7D3E", "#DA9028", "#D0202F", "#0044b2"];
 // previous export, kept in public/sponsor-logos-original/. BBCCI and The Royal Regency are
 // cropped in every Illustrator export, so they are the full images pulled straight out of
 // design-reference/SPONSORS  logo Fixed (mostly).ai (colour-matched to the export), in
-// public/sponsor-logos-ai/.
+// public/sponsor-logos-ai/. The last seven Silver sponsors (River Finance … Elite Press) were
+// added in "Sponsors logo 9 November.ai"; their logos are rendered from that file into the
+// same folder.
 const logo = (n: number) => encodeURI(`/Asset ${n}.svg`);
 const originalLogo = (n: number) => encodeURI(`/sponsor-logos-original/Asset ${n}.svg`);
+const aiLogo = (name: string) => `/sponsor-logos-ai/${name}.png`;
 
 const TITLE_SPONSOR = { name: "Work Permit Cloud", logo: logo(1) };
 
@@ -104,6 +104,13 @@ const SPONSOR_TIERS = [
       { name: "Morgan Knights Real Estate", logo: logo(18) },
       { name: "Acumen Accountants & Tax Advisers", logo: logo(17) },
       { name: "Beneco Financial Services", logo: originalLogo(20) },
+      { name: "River Finance", logo: aiLogo("river-finance") },
+      { name: "JA Builders Limited", logo: aiLogo("ja-builders") },
+      { name: "Ultimate Accounting & Tax Solutions", logo: aiLogo("ultimate-accounting") },
+      { name: "New City Solicitors", logo: aiLogo("new-city-solicitors") },
+      { name: "London Training Centre", logo: aiLogo("london-training-centre") },
+      { name: "Simply Flooring & Furniture", logo: aiLogo("simply-flooring") },
+      { name: "Elite Press", logo: aiLogo("elite-press") },
     ],
   },
   {
@@ -148,32 +155,31 @@ const FESTIVAL_VIDEOS = [
   "1570466948101263",
 ].map((id) => `${FESTIVAL_EVENT_URL}permalink/${id}/`);
 
-// From the fascia name plaque sheet (J46307), 22 stalls. Index + 1 = stall number.
-// Stall 20 is London Training Centre (per the sheet's stall notes, not the duplicate JA Builders row).
+// From the first table in "Stall Number.xlsx", 22 stalls. Index + 1 = stall number.
 // Logos reuse the sponsor assets; exhibitors without one get a monogram.
 const EXHIBITORS: { name: string; logo?: string }[] = [
-  { name: "Ultimate Accounting & Tax Solutions" },
+  { name: "Acumen Accountants & Tax Advisers", logo: logo(17) },
   { name: "Sterlix IT", logo: logo(14) },
   { name: "MB(S) Builders Ltd", logo: originalLogo(9) },
   { name: "Beneco Financial Services", logo: originalLogo(20) },
   { name: "Creative Design & Construction Limited", logo: logo(3) },
   { name: "Lomash Wood", logo: logo(8) },
-  { name: "River Finance" },
+  { name: "River Finance", logo: aiLogo("river-finance") },
   { name: "Morgan Knights", logo: logo(18) },
   { name: "Pedley Electric", logo: logo(13) },
   { name: "Cosmic Facility Services", logo: logo(11) },
-  { name: "JA Builders Limited" },
-  { name: "Acumen Accountants & Tax Advisers", logo: logo(17) },
+  { name: "JA Builders Limited", logo: aiLogo("ja-builders") },
+  { name: "Ultimate Accounting & Tax Solutions", logo: aiLogo("ultimate-accounting") },
   { name: "Open Door Mortgages", logo: logo(15) },
   { name: "Interior Studio Ltd", logo: logo(10) },
   { name: "Manor Glazing", logo: logo(9) },
   { name: "CDC Housing", logo: logo(12) },
-  { name: "New City Solicitors" },
+  { name: "New City Solicitors", logo: aiLogo("new-city-solicitors") },
   { name: "East London Metal", logo: logo(6) },
   { name: "Landview Construction", logo: logo(4) },
-  { name: "London Training Centre" },
-  { name: "Simply Flooring and Furniture" },
-  { name: "Elite Press" },
+  { name: "London Training Centre", logo: aiLogo("london-training-centre") },
+  { name: "Simply Flooring and Furniture", logo: aiLogo("simply-flooring") },
+  { name: "Elite Press", logo: aiLogo("elite-press") },
 ];
 
 const initials = (name: string) =>
@@ -184,21 +190,18 @@ const initials = (name: string) =>
     .map((w) => w[0].toUpperCase())
     .join("");
 
-// Session titles only, from the final itinerary in "Event Itinerary.docx" (the timeline at the
-// end of the document, which supersedes the draft at the top).
+// Session titles only, from the "Draft Event Itinerary" at the top of "Event Itinerary.docx".
 const PROGRAMME = [
   { time: "1:00 – 1:30 PM", title: "Guest Arrival & Registration" },
-  { time: "1:30 – 1:45 PM", title: "Zohur Prayer Break" },
-  { time: "1:45 – 2:30 PM", title: "Official Opening" },
-  { time: "2:30 – 3:00 PM", title: "Food & Refreshment Break" },
-  { time: "3:00 – 3:35 PM", title: "Panel Discussion & Student Job Session (CV Drop)" },
-  { time: "3:40 – 4:20 PM", title: "How to Buy a Property in the UK: First-Time Buyers" },
-  { time: "4:30 – 5:00 PM", title: "Building the Future: Construction Management, Building Safety & Sustainability" },
-  { time: "5:00 – 6:15 PM", title: "Exhibition & Networking" },
-  { time: "6:15 – 7:45 PM", title: "Concert" },
-  { time: "7:45 – 8:15 PM", title: "Dinner & Networking" },
-  { time: "8:15 – 8:40 PM", title: "Special Guest Address & Closing Session" },
-  { time: "8:40 – 9:00 PM", title: "Vote of Thanks" },
+  { time: "1:30 – 2:00 PM", title: "Panel Discussion & Student Job Session (CV Drop)" },
+  { time: "2:00 – 2:30 PM", title: "Building the Future: Construction Management, Building Safety & Sustainability Practice" },
+  { time: "2:30 – 3:00 PM", title: "How to Buy a Property in the UK: First-Time Buyers" },
+  { time: "3:00 – 5:00 PM", title: "Official Ceremony" },
+  { time: "5:00 – 7:30 PM", title: "Concert" },
+  { time: "7:35 – 8:15 PM", title: "Dinner & Networking" },
+  { time: "8:15 – 8:40 PM", title: "Special Guest Address & Closing Ceremony" },
+  { time: "8:40 – 8:45 PM", title: "Exhibition & Networking (to be confirmed)" },
+  { time: "8:45 – 9:00 PM", title: "Vote of Thanks" },
 ];
 
 export default function BuildFestivalPage() {
@@ -215,15 +218,13 @@ export default function BuildFestivalPage() {
         mapUrl={VENUE_MAP_URL}
       />
       <header className="bg-white text-[#1B2A52]">
-        {/* Festival colour band, taken from the logo */}
-        <div className="h-1.5 bg-[linear-gradient(90deg,#0A7D3E_0%,#0A7D3E_25%,#DA9028_25%,#DA9028_50%,#D0202F_50%,#D0202F_75%,#1B2A52_75%)]" />
         <div className="max-w-[1200px] mx-auto px-5 sm:px-8 py-4 flex flex-col md:flex-row items-center gap-5 md:gap-10">
           <Link href="/build-festival" className="shrink-0">
             <BuildFestivalLogo className="h-40 md:h-48 w-auto" />
           </Link>
           <div className="flex-1 text-center md:text-left">
             <h1 className="text-[clamp(24px,3vw,36px)] font-bold uppercase leading-tight tracking-tight">
-              Build Festival 2026
+              British Bangladeshi Build Festival 2026
             </h1>
             <div className="mt-3 flex flex-wrap items-center justify-center md:justify-start gap-x-5 gap-y-1.5 text-[15px] md:text-[17px] font-semibold text-[#414C60]">
               <span className="inline-flex items-center gap-1.5">
@@ -273,30 +274,17 @@ export default function BuildFestivalPage() {
         </div>
       </header>
 
-      {/* Section strip — transparent; each link carries a festival-colour underline that grows on hover */}
-      <nav className="border-y border-[#E3E7ED]">
-        <div className="max-w-[1200px] mx-auto px-5 sm:px-8 flex items-center gap-4 sm:gap-5 overflow-x-auto">
-          {SECTION_LINKS.map((l, i) => (
-            <span key={l.href} className="flex items-center gap-4 sm:gap-5 shrink-0">
-              {i > 0 && (
-                <span
-                  aria-hidden
-                  className="h-1.5 w-1.5 rounded-full"
-                  style={{ backgroundColor: STRIP_COLORS[(i - 1) % STRIP_COLORS.length] }}
-                />
-              )}
-              <a
-                href={l.href}
-                className="group relative py-4 text-[14px] font-bold uppercase tracking-[0.4px] text-[#1B2A52] whitespace-nowrap transition-colors hover:text-[#0044b2]"
-              >
-                {l.label}
-                <span
-                  aria-hidden
-                  className="absolute left-0 bottom-2.5 h-[3px] w-4 rounded-full transition-all duration-300 group-hover:w-full"
-                  style={{ backgroundColor: STRIP_COLORS[i % STRIP_COLORS.length] }}
-                />
-              </a>
-            </span>
+      {/* Section strip — transparent; links pop (scale up with a slight overshoot) on hover */}
+      <nav className="border-b border-[#E3E7ED]">
+        <div className="max-w-[1200px] mx-auto px-5 sm:px-8 flex items-center gap-7 sm:gap-10 overflow-x-auto">
+          {SECTION_LINKS.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="shrink-0 my-4 text-[14px] font-bold uppercase tracking-[0.4px] text-[#1B2A52] whitespace-nowrap transition-[transform,color] duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-110 hover:text-[#0044b2]"
+            >
+              {l.label}
+            </a>
           ))}
           <Link
             href="/"
@@ -344,7 +332,12 @@ export default function BuildFestivalPage() {
             <BuildFestivalLogo className="w-full max-w-[260px] h-auto" />
           </div>
           <div>
-            <h2 className="text-f30 font-bold text-[#0A7D3E] tracking-tight mb-5">Join Us</h2>
+            <h2 className="text-f30 font-bold text-[#0A7D3E] tracking-tight leading-snug mb-5">
+              Join Us on <span className="whitespace-nowrap text-[#D0202F]">November 29</span>, at{" "}
+              <span className="whitespace-nowrap text-[#D0202F]">1:00 PM</span>
+              <br />
+              in <span className="whitespace-nowrap text-[#1B2A52]">The Royal Regency</span>
+            </h2>
             <p className="text-[15.5px] leading-relaxed text-[#414C60] mb-4">
               The British Bangladeshi Build Festival London 2026 brings together construction professionals,
               business owners, developers, contractors, architects, engineers, suppliers, investors and community
@@ -564,17 +557,17 @@ export default function BuildFestivalPage() {
             Indicative layout — final venue plan to be confirmed.
           </p>
           <a
-            href="/British_Bangladeshi_Build_Festival_Floorplan.png"
+            href="/British_Bangladeshi_Build_Festival_Floorplan.jpg"
             target="_blank"
             rel="noopener noreferrer"
             className="block overflow-hidden rounded-2xl shadow-[0_16px_48px_rgba(20,32,61,0.13)]"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/British_Bangladeshi_Build_Festival_Floorplan.png"
-              alt="BBCA Build Festival event floor plan: registration, waiting lounge, 22 exhibitor stalls, general seating, VIP and members tables, food stalls, bar and stage"
-              width={1672}
-              height={941}
+              src="/British_Bangladeshi_Build_Festival_Floorplan.jpg"
+              alt="British Bangladeshi Build Festival floor plan: registration, waiting lounge, 22 numbered exhibitor stalls, general seating, VIP and members tables, food stalls, bar and stage"
+              width={1600}
+              height={800}
               loading="lazy"
               className="w-full h-auto"
             />
@@ -635,48 +628,24 @@ export default function BuildFestivalPage() {
       <section id="venue" className="bg-[#E4F0F2] py-14 md:py-20">
         <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
           <h2 className="text-f34 font-bold text-[#1B2A52] tracking-tight text-center mb-3">Venue</h2>
-          <p className="text-center text-[14.5px] text-[#6E7A8C] mb-10">How to find Build Festival 2026.</p>
-          <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.6fr] gap-6 lg:gap-8 items-center">
-            <div className="bg-white rounded-2xl border border-[#E3E7ED] p-6 sm:p-7 shadow-[0_4px_18px_rgba(20,32,61,0.06)]">
-              <p className="text-[11px] font-bold uppercase tracking-[1.5px] text-[#DA9028]">Venue</p>
-              <h3 className="mt-1.5 text-[22px] font-bold text-[#1B2A52] leading-tight">{VENUE_NAME}</h3>
-              <ul className="mt-5 space-y-3 text-[15px] text-[#414C60]">
-                <li className="flex items-start gap-2.5">
-                  <MapPin size={18} className="text-[#DA9028] shrink-0 mt-0.5" />
-                  {VENUE}
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <CalendarDays size={18} className="text-[#DA9028] shrink-0 mt-0.5" />
-                  {EVENT_DATE}
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <Clock size={18} className="text-[#DA9028] shrink-0 mt-0.5" />
-                  {EVENT_TIME}
-                </li>
-              </ul>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <a
-                  href={DIRECTIONS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#D0202F] text-white font-bold text-[13px] uppercase tracking-[0.5px] px-5 py-2.5 rounded-full hover:bg-[#1B2A52] transition-colors"
-                >
-                  Get Directions
-                  <ArrowUpRight size={15} strokeWidth={2.5} />
-                </a>
-                <a
-                  href={VENUE_MAP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border-2 border-[#1B2A52] text-[#1B2A52] font-bold text-[13px] uppercase tracking-[0.5px] px-5 py-2 rounded-full hover:bg-[#1B2A52] hover:text-white transition-colors"
-                >
-                  Google Maps
-                  <ArrowUpRight size={15} strokeWidth={2.5} />
-                </a>
-              </div>
-            </div>
-            <VenueMap query={`${VENUE_NAME}, ${VENUE}`} title={`Map of ${VENUE_NAME}, ${VENUE}`} />
+          <div className="mb-10 text-center">
+            <h3 className="text-[22px] font-bold text-[#1B2A52] leading-tight">{VENUE_NAME}</h3>
+            <ul className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[15px] text-[#414C60]">
+              <li className="inline-flex items-center gap-2">
+                <MapPin size={18} className="text-[#DA9028] shrink-0" />
+                {VENUE}
+              </li>
+              <li className="inline-flex items-center gap-2">
+                <CalendarDays size={18} className="text-[#DA9028] shrink-0" />
+                {EVENT_DATE}
+              </li>
+              <li className="inline-flex items-center gap-2">
+                <Clock size={18} className="text-[#DA9028] shrink-0" />
+                {EVENT_TIME}
+              </li>
+            </ul>
           </div>
+          <VenueMap query={`${VENUE_NAME}, ${VENUE}`} title={`Map of ${VENUE_NAME}, ${VENUE}`} />
         </div>
       </section>
     </>
