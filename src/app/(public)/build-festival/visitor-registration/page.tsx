@@ -120,7 +120,10 @@ export default function VisitorRegistrationPage() {
             className="font-extrabold text-[#1B2A52] uppercase tracking-normal [word-spacing:0.15em] leading-[1.15]"
             style={{ fontSize: "clamp(26px, 4.2vw, 40px)" }}
           >
-            British Bangladeshi Build Festival <span className="block text-[#D0202F]">Visitor Registration</span>
+            <span className="block whitespace-nowrap" style={{ fontSize: "clamp(12px, 3.6vw, 35px)" }}>
+              British Bangladeshi Build Festival
+            </span>
+            <span className="block text-[#D0202F]">Visitor Registration</span>
           </h1>
           {/* Festival-colour accent bar */}
           <span

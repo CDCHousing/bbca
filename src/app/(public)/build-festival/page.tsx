@@ -73,6 +73,10 @@ const aiLogo = (name: string) => `/sponsor-logos-ai/${name}.png`;
 
 const TITLE_SPONSOR = { name: "Work Permit Cloud", logo: logo(1) };
 
+// Single partner, so a fixed tile like the title sponsor. The logo sits on its own
+// near-black background, so the tile uses the same colour.
+const PHOTO_PARTNER = { name: "Sami's Studio", logo: "/sponsor-logos/samis-studio.jpg", bg: "#12130E" };
+
 // One carousel per tier. Rows alternate direction: right-to-left, then left-to-right.
 const SPONSOR_TIERS = [
   {
@@ -421,6 +425,26 @@ export default function BuildFestivalPage() {
                 />
               </div>
             ))}
+
+            {/* Photo & Videography Partner — one fixed tile */}
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="h-px flex-1 bg-[#1B2A52]/15" />
+                <h3 className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-[2px] text-[#DA9028]">
+                  <span className="w-2 h-2 rounded-full bg-[#DA9028]" />
+                  Photo &amp; Videography Partner
+                </h3>
+                <span className="h-px flex-1 bg-[#1B2A52]/15" />
+              </div>
+              <div
+                className="mx-auto max-w-[320px] h-44 md:h-48 rounded-2xl shadow-[0_10px_28px_rgba(20,32,61,0.18)] flex items-center justify-center p-4 overflow-hidden"
+                style={{ backgroundColor: PHOTO_PARTNER.bg }}
+                title={PHOTO_PARTNER.name}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={PHOTO_PARTNER.logo} alt={PHOTO_PARTNER.name} loading="lazy" className="max-h-full max-w-full object-contain" />
+              </div>
+            </div>
           </div>
 
           <p className="mt-12 text-center text-[14px] text-[#414C60]">
