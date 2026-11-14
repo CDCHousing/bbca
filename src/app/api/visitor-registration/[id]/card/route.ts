@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PDFDocument } from "pdf-lib";
 import { prisma } from "@/lib/prisma";
-import { renderVisitorCardPng, visitorCardFilename, VISITOR_CARD_SIZE } from "@/lib/visitor-card";
+import {
+  renderVisitorCardPng,
+  visitorCardFilename,
+  VISITOR_CARD_WIDTH,
+  VISITOR_CARD_HEIGHT,
+} from "@/lib/visitor-card";
 
 export async function GET(
   _request: NextRequest,
@@ -21,8 +26,8 @@ export async function GET(
 
   const pdfDoc = await PDFDocument.create();
   const pngImage = await pdfDoc.embedPng(pngBuffer);
-  const page = pdfDoc.addPage([VISITOR_CARD_SIZE, VISITOR_CARD_SIZE]);
-  page.drawImage(pngImage, { x: 0, y: 0, width: VISITOR_CARD_SIZE, height: VISITOR_CARD_SIZE });
+  const page = pdfDoc.addPage([VISITOR_CARD_WIDTH, VISITOR_CARD_HEIGHT]);
+  page.drawImage(pngImage, { x: 0, y: 0, width: VISITOR_CARD_WIDTH, height: VISITOR_CARD_HEIGHT });
   const pdfBytes = await pdfDoc.save();
 
   return new NextResponse(Buffer.from(pdfBytes), {

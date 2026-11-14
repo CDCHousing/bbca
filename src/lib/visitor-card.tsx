@@ -2,36 +2,33 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-export const VISITOR_CARD_SIZE = 1254;
+// Portrait card from "Registration Card 02.ai" (504.526 x 717.116 pt), rendered at 1200px wide.
+// visitor-card-bg.jpg is that artwork with the sample name/profession removed.
+export const VISITOR_CARD_WIDTH = 1200;
+export const VISITOR_CARD_HEIGHT = 1706;
 
-const NAME_TOP = 610;
-const NAME_LEFT = 330;
-const NAME_RIGHT = 60;
+// Text box: left edge of the artwork's text column, stopping short of Big Ben.
+const TEXT_TOP = 518;
+const TEXT_LEFT = 70;
+const TEXT_WIDTH = 740;
 
-function nameFontSize(name: string): number {
-  const len = name.length;
-  if (len <= 8) return 78;
-  if (len <= 12) return 68;
-  if (len <= 16) return 58;
-  if (len <= 22) return 48;
-  return 40;
-}
+const NAME_MAX = 83; // 35pt in the artwork
+const NAME_MIN = 46;
+const PROFESSION_MAX = 38; // 15.8pt in the artwork
+const PROFESSION_MIN = 26;
 
-function professionFontSize(profession: string): number {
-  const len = profession.length;
-  if (len <= 10) return 38;
-  if (len <= 16) return 34;
-  if (len <= 22) return 30;
-  return 26;
+// Poppins Medium averages ~0.62em per character; shrink until the line fits the box.
+function fitFontSize(text: string, max: number, min: number): number {
+  const fit = Math.floor(TEXT_WIDTH / (Math.max(text.length, 1) * 0.62));
+  return Math.max(min, Math.min(max, fit));
 }
 
 export async function renderVisitorCardPng(name: string, profession?: string): Promise<Buffer> {
-  const bgPath = path.join(process.cwd(), "public", "visitor-card-bg.jpg");
-  const bgBuffer = await readFile(bgPath);
+  const [bgBuffer, fontData] = await Promise.all([
+    readFile(path.join(process.cwd(), "public", "visitor-card-bg.jpg")),
+    readFile(path.join(process.cwd(), "public", "fonts", "Poppins-Medium.ttf")),
+  ]);
   const bgDataUri = `data:image/jpeg;base64,${bgBuffer.toString("base64")}`;
-
-  const nameSize = nameFontSize(name);
-  const professionTop = NAME_TOP + nameSize * 1.15 + 20;
 
   const image = new ImageResponse(
     (
@@ -39,51 +36,58 @@ export async function renderVisitorCardPng(name: string, profession?: string): P
         style={{
           display: "flex",
           position: "relative",
-          width: VISITOR_CARD_SIZE,
-          height: VISITOR_CARD_SIZE,
+          width: VISITOR_CARD_WIDTH,
+          height: VISITOR_CARD_HEIGHT,
+          fontFamily: "Poppins",
         }}
       >
         <img
           src={bgDataUri}
-          width={VISITOR_CARD_SIZE}
-          height={VISITOR_CARD_SIZE}
+          width={VISITOR_CARD_WIDTH}
+          height={VISITOR_CARD_HEIGHT}
           style={{ position: "absolute", top: 0, left: 0 }}
         />
         <div
           style={{
             position: "absolute",
-            top: NAME_TOP,
-            left: NAME_LEFT,
-            right: NAME_RIGHT,
+            top: TEXT_TOP,
+            left: TEXT_LEFT,
+            width: TEXT_WIDTH,
             display: "flex",
-            fontSize: nameSize,
-            fontWeight: 700,
-            color: "#0a0a0a",
-            lineHeight: 1,
+            flexDirection: "column",
           }}
         >
-          {name}
-        </div>
-        {profession && (
           <div
             style={{
-              position: "absolute",
-              top: professionTop,
-              left: NAME_LEFT,
-              right: NAME_RIGHT,
               display: "flex",
-              fontSize: professionFontSize(profession),
-              fontWeight: 600,
-              color: "#1B2A52",
-              lineHeight: 1,
+              fontSize: fitFontSize(name, NAME_MAX, NAME_MIN),
+              color: "#283279",
+              lineHeight: 1.1,
             }}
           >
-            {profession}
+            {name}
           </div>
-        )}
+          {profession && (
+            <div
+              style={{
+                display: "flex",
+                marginTop: 4,
+                fontSize: fitFontSize(profession, PROFESSION_MAX, PROFESSION_MIN),
+                color: "#231F20",
+                lineHeight: 1.15,
+              }}
+            >
+              {profession}
+            </div>
+          )}
+        </div>
       </div>
     ),
-    { width: VISITOR_CARD_SIZE, height: VISITOR_CARD_SIZE }
+    {
+      width: VISITOR_CARD_WIDTH,
+      height: VISITOR_CARD_HEIGHT,
+      fonts: [{ name: "Poppins", data: fontData, weight: 500, style: "normal" }],
+    }
   );
 
   return Buffer.from(await image.arrayBuffer());
