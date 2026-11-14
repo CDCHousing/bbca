@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Phone, Mail, MapPin, ArrowUp } from "lucide-react";
 import { cn } from "@/lib/utils";
+import FestivalFooter from "@/components/FestivalFooter";
 
 const STYLES = `
 @keyframes footer-breathe {
@@ -182,7 +184,12 @@ const MarqueeItem = () => (
   </div>
 );
 
+// The festival page has its own footer.
 export default function Footer() {
+  return usePathname() === "/build-festival" ? <FestivalFooter /> : <SiteFooter />;
+}
+
+function SiteFooter() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const giantTextRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);

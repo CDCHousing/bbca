@@ -6,6 +6,18 @@ import SponsorCarousel from "@/components/SponsorCarousel";
 import FacebookEmbed from "@/components/FacebookEmbed";
 import ContactBubble from "@/components/ContactBubble";
 import VenueMap from "@/components/VenueMap";
+import {
+  VENUE_NAME,
+  VENUE,
+  VENUE_MAP_URL,
+  EVENT_DATE,
+  EVENT_TIME,
+  EVENT_PHONE,
+  EVENT_PHONE_TEL,
+  EVENT_EMAIL,
+  HIGHLIGHTS,
+  SECTION_LINKS,
+} from "@/lib/build-festival";
 
 export const metadata: Metadata = {
   title: "Build Festival 2026",
@@ -13,18 +25,7 @@ export const metadata: Metadata = {
     "British Bangladeshi Build Festival London 2026 — construction, jobs and a concert, hosted by BBCA.",
 };
 
-// Placeholder content — swap for real data once confirmed.
-const VENUE_NAME = "The Royal Regency";
-const VENUE = "501 High St N, London E12 6TH";
-const VENUE_MAP_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${VENUE_NAME}, ${VENUE}`)}`;
-const EVENT_DATE = "29 November 2026";
-const EVENT_TIME = "1:00 PM – 9:00 PM";
-const EVENT_PHONE = "07913 185391";
-const EVENT_PHONE_TEL = "+447913185391";
-const EVENT_EMAIL = "contact@bbcauk.org";
-
 // Moving bar under the hero video, styled after the footer marquee.
-const HIGHLIGHTS = ["Construction", "Jobs", "Concert"];
 const STAR_COLORS = ["#DA9028", "#D0202F", "#0A7D3E"];
 const MARQUEE_CSS = `
 @keyframes bf-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -48,15 +49,6 @@ function MarqueeHalf() {
   );
 }
 
-const SECTION_LINKS = [
-  { label: "Join Us", href: "#join" },
-  { label: "Sponsors", href: "#sponsors" },
-  { label: "Exhibitors", href: "#exhibitors" },
-  { label: "Map Plan", href: "#map" },
-  { label: "Programme", href: "#programme" },
-  { label: "Fire Safety", href: "#fire-safety" },
-  { label: "Venue", href: "#venue" },
-];
 
 // Logos are the upscaled public/Asset N.svg exports. Their numbers don't follow the sponsor
 // sheet order, so each logo is mapped by hand. Four companies came through blank in the
@@ -66,7 +58,8 @@ const SECTION_LINKS = [
 // design-reference/SPONSORS  logo Fixed (mostly).ai (colour-matched to the export), in
 // public/sponsor-logos-ai/. The last seven Silver sponsors (River Finance … Elite Press) were
 // added in "Sponsors logo 9 November.ai"; their logos are rendered from that file into the
-// same folder.
+// same folder. Versatile, Tile House, Smart Plumbing, Bristol Central Heating, AK and the new
+// media partners come from design-reference/"Sponsors logo 14 November.ai", rendered the same way.
 const logo = (n: number) => encodeURI(`/Asset ${n}.svg`);
 const originalLogo = (n: number) => encodeURI(`/sponsor-logos-original/Asset ${n}.svg`);
 const aiLogo = (name: string) => `/sponsor-logos-ai/${name}.png`;
@@ -115,6 +108,10 @@ const SPONSOR_TIERS = [
       { name: "London Training Centre", logo: aiLogo("london-training-centre") },
       { name: "Simply Flooring & Furniture", logo: aiLogo("simply-flooring") },
       { name: "Elite Press", logo: aiLogo("elite-press") },
+      { name: "Versatile Inspiring Homes Ilford", logo: aiLogo("versatile") },
+      { name: "Tile House Tile & Bathrooms", logo: aiLogo("tile-house") },
+      { name: "Smart Plumbing, Heating & Gas", logo: aiLogo("smart-plumbing") },
+      { name: "Bristol Central Heating", logo: aiLogo("bristol-central-heating") },
     ],
   },
   {
@@ -126,6 +123,8 @@ const SPONSOR_TIERS = [
       { name: "Bangladesh High Commission London", logo: logo(21) },
       { name: "The Royal Regency London", logo: "/sponsor-logos-ai/royal-regency.png" },
       { name: "Bangladesh Caterers Association", logo: originalLogo(24) },
+      { name: "AK Energy & Funding Solutions", logo: aiLogo("ak") },
+      { name: "British Bangla Welfare Trust", logo: "/sponsor-logos/british-bangla-welfare-trust.jpg" },
     ],
   },
   {
@@ -139,9 +138,13 @@ const SPONSOR_TIERS = [
       { name: "2A News", logo: originalLogo(28) },
       { name: "Top News", logo: logo(23) },
       { name: "Q News", logo: logo(34) },
-      { name: "Channel TS", logo: logo(33) },
+      { name: "UK Bangla Live", logo: aiLogo("uk-bangla") },
       { name: "Hawa TV", logo: logo(31) },
+      { name: "Politika News", logo: aiLogo("politika-news") },
       { name: "Iqra Bangla", logo: logo(30) },
+      { name: "The Sunrise Today", logo: aiLogo("sunrise-today") },
+      { name: "NRB TV London", logo: aiLogo("nrb-tv") },
+      { name: "Runner", logo: aiLogo("runner") },
       { name: "TV3 Bangla", logo: logo(29) },
     ],
   },
