@@ -237,7 +237,7 @@ export default function FestivalFooter() {
         <div className="max-w-[1392px] mx-auto px-5 sm:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-[1.5fr_1.2fr_0.8fr_1fr] gap-x-8 gap-y-10 pt-14 pb-14 md:pt-20 md:pb-20" data-reveal="">
             <div className="ff-fade col-span-2 lg:col-span-1">
-              <p className="text-[24px] md:text-[28px] font-bold leading-tight tracking-tight">
+              <p className="text-[21px] md:text-[24px] font-bold leading-tight tracking-tight">
                 British Bangladeshi
                 <br />
                 Build Festival London 2026

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Play, MapPin, Clock, CalendarDays, ArrowRight, ArrowUpRight } from "lucide-react";
+import { Play, MapPin, Clock, CalendarDays, ArrowRight, ArrowUpRight, Download } from "lucide-react";
 import BuildFestivalLogo from "@/components/BuildFestivalLogo";
 import SponsorCarousel from "@/components/SponsorCarousel";
 import FacebookEmbed from "@/components/FacebookEmbed";
@@ -648,6 +648,18 @@ export default function BuildFestivalPage() {
             />
           </a>
           <p className="text-center text-[13px] text-[#6E7A8C] mt-3">Tap the notice to open it full size.</p>
+          <div className="mt-8 flex justify-center">
+            <a
+              href="/BBCA-%20Event%20Risk%20Assessement,%20Fire%20Safety%20Assessment%20and%20Evacuation%20Plan.pdf"
+              download="BBCA Event Risk Assessment, Fire Safety Assessment and Evacuation Plan.pdf"
+              className="group inline-flex items-center gap-3 bg-[#D0202F] text-white font-bold text-[14px] md:text-[15px] uppercase tracking-[0.5px] pl-7 pr-3 py-3 rounded-full shadow-[0_10px_28px_rgba(208,32,47,0.35)] hover:bg-[#1B2A52] hover:shadow-[0_10px_28px_rgba(27,42,82,0.35)] transition-colors"
+            >
+              Download Fire Safety Plan (PDF)
+              <span className="inline-flex w-9 h-9 rounded-full bg-white/20 items-center justify-center transition-transform group-hover:translate-y-0.5">
+                <Download size={18} strokeWidth={2.5} />
+              </span>
+            </a>
+          </div>
         </div>
       </section>
 
