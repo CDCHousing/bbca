@@ -6,7 +6,7 @@ const CONTACT_ROWS = [
   {
     icon: Phone,
     label: "Phone / WhatsApp",
-    value: "020 8004 3327",
+    value: "07913 185391",
     multiline: false,
   },
   {
@@ -18,7 +18,7 @@ const CONTACT_ROWS = [
   {
     icon: MapPin,
     label: "Address",
-    value: "Cranbrook Road\nLondon, IG2 6JZ\nUnited Kingdom",
+    value: "623 Cranbrook Road\nGants Hill, IG2 6SU\nUnited Kingdom",
     multiline: true,
   },
   {

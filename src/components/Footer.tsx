@@ -154,9 +154,9 @@ const FOOTER_COLS = [
   {
     head: "Contact Us",
     links: [
-      { label: "020 8004 3327", href: "/contact", icon: Phone },
+      { label: "07913 185391", href: "/contact", icon: Phone },
       { label: "contact@bbcauk.org", href: "/contact", icon: Mail },
-      { label: "Cranbrook Road, London, IG2 6JZ", href: "/contact", icon: MapPin },
+      { label: "623 Cranbrook Road, Gants Hill, IG2 6SU", href: "/contact", icon: MapPin },
     ],
   },
   {

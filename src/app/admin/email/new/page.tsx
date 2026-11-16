@@ -316,9 +316,9 @@ export default function NewEmailCampaignPage() {
                 <div className="mt-8 pt-4 border-t border-[#E3E7ED] text-[#6E7A8C] text-xs leading-relaxed">
                   British Bangladeshi Construction Association
                   <br />
-                  Cranbrook Road, London, IG2 6JZ
+                  623 Cranbrook Road, Gants Hill, IG2 6SU
                   <br />
-                  020 8004 3327 &middot; contact@bbcauk.org
+                  07913 185391 &middot; contact@bbcauk.org
                 </div>
               </div>
             </div>

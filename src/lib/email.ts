@@ -78,9 +78,9 @@ function defaultBody(): string {
 /** Contact block shown in the campaign footer. Mirrors the site footer. */
 export const CONTACT = {
   org: "British Bangladeshi Construction Association",
-  phone: "020 8004 3327",
+  phone: "07913 185391",
   email: "contact@bbcauk.org",
-  address: "Cranbrook Road, London, IG2 6JZ",
+  address: "623 Cranbrook Road, Gants Hill, IG2 6SU",
 };
 
 /**
