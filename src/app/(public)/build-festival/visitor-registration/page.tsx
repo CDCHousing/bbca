@@ -175,7 +175,7 @@ export default function VisitorRegistrationPage() {
             </div>
 
             <div>
-              <FieldLabel htmlFor="phone" required>Phone</FieldLabel>
+              <FieldLabel htmlFor="phone">Phone</FieldLabel>
               <FieldInput
                 id="phone"
                 name="phone"
@@ -184,35 +184,32 @@ export default function VisitorRegistrationPage() {
                 pattern="[0-9+]*"
                 value={form.phone}
                 onChange={handlePhoneChange}
-                required
                 error={errors.phone}
               />
               <FieldError message={errors.phone} />
             </div>
 
             <div>
-              <FieldLabel htmlFor="email" required>Email</FieldLabel>
+              <FieldLabel htmlFor="email">Email</FieldLabel>
               <FieldInput
                 id="email"
                 name="email"
                 type="email"
                 value={form.email}
                 onChange={handleChange}
-                required
                 error={errors.email}
               />
               <FieldError message={errors.email} />
             </div>
 
             <div>
-              <FieldLabel htmlFor="profession" required>Profession</FieldLabel>
+              <FieldLabel htmlFor="profession">Profession</FieldLabel>
               <FieldInput
                 id="profession"
                 name="profession"
                 type="text"
                 value={form.profession}
                 onChange={handleChange}
-                required
                 error={errors.profession}
               />
               <FieldError message={errors.profession} />

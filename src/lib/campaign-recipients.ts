@@ -96,11 +96,13 @@ async function loadSource(source: RecipientSource): Promise<ResolvedRecipient[]>
         orderBy: { createdAt: "asc" },
         select: { email: true, name: true, profession: true },
       });
-      return rows.map((r) => ({
-        email: r.email,
-        name: r.name,
-        organization: r.profession,
-      }));
+      return rows
+        .filter((r) => r.email.trim() !== "") // email is optional on the form
+        .map((r) => ({
+          email: r.email,
+          name: r.name,
+          organization: r.profession,
+        }));
     }
   }
 }
